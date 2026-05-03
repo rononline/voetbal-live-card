@@ -5,6 +5,10 @@
 
 🇮🇹 Versione italiana (sei qui) · 🇬🇧 **[English version](README.md)**
 
+### 🎬 [👉 Anteprima live — prova tutte le 7 card nel browser](https://bobsilvio.github.io/calcio-live-card/preview.html)
+
+Dati reali ESPN, toggle lingua (EN/IT/FR/ES), nessuna installazione necessaria.
+
 [![Sample](https://storage.ko-fi.com/cdn/generated/zfskfgqnf/2025-03-07_rest-7d81acd901abf101cbdf54443c38f6f0-dlmmonph.jpg)](https://ko-fi.com/silviosmart)
 
 ---
@@ -36,12 +40,11 @@ Un set di **7 card Lovelace** per Home Assistant che trasformano i sensori [Calc
 
 ## 🎬 Anteprima live
 
-È disponibile una **pagina showcase** auto-contenuta con tutte le card renderizzate con dati realistici:
+**👉 [https://bobsilvio.github.io/calcio-live-card/preview.html](https://bobsilvio.github.io/calcio-live-card/preview.html)**
 
-- **Apri in locale**: clona il repo e apri [`preview.html`](preview.html) in un browser (zero configurazione — il bundle è incluso nel file).
-- **Demo live**: pubblicabile via GitHub Pages dalla cartella `/docs` → `https://<tuo-fork>.github.io/calcio-live-card/preview.html`
+La pagina showcase renderizza **tutte le 7 card** con **dati reali ESPN** (snapshot al momento della build). Include un **toggle lingua** (EN/IT/FR/ES) per vedere come appare ogni card in ciascuna lingua, senza installare nulla.
 
-Il preview include un **toggle lingua** (EN/IT/FR/ES) e un **toggle tema** (light/dark) per vedere come si comporta ogni card.
+In alternativa puoi aprire [`preview.html`](preview.html) in locale — è completamente auto-contenuto (il bundle è incluso nell'HTML), nessuna configurazione necessaria.
 
 ---
 

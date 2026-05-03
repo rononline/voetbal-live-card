@@ -5,6 +5,10 @@
 
 🇮🇹 **[Versione italiana](README.it.md)** · 🇬🇧 English (you are here)
 
+### 🎬 [👉 Live preview — try all 7 cards in your browser](https://bobsilvio.github.io/calcio-live-card/preview.html)
+
+Real ESPN data, language toggle (EN/IT/FR/ES), no install required.
+
 [![Sample](https://storage.ko-fi.com/cdn/generated/zfskfgqnf/2025-03-07_rest-7d81acd901abf101cbdf54443c38f6f0-dlmmonph.jpg)](https://ko-fi.com/silviosmart)
 
 ---
@@ -36,12 +40,11 @@ A set of **7 Lovelace cards** for Home Assistant that turn the [Calcio Live](htt
 
 ## 🎬 Live preview
 
-A self-contained showcase page is available with all cards rendered using realistic data:
+**👉 [https://bobsilvio.github.io/calcio-live-card/preview.html](https://bobsilvio.github.io/calcio-live-card/preview.html)**
 
-- **Open locally**: clone the repo and open [`preview.html`](preview.html) in any browser (no setup needed — bundle is inlined).
-- **Live demo**: deploy via GitHub Pages from the `/docs` folder → `https://<your-fork>.github.io/calcio-live-card/preview.html`
+The showcase page renders **all 7 cards** with **real ESPN data** (frozen snapshot at build time). It includes a **language toggle** (EN/IT/FR/ES) so you can see how every card looks in each language without installing anything.
 
-The preview includes a **language toggle** (EN/IT/FR/ES) and **theme toggle** (light/dark) so you can see how every card behaves.
+You can also open [`preview.html`](preview.html) locally — it is fully self-contained (the bundle is inlined inside the HTML), no setup required.
 
 ---
 

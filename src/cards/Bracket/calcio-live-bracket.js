@@ -208,10 +208,11 @@ class CalcioLiveBracketCard extends LitElement {
       }
     }
 
-    // Marker freccia: triangolo orientato che si scala con stroke-width.
+    // Due marker fissi (no orient="auto" che si comporta male con marker-end su linee
+    // che vanno verso sinistra). Path esplicito per ogni direzione.
     const marker = isLeft
-      ? svg`<marker id="${markerId}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="var(--cl-accent)" /></marker>`
-      : svg`<marker id="${markerId}" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto" markerUnits="strokeWidth"><path d="M10,0 L0,5 L10,10 z" fill="var(--cl-accent)" /></marker>`;
+      ? svg`<marker id="${markerId}" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" markerUnits="strokeWidth" overflow="visible"><path d="M0,0 L10,5 L0,10 z" fill="var(--cl-accent)" /></marker>`
+      : svg`<marker id="${markerId}" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="7" markerHeight="7" markerUnits="strokeWidth" overflow="visible"><path d="M10,0 L0,5 L10,10 z" fill="var(--cl-accent)" /></marker>`;
 
     return html`
       <div class="tree-arrows ${direction}">
