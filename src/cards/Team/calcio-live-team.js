@@ -200,13 +200,36 @@ class CalcioLiveTeamNextCard extends LitElement {
   _renderClock(match) {
     const state = match.state;
     if (state === 'in') {
-      const txt = match.clock && match.clock !== 'N/A' ? match.clock : (match.status || '');
+      const detail = match.status_detail && match.status_detail !== 'N/A' ? match.status_detail : '';
+      const clk = match.clock && match.clock !== 'N/A' ? match.clock : '';
+      const txt = clk || detail || match.status || '';
       return html`<div class="clock"><span class="dot"></span>${txt}</div>`;
     }
     if (state === 'post') {
       return html`<div class="clock finished">Full Time</div>`;
     }
     return html`<div class="clock upcoming">${match.date || ''}</div>`;
+  }
+
+  _renderRecord(record) {
+    if (!record || record === 'N/A') return '';
+    const parts = String(record).split('-');
+    if (parts.length === 3) {
+      return html`<div class="record"><span class="rec rec-w">${parts[0]}V</span><span class="rec rec-d">${parts[1]}N</span><span class="rec rec-l">${parts[2]}P</span></div>`;
+    }
+    return html`<div class="record"><span class="rec">${record}</span></div>`;
+  }
+
+  _renderTopScorer(scorer) {
+    if (!scorer || !scorer.name) return '';
+    const name = scorer.short_name || scorer.name;
+    return html`
+      <div class="top-scorer" title="Capocannoniere">
+        <span class="ts-icon">⚽</span>
+        <span class="ts-name">${name}</span>
+        <span class="ts-val">${scorer.value}</span>
+      </div>
+    `;
   }
 
   _renderForm(formStr) {
@@ -282,6 +305,11 @@ class CalcioLiveTeamNextCard extends LitElement {
       ? match.league_name
       : (match.season_info && match.season_info !== 'N/A' ? match.season_info : '');
     const venue = match.venue && match.venue !== 'N/A' ? match.venue : '';
+    const venueCity = match.venue_city && match.venue_city !== 'N/A' ? match.venue_city : '';
+    const venueLabel = venue ? (venueCity ? `${venue}, ${venueCity}` : venue) : '—';
+    const broadcast = match.broadcast && match.broadcast !== '' && match.broadcast !== 'N/A' ? match.broadcast : '';
+    const attendance = parseInt(match.attendance, 10);
+    const hasAttendance = !isNaN(attendance) && attendance > 0;
 
     return html`
       <ha-card class="${isLive ? 'live' : ''}">
@@ -309,7 +337,9 @@ class CalcioLiveTeamNextCard extends LitElement {
               <img class="team-logo-big" src="${match.home_logo}" alt="${match.home_team}" />
             </div>
             <div class="team-name-big">${match.home_team}</div>
+            ${this._renderRecord(match.home_record)}
             ${this._renderForm(match.home_form)}
+            ${!isLive ? this._renderTopScorer(match.home_top_scorer) : ''}
           </div>
 
           <div class="score-center">
@@ -325,16 +355,18 @@ class CalcioLiveTeamNextCard extends LitElement {
               <img class="team-logo-big" src="${match.away_logo}" alt="${match.away_team}" />
             </div>
             <div class="team-name-big">${match.away_team}</div>
+            ${this._renderRecord(match.away_record)}
             ${this._renderForm(match.away_form)}
+            ${!isLive ? this._renderTopScorer(match.away_top_scorer) : ''}
           </div>
         </div>
 
         ${isLive ? this._renderStatsRow(match) : ''}
 
         <div class="meta-row">
-          <div class="meta-item">
+          <div class="meta-item venue-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>${venue || '—'}</span>
+            <span>${venueLabel}</span>
           </div>
           ${showScore
             ? html`<button class="info-btn" @click="${() => this.showDetails(match)}">Dettagli ›</button>`
@@ -346,6 +378,23 @@ class CalcioLiveTeamNextCard extends LitElement {
             `
           }
         </div>
+
+        ${(broadcast || hasAttendance) ? html`
+          <div class="extras-row">
+            ${broadcast ? html`
+              <div class="extra-chip broadcast">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="13" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+                <span>${broadcast}</span>
+              </div>
+            ` : ''}
+            ${hasAttendance ? html`
+              <div class="extra-chip attendance">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                <span>${attendance.toLocaleString('it-IT')} spettatori</span>
+              </div>
+            ` : ''}
+          </div>
+        ` : ''}
       </ha-card>
     `;
   }
@@ -430,6 +479,77 @@ class CalcioLiveTeamNextCard extends LitElement {
     eventsHTML += renderGroup('Goal', goals, { bg: 'rgba(99,102,241,0.1)', border: '#6366f1' });
     eventsHTML += renderGroup('Cartellini Gialli', yellowCards, { bg: 'rgba(245,158,11,0.1)', border: '#f59e0b' });
     eventsHTML += renderGroup('Cartellini Rossi', redCards, { bg: 'rgba(239,68,68,0.1)', border: '#ef4444' });
+
+    // Lineup (se disponibile dal sensor team_match arricchito con summary)
+    const lineupHome = m.lineup_home || [];
+    const lineupAway = m.lineup_away || [];
+    if (lineupHome.length || lineupAway.length) {
+      const fH = m.formation_home || '';
+      const fA = m.formation_away || '';
+      const renderLineup = (players, formation, label) => {
+        const starters = (players || []).filter(p => p.starter);
+        if (!starters.length) return '';
+        return `<div style="margin-bottom:8px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;">
+            <span style="font-size:12px; font-weight:800; color:#fff;">${label}</span>
+            ${formation ? `<span style="font-size:10px; font-weight:700; color:#6366f1; letter-spacing:0.1em;">${formation}</span>` : ''}
+          </div>
+          <div style="font-size:12px; color:#cbd5e1; line-height:1.7;">
+            ${starters.map(p => `<span style="display:inline-block; padding:2px 8px; background:rgba(255,255,255,0.05); border-radius:6px; margin:2px;">${p.jersey ? `<strong style="color:#fbbf24;">${p.jersey}</strong> ` : ''}${p.short_name || p.name}</span>`).join('')}
+          </div>
+        </div>`;
+      };
+      eventsHTML += `<div style="margin-bottom:14px; padding:14px; background:rgba(16,185,129,0.08); border-left:3px solid #10b981; border-radius:10px;">
+        <h5 style="margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#10b981; font-weight:800;">Formazioni</h5>
+        ${renderLineup(lineupHome, fH, m.home_team)}
+        ${renderLineup(lineupAway, fA, m.away_team)}
+      </div>`;
+    }
+
+    // Timeline (key events)
+    const keyEvents = m.key_events || [];
+    if (keyEvents.length) {
+      const iconOf = (ev) => {
+        const t = (ev.type || '').toLowerCase();
+        const txt = (ev.type_text || '').toLowerCase();
+        if (t === 'goal' || ev.scoring_play) return '⚽';
+        if (txt.includes('yellow')) return '🟨';
+        if (txt.includes('red')) return '🟥';
+        if (t === 'substitution') return '🔄';
+        if (txt.includes('halftime')) return '⏸';
+        if (txt.includes('kickoff')) return '▶';
+        if (txt.includes('end')) return '🏁';
+        return '·';
+      };
+      eventsHTML += `<div style="margin-bottom:14px; padding:14px; background:rgba(251,191,36,0.08); border-left:3px solid #fbbf24; border-radius:10px;">
+        <h5 style="margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#fbbf24; font-weight:800;">Cronologia</h5>
+        <ul style="margin:0; padding:0; list-style:none;">
+          ${keyEvents.map(e => `<li style="display:grid; grid-template-columns:36px 24px 1fr; gap:8px; align-items:start; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; color:#cbd5e1;">
+            <span style="text-align:right; font-weight:700; color:#94a3b8; font-variant-numeric:tabular-nums;">${e.clock || ''}</span>
+            <span style="text-align:center;">${iconOf(e)}</span>
+            <span><strong style="color:#fff;">${(e.athletes||[]).filter(Boolean).join(', ') || e.type_text || ''}</strong>${e.team ? `<br><span style="color:#94a3b8; font-size:11px;">${e.team}</span>` : ''}</span>
+          </li>`).join('')}
+        </ul>
+      </div>`;
+    }
+
+    // Head to head
+    const h2h = m.head_to_head || [];
+    if (h2h.length) {
+      eventsHTML += `<div style="margin-bottom:14px; padding:14px; background:rgba(99,102,241,0.08); border-left:3px solid #6366f1; border-radius:10px;">
+        <h5 style="margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#6366f1; font-weight:800;">Precedenti (${h2h.length})</h5>
+        <ul style="margin:0; padding:0; list-style:none;">
+          ${h2h.slice(0, 8).map(g => {
+            const dt = g.date ? new Date(g.date).toLocaleDateString('it-IT') : '';
+            return `<li style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; color:#cbd5e1;">
+              <span>${g.home_team} <strong>${g.home_score ?? '-'}</strong> - <strong>${g.away_score ?? '-'}</strong> ${g.away_team}</span>
+              <span style="color:#94a3b8;">${dt}</span>
+            </li>`;
+          }).join('')}
+        </ul>
+      </div>`;
+    }
+
     eventsContainer.innerHTML = eventsHTML || '<p style="text-align:center; color:#94a3b8; font-size:13px;">Nessun evento disponibile</p>';
   }
 
@@ -643,6 +763,45 @@ class CalcioLiveTeamNextCard extends LitElement {
         border: 1px solid var(--cl-glass-border);
         border-radius: 999px;
       }
+      .record {
+        display: flex; gap: 4px;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+      }
+      .record .rec {
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-variant-numeric: tabular-nums;
+      }
+      .record .rec-w { background: rgba(16,185,129,0.18); color: var(--cl-green); }
+      .record .rec-d { background: rgba(245,158,11,0.18); color: #f59e0b; }
+      .record .rec-l { background: rgba(239,68,68,0.18); color: var(--cl-live); }
+      .top-scorer {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 9px;
+        background: var(--cl-card-2);
+        border: 1px solid var(--cl-glass-border);
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--secondary-text-color);
+        max-width: 130px;
+      }
+      .top-scorer .ts-icon { font-size: 11px; }
+      .top-scorer .ts-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--primary-text-color);
+      }
+      .top-scorer .ts-val {
+        color: var(--cl-gold);
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+      }
       .form-pill {
         width: 14px; height: 14px;
         border-radius: 4px;
@@ -756,9 +915,48 @@ class CalcioLiveTeamNextCard extends LitElement {
       .meta-row {
         display: flex; justify-content: space-between;
         align-items: center;
+        gap: 12px;
         padding: 12px 18px;
         border-top: 1px solid var(--cl-divider);
         background: var(--cl-card-2);
+      }
+      .venue-item { min-width: 0; }
+      .venue-item span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .extras-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 8px 18px 12px;
+        background: var(--cl-card-2);
+        position: relative;
+        z-index: 2;
+      }
+      .extra-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 10px;
+        background: rgba(99,102,241,0.12);
+        border: 1px solid rgba(99,102,241,0.25);
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--cl-accent);
+      }
+      .extra-chip svg { width: 12px; height: 12px; }
+      .extra-chip.broadcast {
+        background: rgba(99,102,241,0.12);
+        border-color: rgba(99,102,241,0.3);
+        color: var(--cl-accent);
+      }
+      .extra-chip.attendance {
+        background: rgba(16,185,129,0.12);
+        border-color: rgba(16,185,129,0.3);
+        color: var(--cl-green);
       }
       .meta-item {
         display: flex; align-items: center; gap: 6px;

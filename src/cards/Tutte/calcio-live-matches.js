@@ -268,6 +268,8 @@ class CalcioLiveTodayMatchesCard extends LitElement {
               const recent = this._recentEventMatches.get(matchKey);
               const homeWinner = this._isWinner(match, 'home');
               const awayWinner = this._isWinner(match, 'away');
+              const broadcast = match.broadcast && match.broadcast !== '' && match.broadcast !== 'N/A' ? match.broadcast : '';
+              const isUpcoming = match.state === 'pre';
               return html`
                 <div class="match-row ${isLive ? 'live' : ''} ${recent === 'goal' ? 'goal-pulse' : ''} ${recent === 'card' ? 'card-pulse' : ''}"
                      @click="${() => this.showDetails(match)}">
@@ -285,6 +287,14 @@ class CalcioLiveTodayMatchesCard extends LitElement {
                       <span class="name ${awayWinner === true ? 'winner' : (awayWinner === false ? 'loser' : '')}">${match.away_team}</span>
                       <span class="score ${awayWinner === true ? 'winner' : (awayWinner === false ? 'loser' : '')}">${this._matchScore(match, 'away')}</span>
                     </div>
+                    ${broadcast && isUpcoming ? html`
+                      <div class="row-extras">
+                        <span class="tv-chip" title="Diretta TV">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="13" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+                          ${broadcast}
+                        </span>
+                      </div>
+                    ` : ''}
                   </div>
                   <div class="match-status-icon">›</div>
                 </div>
@@ -573,6 +583,26 @@ class CalcioLiveTodayMatchesCard extends LitElement {
       }
       .match-team .score.winner { color: var(--cl-accent); }
       .match-team .score.loser { color: var(--secondary-text-color); opacity: 0.6; }
+      .row-extras {
+        display: flex;
+        gap: 6px;
+        margin-top: 4px;
+      }
+      .tv-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 7px;
+        background: rgba(99,102,241,0.12);
+        border: 1px solid rgba(99,102,241,0.25);
+        border-radius: 999px;
+        font-size: 9px;
+        font-weight: 700;
+        color: var(--cl-accent);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .tv-chip svg { width: 10px; height: 10px; }
       .match-status-icon {
         color: var(--secondary-text-color);
         font-size: 18px;

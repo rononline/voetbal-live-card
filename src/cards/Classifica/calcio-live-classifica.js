@@ -174,8 +174,18 @@ class CalcioLiveStandingsCard extends LitElement {
             </thead>
             <tbody>
               ${filteredStandings.map(team => {
-                const gd = team.goal_difference;
-                const gdClass = gd > 0 ? 'gd-pos' : (gd < 0 ? 'gd-neg' : '');
+                const num = (v) => {
+                  if (v === null || v === undefined || v === '') return null;
+                  const n = parseInt(String(v).replace('+', ''), 10);
+                  return isNaN(n) ? null : n;
+                };
+                const w = num(team.wins);
+                const d = num(team.draws);
+                const l = num(team.losses);
+                const gd = num(team.goal_difference);
+                const played = (w !== null && d !== null && l !== null) ? (w + d + l) : null;
+                const gdClass = gd === null ? '' : (gd > 0 ? 'gd-pos' : (gd < 0 ? 'gd-neg' : ''));
+                const gdLabel = gd === null ? '-' : (gd > 0 ? `+${gd}` : `${gd}`);
                 return html`
                   <tr class="${this._zoneClass(team.rank, total)}">
                     <td><div class="rank-cell"><div class="rank-num">${team.rank}</div></div></td>
@@ -183,11 +193,11 @@ class CalcioLiveStandingsCard extends LitElement {
                       <img src="${team.team_logo}" alt="${team.team_name}" />
                       <span class="tname">${team.team_name}</span>
                     </td>
-                    <td>${team.points != null ? (team.wins + team.draws + team.losses) : '-'}</td>
-                    <td>${team.wins ?? '-'}</td>
-                    <td>${team.draws ?? '-'}</td>
-                    <td>${team.losses ?? '-'}</td>
-                    <td class="${gdClass}">${gd > 0 ? '+' : ''}${gd ?? '-'}</td>
+                    <td>${played ?? '-'}</td>
+                    <td>${w ?? '-'}</td>
+                    <td>${d ?? '-'}</td>
+                    <td>${l ?? '-'}</td>
+                    <td class="${gdClass}">${gdLabel}</td>
                     <td class="points-cell">${team.points ?? '-'}</td>
                   </tr>
                 `;

@@ -1,18 +1,18 @@
 /*! For license information please see calcio-live-card.bundle.js.LICENSE.txt */
-(()=>{"use strict";const t=globalThis,e=t.ShadowRoot&&(void 0===t.ShadyCSS||t.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s=Symbol(),a=new WeakMap;class i{constructor(t,e,a){if(this._$cssResult$=!0,a!==s)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e}get styleSheet(){let t=this.o;const s=this.t;if(e&&void 0===t){const e=void 0!==s&&1===s.length;e&&(t=a.get(s)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),e&&a.set(s,t))}return t}toString(){return this.cssText}}const o=(t,...e)=>{const a=1===t.length?t[0]:e.reduce(((e,s,a)=>e+(t=>{if(!0===t._$cssResult$)return t.cssText;if("number"==typeof t)return t;throw Error("Value passed to 'css' function must be a 'css' function result: "+t+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(s)+t[a+1]),t[0]);return new i(a,t,s)},n=(s,a)=>{if(e)s.adoptedStyleSheets=a.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet));else for(const e of a){const a=document.createElement("style"),i=t.litNonce;void 0!==i&&a.setAttribute("nonce",i),a.textContent=e.cssText,s.appendChild(a)}},r=e?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const s of t.cssRules)e+=s.cssText;return(t=>new i("string"==typeof t?t:t+"",void 0,s))(e)})(t):t,{is:l,defineProperty:c,getOwnPropertyDescriptor:d,getOwnPropertyNames:h,getOwnPropertySymbols:p,getPrototypeOf:g}=Object,u=globalThis,f=u.trustedTypes,m=f?f.emptyScript:"",b=u.reactiveElementPolyfillSupport,v=(t,e)=>t,x={toAttribute(t,e){switch(e){case Boolean:t=t?m:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t)}return t},fromAttribute(t,e){let s=t;switch(e){case Boolean:s=null!==t;break;case Number:s=null===t?null:Number(t);break;case Object:case Array:try{s=JSON.parse(t)}catch(t){s=null}}return s}},_=(t,e)=>!l(t,e),y={attribute:!0,type:String,converter:x,reflect:!1,hasChanged:_};Symbol.metadata??=Symbol("metadata"),u.litPropertyMetadata??=new WeakMap;class w extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,e=y){if(e.state&&(e.attribute=!1),this._$Ei(),this.elementProperties.set(t,e),!e.noAccessor){const s=Symbol(),a=this.getPropertyDescriptor(t,s,e);void 0!==a&&c(this.prototype,t,a)}}static getPropertyDescriptor(t,e,s){const{get:a,set:i}=d(this.prototype,t)??{get(){return this[e]},set(t){this[e]=t}};return{get(){return a?.call(this)},set(e){const o=a?.call(this);i.call(this,e),this.requestUpdate(t,o,s)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)??y}static _$Ei(){if(this.hasOwnProperty(v("elementProperties")))return;const t=g(this);t.finalize(),void 0!==t.l&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties)}static finalize(){if(this.hasOwnProperty(v("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(v("properties"))){const t=this.properties,e=[...h(t),...p(t)];for(const s of e)this.createProperty(s,t[s])}const t=this[Symbol.metadata];if(null!==t){const e=litPropertyMetadata.get(t);if(void 0!==e)for(const[t,s]of e)this.elementProperties.set(t,s)}this._$Eh=new Map;for(const[t,e]of this.elementProperties){const s=this._$Eu(t,e);void 0!==s&&this._$Eh.set(s,t)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(t){const e=[];if(Array.isArray(t)){const s=new Set(t.flat(1/0).reverse());for(const t of s)e.unshift(r(t))}else void 0!==t&&e.push(r(t));return e}static _$Eu(t,e){const s=e.attribute;return!1===s?void 0:"string"==typeof s?s:"string"==typeof t?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach((t=>t(this)))}addController(t){(this._$EO??=new Set).add(t),void 0!==this.renderRoot&&this.isConnected&&t.hostConnected?.()}removeController(t){this._$EO?.delete(t)}_$E_(){const t=new Map,e=this.constructor.elementProperties;for(const s of e.keys())this.hasOwnProperty(s)&&(t.set(s,this[s]),delete this[s]);t.size>0&&(this._$Ep=t)}createRenderRoot(){const t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return n(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach((t=>t.hostConnected?.()))}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach((t=>t.hostDisconnected?.()))}attributeChangedCallback(t,e,s){this._$AK(t,s)}_$EC(t,e){const s=this.constructor.elementProperties.get(t),a=this.constructor._$Eu(t,s);if(void 0!==a&&!0===s.reflect){const i=(void 0!==s.converter?.toAttribute?s.converter:x).toAttribute(e,s.type);this._$Em=t,null==i?this.removeAttribute(a):this.setAttribute(a,i),this._$Em=null}}_$AK(t,e){const s=this.constructor,a=s._$Eh.get(t);if(void 0!==a&&this._$Em!==a){const t=s.getPropertyOptions(a),i="function"==typeof t.converter?{fromAttribute:t.converter}:void 0!==t.converter?.fromAttribute?t.converter:x;this._$Em=a,this[a]=i.fromAttribute(e,t.type),this._$Em=null}}requestUpdate(t,e,s){if(void 0!==t){if(s??=this.constructor.getPropertyOptions(t),!(s.hasChanged??_)(this[t],e))return;this.P(t,e,s)}!1===this.isUpdatePending&&(this._$ES=this._$ET())}P(t,e,s){this._$AL.has(t)||this._$AL.set(t,e),!0===s.reflect&&this._$Em!==t&&(this._$Ej??=new Set).add(t)}async _$ET(){this.isUpdatePending=!0;try{await this._$ES}catch(t){Promise.reject(t)}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[t,e]of this._$Ep)this[t]=e;this._$Ep=void 0}const t=this.constructor.elementProperties;if(t.size>0)for(const[e,s]of t)!0!==s.wrapped||this._$AL.has(e)||void 0===this[e]||this.P(e,this[e],s)}let t=!1;const e=this._$AL;try{t=this.shouldUpdate(e),t?(this.willUpdate(e),this._$EO?.forEach((t=>t.hostUpdate?.())),this.update(e)):this._$EU()}catch(e){throw t=!1,this._$EU(),e}t&&this._$AE(e)}willUpdate(t){}_$AE(t){this._$EO?.forEach((t=>t.hostUpdated?.())),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EU(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return!0}update(t){this._$Ej&&=this._$Ej.forEach((t=>this._$EC(t,this[t]))),this._$EU()}updated(t){}firstUpdated(t){}}w.elementStyles=[],w.shadowRootOptions={mode:"open"},w[v("elementProperties")]=new Map,w[v("finalized")]=new Map,b?.({ReactiveElement:w}),(u.reactiveElementVersions??=[]).push("2.0.4");const $=globalThis,k=$.trustedTypes,C=k?k.createPolicy("lit-html",{createHTML:t=>t}):void 0,E="$lit$",A=`lit$${Math.random().toFixed(9).slice(2)}$`,S="?"+A,z=`<${S}>`,T=document,M=()=>T.createComment(""),P=t=>null===t||"object"!=typeof t&&"function"!=typeof t,N=Array.isArray,L="[ \t\n\f\r]",O=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,U=/-->/g,V=/>/g,H=RegExp(`>|${L}(?:([^\\s"'>=/]+)(${L}*=${L}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),j=/'/g,D=/"/g,R=/^(?:script|style|textarea|title)$/i,B=t=>(e,...s)=>({_$litType$:t,strings:e,values:s}),I=B(1),q=(B(2),B(3),Symbol.for("lit-noChange")),G=Symbol.for("lit-nothing"),F=new WeakMap,W=T.createTreeWalker(T,129);function X(t,e){if(!N(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==C?C.createHTML(e):e}class K{constructor({strings:t,_$litType$:e},s){let a;this.parts=[];let i=0,o=0;const n=t.length-1,r=this.parts,[l,c]=((t,e)=>{const s=t.length-1,a=[];let i,o=2===e?"<svg>":3===e?"<math>":"",n=O;for(let e=0;e<s;e++){const s=t[e];let r,l,c=-1,d=0;for(;d<s.length&&(n.lastIndex=d,l=n.exec(s),null!==l);)d=n.lastIndex,n===O?"!--"===l[1]?n=U:void 0!==l[1]?n=V:void 0!==l[2]?(R.test(l[2])&&(i=RegExp("</"+l[2],"g")),n=H):void 0!==l[3]&&(n=H):n===H?">"===l[0]?(n=i??O,c=-1):void 0===l[1]?c=-2:(c=n.lastIndex-l[2].length,r=l[1],n=void 0===l[3]?H:'"'===l[3]?D:j):n===D||n===j?n=H:n===U||n===V?n=O:(n=H,i=void 0);const h=n===H&&t[e+1].startsWith("/>")?" ":"";o+=n===O?s+z:c>=0?(a.push(r),s.slice(0,c)+E+s.slice(c)+A+h):s+A+(-2===c?e:h)}return[X(t,o+(t[s]||"<?>")+(2===e?"</svg>":3===e?"</math>":"")),a]})(t,e);if(this.el=K.createElement(l,s),W.currentNode=this.el.content,2===e||3===e){const t=this.el.content.firstChild;t.replaceWith(...t.childNodes)}for(;null!==(a=W.nextNode())&&r.length<n;){if(1===a.nodeType){if(a.hasAttributes())for(const t of a.getAttributeNames())if(t.endsWith(E)){const e=c[o++],s=a.getAttribute(t).split(A),n=/([.?@])?(.*)/.exec(e);r.push({type:1,index:i,name:n[2],strings:s,ctor:"."===n[1]?tt:"?"===n[1]?et:"@"===n[1]?st:Q}),a.removeAttribute(t)}else t.startsWith(A)&&(r.push({type:6,index:i}),a.removeAttribute(t));if(R.test(a.tagName)){const t=a.textContent.split(A),e=t.length-1;if(e>0){a.textContent=k?k.emptyScript:"";for(let s=0;s<e;s++)a.append(t[s],M()),W.nextNode(),r.push({type:2,index:++i});a.append(t[e],M())}}}else if(8===a.nodeType)if(a.data===S)r.push({type:2,index:i});else{let t=-1;for(;-1!==(t=a.data.indexOf(A,t+1));)r.push({type:7,index:i}),t+=A.length-1}i++}}static createElement(t,e){const s=T.createElement("template");return s.innerHTML=t,s}}function Y(t,e,s=t,a){if(e===q)return e;let i=void 0!==a?s.o?.[a]:s.l;const o=P(e)?void 0:e._$litDirective$;return i?.constructor!==o&&(i?._$AO?.(!1),void 0===o?i=void 0:(i=new o(t),i._$AT(t,s,a)),void 0!==a?(s.o??=[])[a]=i:s.l=i),void 0!==i&&(e=Y(t,i._$AS(t,e.values),i,a)),e}class J{constructor(t,e){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){const{el:{content:e},parts:s}=this._$AD,a=(t?.creationScope??T).importNode(e,!0);W.currentNode=a;let i=W.nextNode(),o=0,n=0,r=s[0];for(;void 0!==r;){if(o===r.index){let e;2===r.type?e=new Z(i,i.nextSibling,this,t):1===r.type?e=new r.ctor(i,r.name,r.strings,this,t):6===r.type&&(e=new at(i,this,t)),this._$AV.push(e),r=s[++n]}o!==r?.index&&(i=W.nextNode(),o++)}return W.currentNode=T,a}p(t){let e=0;for(const s of this._$AV)void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,e),e+=s.strings.length-2):s._$AI(t[e])),e++}}class Z{get _$AU(){return this._$AM?._$AU??this.v}constructor(t,e,s,a){this.type=2,this._$AH=G,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=s,this.options=a,this.v=a?.isConnected??!0}get parentNode(){let t=this._$AA.parentNode;const e=this._$AM;return void 0!==e&&11===t?.nodeType&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=Y(this,t,e),P(t)?t===G||null==t||""===t?(this._$AH!==G&&this._$AR(),this._$AH=G):t!==this._$AH&&t!==q&&this._(t):void 0!==t._$litType$?this.$(t):void 0!==t.nodeType?this.T(t):(t=>N(t)||"function"==typeof t?.[Symbol.iterator])(t)?this.k(t):this._(t)}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t))}_(t){this._$AH!==G&&P(this._$AH)?this._$AA.nextSibling.data=t:this.T(T.createTextNode(t)),this._$AH=t}$(t){const{values:e,_$litType$:s}=t,a="number"==typeof s?this._$AC(t):(void 0===s.el&&(s.el=K.createElement(X(s.h,s.h[0]),this.options)),s);if(this._$AH?._$AD===a)this._$AH.p(e);else{const t=new J(a,this),s=t.u(this.options);t.p(e),this.T(s),this._$AH=t}}_$AC(t){let e=F.get(t.strings);return void 0===e&&F.set(t.strings,e=new K(t)),e}k(t){N(this._$AH)||(this._$AH=[],this._$AR());const e=this._$AH;let s,a=0;for(const i of t)a===e.length?e.push(s=new Z(this.O(M()),this.O(M()),this,this.options)):s=e[a],s._$AI(i),a++;a<e.length&&(this._$AR(s&&s._$AB.nextSibling,a),e.length=a)}_$AR(t=this._$AA.nextSibling,e){for(this._$AP?.(!1,!0,e);t&&t!==this._$AB;){const e=t.nextSibling;t.remove(),t=e}}setConnected(t){void 0===this._$AM&&(this.v=t,this._$AP?.(t))}}class Q{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,e,s,a,i){this.type=1,this._$AH=G,this._$AN=void 0,this.element=t,this.name=e,this._$AM=a,this.options=i,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=G}_$AI(t,e=this,s,a){const i=this.strings;let o=!1;if(void 0===i)t=Y(this,t,e,0),o=!P(t)||t!==this._$AH&&t!==q,o&&(this._$AH=t);else{const a=t;let n,r;for(t=i[0],n=0;n<i.length-1;n++)r=Y(this,a[s+n],e,n),r===q&&(r=this._$AH[n]),o||=!P(r)||r!==this._$AH[n],r===G?t=G:t!==G&&(t+=(r??"")+i[n+1]),this._$AH[n]=r}o&&!a&&this.j(t)}j(t){t===G?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??"")}}class tt extends Q{constructor(){super(...arguments),this.type=3}j(t){this.element[this.name]=t===G?void 0:t}}class et extends Q{constructor(){super(...arguments),this.type=4}j(t){this.element.toggleAttribute(this.name,!!t&&t!==G)}}class st extends Q{constructor(t,e,s,a,i){super(t,e,s,a,i),this.type=5}_$AI(t,e=this){if((t=Y(this,t,e,0)??G)===q)return;const s=this._$AH,a=t===G&&s!==G||t.capture!==s.capture||t.once!==s.once||t.passive!==s.passive,i=t!==G&&(s===G||a);a&&this.element.removeEventListener(this.name,this,s),i&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t)}}class at{constructor(t,e,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=s}get _$AU(){return this._$AM._$AU}_$AI(t){Y(this,t)}}const it=$.litHtmlPolyfillSupport;it?.(K,Z),($.litHtmlVersions??=[]).push("3.2.0");class ot extends w{constructor(){super(...arguments),this.renderOptions={host:this},this.o=void 0}createRenderRoot(){const t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){const e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this.o=((t,e,s)=>{const a=s?.renderBefore??e;let i=a._$litPart$;if(void 0===i){const t=s?.renderBefore??null;a._$litPart$=i=new Z(e.insertBefore(M(),t),t,void 0,s??{})}return i._$AI(t),i})(e,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this.o?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this.o?.setConnected(!1)}render(){return q}}ot._$litElement$=!0,ot.finalized=!0,globalThis.litElementHydrateSupport?.({LitElement:ot});const nt=globalThis.litElementPolyfillSupport;nt?.({LitElement:ot}),(globalThis.litElementVersions??=[]).push("4.1.0"),customElements.define("calcio-live-classifica",class extends ot{static get properties(){return{hass:{},_config:{},maxTeamsVisible:{type:Number},hideHeader:{type:Boolean},selectedGroup:{type:String},_eventSubscriptions:{type:Array},_toastMessage:{type:String},_toastVisible:{type:Boolean},_toastVariant:{type:String}}}setConfig(t){if(!t.entity)throw new Error("Devi definire un'entità");this._config=t,this.maxTeamsVisible=t.max_teams_visible?t.max_teams_visible:10,this.hideHeader=t.hide_header||!1,this.selectedGroup=t.selected_group||"",this.showEventToasts=!0===t.show_event_toasts,this._toastMessage="",this._toastVisible=!1,this._toastVariant="goal",this._toastTimer=null}connectedCallback(){super.connectedCallback(),this._subscribeToEvents()}disconnectedCallback(){super.disconnectedCallback(),this._eventSubscriptions&&Array.isArray(this._eventSubscriptions)&&(this._eventSubscriptions.forEach((t=>{t&&t.unsubscribe()})),this._eventSubscriptions=[])}_subscribeToEvents(){this.hass&&this.hass.connection&&(this._eventSubscriptions=[],["calcio_live_goal","calcio_live_yellow_card","calcio_live_red_card","calcio_live_match_finished"].forEach((t=>{this._eventSubscriptions.push(this.hass.connection.subscribeEvents(this._handleCalcioLiveEvent.bind(this),t))})))}_eventBelongsToThisCard(t){if(!this.hass||!this._config)return!1;const e=this._config.entity||"",s=t.competition_code;if(!s)return!1;const a=s.replace(/\./g,"_").toLowerCase();return e.toLowerCase().includes(a)}_handleCalcioLiveEvent(t){const e=t.event_type,s=t.data;this._eventBelongsToThisCard(s)&&this.showEventToasts&&this._showEventToast(e,s)}_showEventToast(t,e){let s="",a="goal";"calcio_live_goal"===t?(s=`<strong>GOAL!</strong> ${e.player} · ${e.home_team} ${e.home_score} - ${e.away_score} ${e.away_team}`,a="goal"):"calcio_live_yellow_card"===t?(s=`🟨 <strong>Cartellino Giallo</strong> · ${e.player}${e.minute?` (${e.minute}')`:""}`,a="yellow"):"calcio_live_red_card"===t?(s=`🟥 <strong>Cartellino Rosso</strong> · ${e.player}${e.minute?` (${e.minute}')`:""}`,a="red"):"calcio_live_match_finished"===t&&(s=`<strong>Finita!</strong> ${e.home_team} ${e.home_score} - ${e.away_score} ${e.away_team}`,a="finished"),s&&(this._toastMessage=s,this._toastVariant=a,this._toastVisible=!0,this._toastTimer&&clearTimeout(this._toastTimer),this._toastTimer=setTimeout((()=>{this._toastVisible=!1,this.requestUpdate()}),4e3),this.requestUpdate())}getCardSize(){return 5}static getConfigElement(){return document.createElement("calcio-live-classifica-editor")}static getStubConfig(){return{entity:"sensor.calcio_live",max_teams_visible:10,hide_header:!1,selected_group:"",show_event_toasts:!1}}_zoneClass(t,e){return 1===t?"zone-cl rank-first":t<=4?"zone-cl":t<=6?"zone-el":e&&t>e-3?"zone-rel":"zone-default"}render(){if(!this.hass||!this._config)return I``;const t=this._config.entity,e=this.hass.states[t];if(!e)return I`<ha-card class="empty">Entità sconosciuta: ${t}</ha-card>`;const s=e.attributes.season||"",a=e.attributes.standings_groups||[],i=a.find((t=>t.name===this.selectedGroup))||a[0];let o=i?i.standings:[];o=o.filter((t=>null!=t.rank)),s.includes("MLS")?(o=o.slice().sort(((t,e)=>e.points!==t.points?e.points-t.points:e.goal_difference!==t.goal_difference?e.goal_difference-t.goal_difference:e.goals_for-t.goals_for)),o.forEach(((t,e)=>{t.rank=e+1}))):o=o.slice().sort(((t,e)=>t.rank-e.rank));const n=o.length,r=48*Math.min(this.maxTeamsVisible,n)+50;return I`
+(()=>{"use strict";const e=globalThis,t=e.ShadowRoot&&(void 0===e.ShadyCSS||e.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,i=Symbol(),a=new WeakMap;class s{constructor(e,t,a){if(this._$cssResult$=!0,a!==i)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=e,this.t=t}get styleSheet(){let e=this.o;const i=this.t;if(t&&void 0===e){const t=void 0!==i&&1===i.length;t&&(e=a.get(i)),void 0===e&&((this.o=e=new CSSStyleSheet).replaceSync(this.cssText),t&&a.set(i,e))}return e}toString(){return this.cssText}}const r=(e,...t)=>{const a=1===e.length?e[0]:t.reduce(((t,i,a)=>t+(e=>{if(!0===e._$cssResult$)return e.cssText;if("number"==typeof e)return e;throw Error("Value passed to 'css' function must be a 'css' function result: "+e+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(i)+e[a+1]),e[0]);return new s(a,e,i)},o=(i,a)=>{if(t)i.adoptedStyleSheets=a.map((e=>e instanceof CSSStyleSheet?e:e.styleSheet));else for(const t of a){const a=document.createElement("style"),s=e.litNonce;void 0!==s&&a.setAttribute("nonce",s),a.textContent=t.cssText,i.appendChild(a)}},n=t?e=>e:e=>e instanceof CSSStyleSheet?(e=>{let t="";for(const i of e.cssRules)t+=i.cssText;return(e=>new s("string"==typeof e?e:e+"",void 0,i))(t)})(e):e,{is:l,defineProperty:c,getOwnPropertyDescriptor:d,getOwnPropertyNames:p,getOwnPropertySymbols:h,getPrototypeOf:g}=Object,f=globalThis,m=f.trustedTypes,u=m?m.emptyScript:"",v=f.reactiveElementPolyfillSupport,x=(e,t)=>e,b={toAttribute(e,t){switch(t){case Boolean:e=e?u:null;break;case Object:case Array:e=null==e?e:JSON.stringify(e)}return e},fromAttribute(e,t){let i=e;switch(t){case Boolean:i=null!==e;break;case Number:i=null===e?null:Number(e);break;case Object:case Array:try{i=JSON.parse(e)}catch(e){i=null}}return i}},y=(e,t)=>!l(e,t),_={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:y};Symbol.metadata??=Symbol("metadata"),f.litPropertyMetadata??=new WeakMap;class w extends HTMLElement{static addInitializer(e){this._$Ei(),(this.l??=[]).push(e)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(e,t=_){if(t.state&&(t.attribute=!1),this._$Ei(),this.elementProperties.set(e,t),!t.noAccessor){const i=Symbol(),a=this.getPropertyDescriptor(e,i,t);void 0!==a&&c(this.prototype,e,a)}}static getPropertyDescriptor(e,t,i){const{get:a,set:s}=d(this.prototype,e)??{get(){return this[t]},set(e){this[t]=e}};return{get(){return a?.call(this)},set(t){const r=a?.call(this);s.call(this,t),this.requestUpdate(e,r,i)},configurable:!0,enumerable:!0}}static getPropertyOptions(e){return this.elementProperties.get(e)??_}static _$Ei(){if(this.hasOwnProperty(x("elementProperties")))return;const e=g(this);e.finalize(),void 0!==e.l&&(this.l=[...e.l]),this.elementProperties=new Map(e.elementProperties)}static finalize(){if(this.hasOwnProperty(x("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(x("properties"))){const e=this.properties,t=[...p(e),...h(e)];for(const i of t)this.createProperty(i,e[i])}const e=this[Symbol.metadata];if(null!==e){const t=litPropertyMetadata.get(e);if(void 0!==t)for(const[e,i]of t)this.elementProperties.set(e,i)}this._$Eh=new Map;for(const[e,t]of this.elementProperties){const i=this._$Eu(e,t);void 0!==i&&this._$Eh.set(i,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(e){const t=[];if(Array.isArray(e)){const i=new Set(e.flat(1/0).reverse());for(const e of i)t.unshift(n(e))}else void 0!==e&&t.push(n(e));return t}static _$Eu(e,t){const i=t.attribute;return!1===i?void 0:"string"==typeof i?i:"string"==typeof e?e.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise((e=>this.enableUpdating=e)),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach((e=>e(this)))}addController(e){(this._$EO??=new Set).add(e),void 0!==this.renderRoot&&this.isConnected&&e.hostConnected?.()}removeController(e){this._$EO?.delete(e)}_$E_(){const e=new Map,t=this.constructor.elementProperties;for(const i of t.keys())this.hasOwnProperty(i)&&(e.set(i,this[i]),delete this[i]);e.size>0&&(this._$Ep=e)}createRenderRoot(){const e=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return o(e,this.constructor.elementStyles),e}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach((e=>e.hostConnected?.()))}enableUpdating(e){}disconnectedCallback(){this._$EO?.forEach((e=>e.hostDisconnected?.()))}attributeChangedCallback(e,t,i){this._$AK(e,i)}_$EC(e,t){const i=this.constructor.elementProperties.get(e),a=this.constructor._$Eu(e,i);if(void 0!==a&&!0===i.reflect){const s=(void 0!==i.converter?.toAttribute?i.converter:b).toAttribute(t,i.type);this._$Em=e,null==s?this.removeAttribute(a):this.setAttribute(a,s),this._$Em=null}}_$AK(e,t){const i=this.constructor,a=i._$Eh.get(e);if(void 0!==a&&this._$Em!==a){const e=i.getPropertyOptions(a),s="function"==typeof e.converter?{fromAttribute:e.converter}:void 0!==e.converter?.fromAttribute?e.converter:b;this._$Em=a,this[a]=s.fromAttribute(t,e.type),this._$Em=null}}requestUpdate(e,t,i){if(void 0!==e){if(i??=this.constructor.getPropertyOptions(e),!(i.hasChanged??y)(this[e],t))return;this.P(e,t,i)}!1===this.isUpdatePending&&(this._$ES=this._$ET())}P(e,t,i){this._$AL.has(e)||this._$AL.set(e,t),!0===i.reflect&&this._$Em!==e&&(this._$Ej??=new Set).add(e)}async _$ET(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}const e=this.scheduleUpdate();return null!=e&&await e,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[e,t]of this._$Ep)this[e]=t;this._$Ep=void 0}const e=this.constructor.elementProperties;if(e.size>0)for(const[t,i]of e)!0!==i.wrapped||this._$AL.has(t)||void 0===this[t]||this.P(t,this[t],i)}let e=!1;const t=this._$AL;try{e=this.shouldUpdate(t),e?(this.willUpdate(t),this._$EO?.forEach((e=>e.hostUpdate?.())),this.update(t)):this._$EU()}catch(t){throw e=!1,this._$EU(),t}e&&this._$AE(t)}willUpdate(e){}_$AE(e){this._$EO?.forEach((e=>e.hostUpdated?.())),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(e)),this.updated(e)}_$EU(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(e){return!0}update(e){this._$Ej&&=this._$Ej.forEach((e=>this._$EC(e,this[e]))),this._$EU()}updated(e){}firstUpdated(e){}}w.elementStyles=[],w.shadowRootOptions={mode:"open"},w[x("elementProperties")]=new Map,w[x("finalized")]=new Map,v?.({ReactiveElement:w}),(f.reactiveElementVersions??=[]).push("2.0.4");const $=globalThis,k=$.trustedTypes,C=k?k.createPolicy("lit-html",{createHTML:e=>e}):void 0,z="$lit$",E=`lit$${Math.random().toFixed(9).slice(2)}$`,S="?"+E,A=`<${S}>`,T=document,M=()=>T.createComment(""),P=e=>null===e||"object"!=typeof e&&"function"!=typeof e,j=Array.isArray,N="[ \t\n\f\r]",L=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,O=/-->/g,H=/>/g,V=RegExp(`>|${N}(?:([^\\s"'>=/]+)(${N}*=${N}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),D=/'/g,R=/"/g,U=/^(?:script|style|textarea|title)$/i,I=e=>(t,...i)=>({_$litType$:e,strings:t,values:i}),B=I(1),F=(I(2),I(3),Symbol.for("lit-noChange")),G=Symbol.for("lit-nothing"),q=new WeakMap,W=T.createTreeWalker(T,129);function X(e,t){if(!j(e)||!e.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==C?C.createHTML(t):t}class K{constructor({strings:e,_$litType$:t},i){let a;this.parts=[];let s=0,r=0;const o=e.length-1,n=this.parts,[l,c]=((e,t)=>{const i=e.length-1,a=[];let s,r=2===t?"<svg>":3===t?"<math>":"",o=L;for(let t=0;t<i;t++){const i=e[t];let n,l,c=-1,d=0;for(;d<i.length&&(o.lastIndex=d,l=o.exec(i),null!==l);)d=o.lastIndex,o===L?"!--"===l[1]?o=O:void 0!==l[1]?o=H:void 0!==l[2]?(U.test(l[2])&&(s=RegExp("</"+l[2],"g")),o=V):void 0!==l[3]&&(o=V):o===V?">"===l[0]?(o=s??L,c=-1):void 0===l[1]?c=-2:(c=o.lastIndex-l[2].length,n=l[1],o=void 0===l[3]?V:'"'===l[3]?R:D):o===R||o===D?o=V:o===O||o===H?o=L:(o=V,s=void 0);const p=o===V&&e[t+1].startsWith("/>")?" ":"";r+=o===L?i+A:c>=0?(a.push(n),i.slice(0,c)+z+i.slice(c)+E+p):i+E+(-2===c?t:p)}return[X(e,r+(e[i]||"<?>")+(2===t?"</svg>":3===t?"</math>":"")),a]})(e,t);if(this.el=K.createElement(l,i),W.currentNode=this.el.content,2===t||3===t){const e=this.el.content.firstChild;e.replaceWith(...e.childNodes)}for(;null!==(a=W.nextNode())&&n.length<o;){if(1===a.nodeType){if(a.hasAttributes())for(const e of a.getAttributeNames())if(e.endsWith(z)){const t=c[r++],i=a.getAttribute(e).split(E),o=/([.?@])?(.*)/.exec(t);n.push({type:1,index:s,name:o[2],strings:i,ctor:"."===o[1]?ee:"?"===o[1]?te:"@"===o[1]?ie:Z}),a.removeAttribute(e)}else e.startsWith(E)&&(n.push({type:6,index:s}),a.removeAttribute(e));if(U.test(a.tagName)){const e=a.textContent.split(E),t=e.length-1;if(t>0){a.textContent=k?k.emptyScript:"";for(let i=0;i<t;i++)a.append(e[i],M()),W.nextNode(),n.push({type:2,index:++s});a.append(e[t],M())}}}else if(8===a.nodeType)if(a.data===S)n.push({type:2,index:s});else{let e=-1;for(;-1!==(e=a.data.indexOf(E,e+1));)n.push({type:7,index:s}),e+=E.length-1}s++}}static createElement(e,t){const i=T.createElement("template");return i.innerHTML=e,i}}function Y(e,t,i=e,a){if(t===F)return t;let s=void 0!==a?i.o?.[a]:i.l;const r=P(t)?void 0:t._$litDirective$;return s?.constructor!==r&&(s?._$AO?.(!1),void 0===r?s=void 0:(s=new r(e),s._$AT(e,i,a)),void 0!==a?(i.o??=[])[a]=s:i.l=s),void 0!==s&&(t=Y(e,s._$AS(e,t.values),s,a)),t}class Q{constructor(e,t){this._$AV=[],this._$AN=void 0,this._$AD=e,this._$AM=t}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(e){const{el:{content:t},parts:i}=this._$AD,a=(e?.creationScope??T).importNode(t,!0);W.currentNode=a;let s=W.nextNode(),r=0,o=0,n=i[0];for(;void 0!==n;){if(r===n.index){let t;2===n.type?t=new J(s,s.nextSibling,this,e):1===n.type?t=new n.ctor(s,n.name,n.strings,this,e):6===n.type&&(t=new ae(s,this,e)),this._$AV.push(t),n=i[++o]}r!==n?.index&&(s=W.nextNode(),r++)}return W.currentNode=T,a}p(e){let t=0;for(const i of this._$AV)void 0!==i&&(void 0!==i.strings?(i._$AI(e,i,t),t+=i.strings.length-2):i._$AI(e[t])),t++}}class J{get _$AU(){return this._$AM?._$AU??this.v}constructor(e,t,i,a){this.type=2,this._$AH=G,this._$AN=void 0,this._$AA=e,this._$AB=t,this._$AM=i,this.options=a,this.v=a?.isConnected??!0}get parentNode(){let e=this._$AA.parentNode;const t=this._$AM;return void 0!==t&&11===e?.nodeType&&(e=t.parentNode),e}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(e,t=this){e=Y(this,e,t),P(e)?e===G||null==e||""===e?(this._$AH!==G&&this._$AR(),this._$AH=G):e!==this._$AH&&e!==F&&this._(e):void 0!==e._$litType$?this.$(e):void 0!==e.nodeType?this.T(e):(e=>j(e)||"function"==typeof e?.[Symbol.iterator])(e)?this.k(e):this._(e)}O(e){return this._$AA.parentNode.insertBefore(e,this._$AB)}T(e){this._$AH!==e&&(this._$AR(),this._$AH=this.O(e))}_(e){this._$AH!==G&&P(this._$AH)?this._$AA.nextSibling.data=e:this.T(T.createTextNode(e)),this._$AH=e}$(e){const{values:t,_$litType$:i}=e,a="number"==typeof i?this._$AC(e):(void 0===i.el&&(i.el=K.createElement(X(i.h,i.h[0]),this.options)),i);if(this._$AH?._$AD===a)this._$AH.p(t);else{const e=new Q(a,this),i=e.u(this.options);e.p(t),this.T(i),this._$AH=e}}_$AC(e){let t=q.get(e.strings);return void 0===t&&q.set(e.strings,t=new K(e)),t}k(e){j(this._$AH)||(this._$AH=[],this._$AR());const t=this._$AH;let i,a=0;for(const s of e)a===t.length?t.push(i=new J(this.O(M()),this.O(M()),this,this.options)):i=t[a],i._$AI(s),a++;a<t.length&&(this._$AR(i&&i._$AB.nextSibling,a),t.length=a)}_$AR(e=this._$AA.nextSibling,t){for(this._$AP?.(!1,!0,t);e&&e!==this._$AB;){const t=e.nextSibling;e.remove(),e=t}}setConnected(e){void 0===this._$AM&&(this.v=e,this._$AP?.(e))}}class Z{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(e,t,i,a,s){this.type=1,this._$AH=G,this._$AN=void 0,this.element=e,this.name=t,this._$AM=a,this.options=s,i.length>2||""!==i[0]||""!==i[1]?(this._$AH=Array(i.length-1).fill(new String),this.strings=i):this._$AH=G}_$AI(e,t=this,i,a){const s=this.strings;let r=!1;if(void 0===s)e=Y(this,e,t,0),r=!P(e)||e!==this._$AH&&e!==F,r&&(this._$AH=e);else{const a=e;let o,n;for(e=s[0],o=0;o<s.length-1;o++)n=Y(this,a[i+o],t,o),n===F&&(n=this._$AH[o]),r||=!P(n)||n!==this._$AH[o],n===G?e=G:e!==G&&(e+=(n??"")+s[o+1]),this._$AH[o]=n}r&&!a&&this.j(e)}j(e){e===G?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,e??"")}}class ee extends Z{constructor(){super(...arguments),this.type=3}j(e){this.element[this.name]=e===G?void 0:e}}class te extends Z{constructor(){super(...arguments),this.type=4}j(e){this.element.toggleAttribute(this.name,!!e&&e!==G)}}class ie extends Z{constructor(e,t,i,a,s){super(e,t,i,a,s),this.type=5}_$AI(e,t=this){if((e=Y(this,e,t,0)??G)===F)return;const i=this._$AH,a=e===G&&i!==G||e.capture!==i.capture||e.once!==i.once||e.passive!==i.passive,s=e!==G&&(i===G||a);a&&this.element.removeEventListener(this.name,this,i),s&&this.element.addEventListener(this.name,this,e),this._$AH=e}handleEvent(e){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,e):this._$AH.handleEvent(e)}}class ae{constructor(e,t,i){this.element=e,this.type=6,this._$AN=void 0,this._$AM=t,this.options=i}get _$AU(){return this._$AM._$AU}_$AI(e){Y(this,e)}}const se=$.litHtmlPolyfillSupport;se?.(K,J),($.litHtmlVersions??=[]).push("3.2.0");class re extends w{constructor(){super(...arguments),this.renderOptions={host:this},this.o=void 0}createRenderRoot(){const e=super.createRenderRoot();return this.renderOptions.renderBefore??=e.firstChild,e}update(e){const t=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(e),this.o=((e,t,i)=>{const a=i?.renderBefore??t;let s=a._$litPart$;if(void 0===s){const e=i?.renderBefore??null;a._$litPart$=s=new J(t.insertBefore(M(),e),e,void 0,i??{})}return s._$AI(e),s})(t,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this.o?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this.o?.setConnected(!1)}render(){return F}}re._$litElement$=!0,re.finalized=!0,globalThis.litElementHydrateSupport?.({LitElement:re});const oe=globalThis.litElementPolyfillSupport;oe?.({LitElement:re}),(globalThis.litElementVersions??=[]).push("4.1.0"),customElements.define("calcio-live-classifica",class extends re{static get properties(){return{hass:{},_config:{},maxTeamsVisible:{type:Number},hideHeader:{type:Boolean},selectedGroup:{type:String},_eventSubscriptions:{type:Array},_toastMessage:{type:String},_toastVisible:{type:Boolean},_toastVariant:{type:String}}}setConfig(e){if(!e.entity)throw new Error("Devi definire un'entità");this._config=e,this.maxTeamsVisible=e.max_teams_visible?e.max_teams_visible:10,this.hideHeader=e.hide_header||!1,this.selectedGroup=e.selected_group||"",this.showEventToasts=!0===e.show_event_toasts,this._toastMessage="",this._toastVisible=!1,this._toastVariant="goal",this._toastTimer=null}connectedCallback(){super.connectedCallback(),this._subscribeToEvents()}disconnectedCallback(){super.disconnectedCallback(),this._eventSubscriptions&&Array.isArray(this._eventSubscriptions)&&(this._eventSubscriptions.forEach((e=>{e&&e.unsubscribe()})),this._eventSubscriptions=[])}_subscribeToEvents(){this.hass&&this.hass.connection&&(this._eventSubscriptions=[],["calcio_live_goal","calcio_live_yellow_card","calcio_live_red_card","calcio_live_match_finished"].forEach((e=>{this._eventSubscriptions.push(this.hass.connection.subscribeEvents(this._handleCalcioLiveEvent.bind(this),e))})))}_eventBelongsToThisCard(e){if(!this.hass||!this._config)return!1;const t=this._config.entity||"",i=e.competition_code;if(!i)return!1;const a=i.replace(/\./g,"_").toLowerCase();return t.toLowerCase().includes(a)}_handleCalcioLiveEvent(e){const t=e.event_type,i=e.data;this._eventBelongsToThisCard(i)&&this.showEventToasts&&this._showEventToast(t,i)}_showEventToast(e,t){let i="",a="goal";"calcio_live_goal"===e?(i=`<strong>GOAL!</strong> ${t.player} · ${t.home_team} ${t.home_score} - ${t.away_score} ${t.away_team}`,a="goal"):"calcio_live_yellow_card"===e?(i=`🟨 <strong>Cartellino Giallo</strong> · ${t.player}${t.minute?` (${t.minute}')`:""}`,a="yellow"):"calcio_live_red_card"===e?(i=`🟥 <strong>Cartellino Rosso</strong> · ${t.player}${t.minute?` (${t.minute}')`:""}`,a="red"):"calcio_live_match_finished"===e&&(i=`<strong>Finita!</strong> ${t.home_team} ${t.home_score} - ${t.away_score} ${t.away_team}`,a="finished"),i&&(this._toastMessage=i,this._toastVariant=a,this._toastVisible=!0,this._toastTimer&&clearTimeout(this._toastTimer),this._toastTimer=setTimeout((()=>{this._toastVisible=!1,this.requestUpdate()}),4e3),this.requestUpdate())}getCardSize(){return 5}static getConfigElement(){return document.createElement("calcio-live-classifica-editor")}static getStubConfig(){return{entity:"sensor.calcio_live",max_teams_visible:10,hide_header:!1,selected_group:"",show_event_toasts:!1}}_zoneClass(e,t){return 1===e?"zone-cl rank-first":e<=4?"zone-cl":e<=6?"zone-el":t&&e>t-3?"zone-rel":"zone-default"}render(){if(!this.hass||!this._config)return B``;const e=this._config.entity,t=this.hass.states[e];if(!t)return B`<ha-card class="empty">Entità sconosciuta: ${e}</ha-card>`;const i=t.attributes.season||"",a=t.attributes.standings_groups||[],s=a.find((e=>e.name===this.selectedGroup))||a[0];let r=s?s.standings:[];r=r.filter((e=>null!=e.rank)),i.includes("MLS")?(r=r.slice().sort(((e,t)=>t.points!==e.points?t.points-e.points:t.goal_difference!==e.goal_difference?t.goal_difference-e.goal_difference:t.goals_for-e.goals_for)),r.forEach(((e,t)=>{e.rank=t+1}))):r=r.slice().sort(((e,t)=>e.rank-t.rank));const o=r.length,n=48*Math.min(this.maxTeamsVisible,o)+50;return B`
       <ha-card>
-        ${this.showEventToasts&&this._toastVisible?I`
+        ${this.showEventToasts&&this._toastVisible?B`
           <div class="event-toast variant-${this._toastVariant}" .innerHTML=${this._toastMessage}></div>
         `:""}
 
-        ${this.hideHeader?"":I`
+        ${this.hideHeader?"":B`
           <div class="top-bar">
-            <h2>${e.state}</h2>
-            <div class="sub">${s} ${i&&i.name?`· ${i.name}`:""}</div>
+            <h2>${t.state}</h2>
+            <div class="sub">${i} ${s&&s.name?`· ${s.name}`:""}</div>
           </div>
         `}
 
-        <div class="table-wrap" style="max-height: ${r}px;">
+        <div class="table-wrap" style="max-height: ${n}px;">
           <table class="standings-table">
             <thead>
               <tr>
@@ -27,19 +27,19 @@
               </tr>
             </thead>
             <tbody>
-              ${o.map((t=>{const e=t.goal_difference,s=e>0?"gd-pos":e<0?"gd-neg":"";return I`
-                  <tr class="${this._zoneClass(t.rank,n)}">
-                    <td><div class="rank-cell"><div class="rank-num">${t.rank}</div></div></td>
+              ${r.map((e=>{const t=e=>{if(null==e||""===e)return null;const t=parseInt(String(e).replace("+",""),10);return isNaN(t)?null:t},i=t(e.wins),a=t(e.draws),s=t(e.losses),r=t(e.goal_difference),n=null!==i&&null!==a&&null!==s?i+a+s:null,l=null===r?"":r>0?"gd-pos":r<0?"gd-neg":"",c=null===r?"-":r>0?`+${r}`:`${r}`;return B`
+                  <tr class="${this._zoneClass(e.rank,o)}">
+                    <td><div class="rank-cell"><div class="rank-num">${e.rank}</div></div></td>
                     <td class="team-cell">
-                      <img src="${t.team_logo}" alt="${t.team_name}" />
-                      <span class="tname">${t.team_name}</span>
+                      <img src="${e.team_logo}" alt="${e.team_name}" />
+                      <span class="tname">${e.team_name}</span>
                     </td>
-                    <td>${null!=t.points?t.wins+t.draws+t.losses:"-"}</td>
-                    <td>${t.wins??"-"}</td>
-                    <td>${t.draws??"-"}</td>
-                    <td>${t.losses??"-"}</td>
-                    <td class="${s}">${e>0?"+":""}${e??"-"}</td>
-                    <td class="points-cell">${t.points??"-"}</td>
+                    <td>${n??"-"}</td>
+                    <td>${i??"-"}</td>
+                    <td>${a??"-"}</td>
+                    <td>${s??"-"}</td>
+                    <td class="${l}">${c}</td>
+                    <td class="points-cell">${e.points??"-"}</td>
                   </tr>
                 `}))}
             </tbody>
@@ -52,7 +52,7 @@
           <div class="legend-item"><span class="legend-dot rel"></span>Retrocessione</div>
         </div>
       </ha-card>
-    `}static get styles(){return o`
+    `}static get styles(){return r`
       :host {
         --cl-accent: #6366f1;
         --cl-accent-2: #ec4899;
@@ -289,7 +289,7 @@
         90%  { opacity: 1; transform: translate(-50%, 0) scale(1); }
         100% { opacity: 0; transform: translate(-50%, -10px) scale(0.95); }
       }
-    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-classifica",name:"Calcio Live Classifica Card",description:"Mostra la classifica del campionato o coppe"}),customElements.define("calcio-live-classifica-editor",class extends ot{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array},groups:{type:Array}}}constructor(){super(),this.entities=[],this.groups=[]}static get styles(){return o`
+    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-classifica",name:"Calcio Live Classifica Card",description:"Mostra la classifica del campionato o coppe"}),customElements.define("calcio-live-classifica-editor",class extends re{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array},groups:{type:Array}}}constructor(){super(),this.entities=[],this.groups=[]}static get styles(){return r`
       .card-config {
         display: flex;
         flex-direction: column;
@@ -333,15 +333,15 @@
         letter-spacing: 0.05em;
         color: var(--secondary-text-color);
       }
-    `}setConfig(t){if(!t)throw new Error("Invalid configuration");this._config={...t}}get config(){return this._config}updated(t){t.has("hass")&&this._fetchEntities(),(t.has("_config")||t.has("hass"))&&this._config&&this._config.entity&&this._fetchGroups()}_fireConfigChanged(t){this._config=t,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:t},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(t){if(!this._config)return;const e=t.target.value;e!==this._config.entity&&this._fireConfigChanged({...this._config,entity:e})}_groupChanged(t){if(!this._config)return;const e=t.target.value;e!==this._config.selected_group&&this._fireConfigChanged({...this._config,selected_group:e})}_switchChanged(t){if(!this._config)return;const e=t.target;if(!e.dataset||!e.dataset.configValue)return;const s=e.dataset.configValue,a=e.checked;this._config[s]!==a&&this._fireConfigChanged({...this._config,[s]:a})}_numberChanged(t){if(!this._config)return;const e=t.target;if(!e.dataset||!e.dataset.configValue)return;const s=e.dataset.configValue,a=parseInt(e.value,10);isNaN(a)||this._config[s]!==a&&this._fireConfigChanged({...this._config,[s]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((t=>t.startsWith("sensor.calciolive_classifica"))).sort())}_fetchGroups(){const t=this._config&&this._config.entity;if(!this.hass||!t)return void(this.groups=[]);const e=this.hass.states[t];e&&e.attributes&&e.attributes.standings_groups?this.groups=e.attributes.standings_groups.map((t=>t.name)):this.groups=[]}render(){if(!this._config||!this.hass)return I``;const t=this._config.entity||"",e=t&&this.entities.includes(t);return I`
+    `}setConfig(e){if(!e)throw new Error("Invalid configuration");this._config={...e}}get config(){return this._config}updated(e){e.has("hass")&&this._fetchEntities(),(e.has("_config")||e.has("hass"))&&this._config&&this._config.entity&&this._fetchGroups()}_fireConfigChanged(e){this._config=e,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:e},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(e){if(!this._config)return;const t=e.target.value;t!==this._config.entity&&this._fireConfigChanged({...this._config,entity:t})}_groupChanged(e){if(!this._config)return;const t=e.target.value;t!==this._config.selected_group&&this._fireConfigChanged({...this._config,selected_group:t})}_switchChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=t.checked;this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_numberChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=parseInt(t.value,10);isNaN(a)||this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((e=>e.startsWith("sensor.calciolive_classifica"))).sort())}_fetchGroups(){const e=this._config&&this._config.entity;if(!this.hass||!e)return void(this.groups=[]);const t=this.hass.states[e];t&&t.attributes&&t.attributes.standings_groups?this.groups=t.attributes.standings_groups.map((e=>e.name)):this.groups=[]}render(){if(!this._config||!this.hass)return B``;const e=this._config.entity||"",t=e&&this.entities.includes(e);return B`
       <div class="card-config">
         <h3>Sensore</h3>
         <div>
           <label class="field-label">Entity</label>
           <select @change=${this._entityChanged}>
-            ${e?"":I`<option value="${t}" selected>${t||"— seleziona —"}</option>`}
-            ${this.entities.map((e=>I`
-              <option value="${e}" ?selected=${e===t}>${e}</option>
+            ${t?"":B`<option value="${e}" selected>${e||"— seleziona —"}</option>`}
+            ${this.entities.map((t=>B`
+              <option value="${t}" ?selected=${t===e}>${t}</option>
             `))}
           </select>
         </div>
@@ -351,8 +351,8 @@
           <label class="field-label">Gruppo</label>
           <select @change=${this._groupChanged}>
             <option value="" ?selected=${!this._config.selected_group}>— Tutti —</option>
-            ${this.groups.map((t=>I`
-              <option value="${t}" ?selected=${t===this._config.selected_group}>${t}</option>
+            ${this.groups.map((e=>B`
+              <option value="${e}" ?selected=${e===this._config.selected_group}>${e}</option>
             `))}
           </select>
         </div>
@@ -387,47 +387,55 @@
           />
         </div>
       </div>
-    `}}),customElements.define("calcio-live-matches",class extends ot{static get properties(){return{hass:{},_config:{},showPopup:{type:Boolean},activeMatch:{type:Object},_eventSubscriptions:{type:Array},_recentEventMatches:{type:Object},_toastMessage:{type:String},_toastVisible:{type:Boolean},_toastVariant:{type:String}}}constructor(){super(),this._recentEventMatches=new Map,this._eventSubscriptions=[],this._toastMessage="",this._toastVisible=!1,this._toastVariant="goal",this._toastTimer=null}setConfig(t){if(!t.entity)throw new Error("Devi definire un'entità");this._config=t,this.maxEventsVisible=t.max_events_visible?t.max_events_visible:5,this.maxEventsTotal=t.max_events_total?t.max_events_total:50,this.showFinishedMatches=void 0===t.show_finished_matches||t.show_finished_matches,this.hideHeader=void 0!==t.hide_header&&t.hide_header,this.hidePastDays=void 0!==t.hide_past_days?t.hide_past_days:0,this.showEventToasts=!0===t.show_event_toasts,this.activeMatch=null,this.showPopup=!1}connectedCallback(){super.connectedCallback(),this._subscribeToEvents()}disconnectedCallback(){super.disconnectedCallback(),this._eventSubscriptions&&Array.isArray(this._eventSubscriptions)&&(this._eventSubscriptions.forEach((t=>{t&&t.unsubscribe()})),this._eventSubscriptions=[])}_subscribeToEvents(){this.hass&&this.hass.connection&&(this._eventSubscriptions=[],["calcio_live_goal","calcio_live_yellow_card","calcio_live_red_card"].forEach((t=>{this._eventSubscriptions.push(this.hass.connection.subscribeEvents(this._handleCalcioLiveEvent.bind(this),t))})))}_eventBelongsToThisCard(t){if(!this.hass||!this._config)return!1;const e=this.hass.states[this._config.entity];return!!e&&(e.attributes.matches||[]).some((e=>e.home_team===t.home_team&&e.away_team===t.away_team))}_handleCalcioLiveEvent(t){const e=t.event_type,s=t.data;if(!this._eventBelongsToThisCard(s))return;const a=`${s.home_team}_${s.away_team}`;this._recentEventMatches.set(a,"calcio_live_goal"===e?"goal":"card"),this.requestUpdate(),setTimeout((()=>{this._recentEventMatches.delete(a),this.requestUpdate()}),5e3),this.showEventToasts&&this._showEventToast(e,s)}_showEventToast(t,e){let s="",a="goal";"calcio_live_goal"===t?(s=`<strong>GOAL!</strong> ${e.player} · ${e.home_team} ${e.home_score} - ${e.away_score} ${e.away_team}`,a="goal"):"calcio_live_yellow_card"===t?(s=`🟨 <strong>Cartellino Giallo</strong> · ${e.player}${e.minute?` (${e.minute}')`:""}`,a="yellow"):"calcio_live_red_card"===t&&(s=`🟥 <strong>Cartellino Rosso</strong> · ${e.player}${e.minute?` (${e.minute}')`:""}`,a="red"),s&&(this._toastMessage=s,this._toastVariant=a,this._toastVisible=!0,this._toastTimer&&clearTimeout(this._toastTimer),this._toastTimer=setTimeout((()=>{this._toastVisible=!1,this.requestUpdate()}),4e3),this.requestUpdate())}getCardSize(){return 4}static getConfigElement(){return document.createElement("calcio-live-matches-editor")}static getStubConfig(){return{entity:"sensor.calcio_live",max_events_visible:5,max_events_total:50,hide_past_days:0,show_finished_matches:!0,hide_header:!1,show_event_toasts:!1}}_parseMatchDate(t){if(!t)return null;const[e,s]=t.split(" "),[a,i,o]=e.split("/").map(Number),[n,r]=s?s.split(":").map(Number):[0,0];return new Date(o,i-1,a,n,r)}_matchTimeLabel(t){if("in"===t.state)return t.clock&&"N/A"!==t.clock?t.clock:"LIVE";if("post"===t.state)return"FT";if(t.date){const e=t.date.split(" ");return e[1]||e[0]}return"—"}_matchScore(t,e){return"pre"===t.state?"-":t["home"===e?"home_score":"away_score"]??"-"}_isWinner(t,e){if("pre"===t.state)return null;const s=parseInt(t.home_score),a=parseInt(t.away_score);return isNaN(s)||isNaN(a)||s===a?null:"home"===e?s>a:a>s}_dayKey(t){if(!t.date)return"Altro";const e=this._parseMatchDate(t.date);if(!e)return t.date.split(" ")[0]||"Altro";const s=new Date;s.setHours(0,0,0,0);const a=new Date(e);a.setHours(0,0,0,0);const i=Math.round((a-s)/864e5);return 0===i?"⚡ Oggi":-1===i?"Ieri":1===i?"Domani":`${a.getDate()} ${["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"][a.getMonth()]}`}showDetails(t){this.activeMatch=t,this.showPopup=!0}closePopup(){this.showPopup=!1}separateEvents(t){const e=[],s=[],a=[];return t.forEach((t=>{t.includes("Goal")||t.includes("Penalty - Scored")?e.push(t):t.includes("Yellow Card")?s.push(t):t.includes("Red Card")&&a.push(t)})),{goals:e,yellowCards:s,redCards:a}}render(){if(!this.hass||!this._config)return I``;const t=this._config.entity,e=this.hass.states[t];if(!e)return I`<ha-card class="empty">Entità sconosciuta: ${t}</ha-card>`;let s=e.attributes.matches||[];const a=e.attributes.league_info?e.attributes.league_info[0]:null,i=e.attributes.team_logo||null;if(this.showFinishedMatches||(s=s.filter((t=>"Full Time"!==t.status))),s=s.slice().sort(((t,e)=>new Date(t.date)-new Date(e.date))),this.hidePastDays>0){const t=new Date;t.setDate(t.getDate()-this.hidePastDays),s=s.filter((e=>{const s=this._parseMatchDate(e.date);return!s||s>=t}))}const o=s.slice(0,this.maxEventsTotal);if(0===o.length)return I`<ha-card class="empty">Nessuna partita disponibile</ha-card>`;const n=o.filter((t=>"in"===t.state)).length,r=[];let l=null;o.forEach((t=>{const e=this._dayKey(t);e!==l?(l=e,r.push({key:e,matches:[t]})):r[r.length-1].matches.push(t)}));const c=Math.max(80*this.maxEventsVisible,240);return I`
+    `}}),customElements.define("calcio-live-matches",class extends re{static get properties(){return{hass:{},_config:{},showPopup:{type:Boolean},activeMatch:{type:Object},_eventSubscriptions:{type:Array},_recentEventMatches:{type:Object},_toastMessage:{type:String},_toastVisible:{type:Boolean},_toastVariant:{type:String}}}constructor(){super(),this._recentEventMatches=new Map,this._eventSubscriptions=[],this._toastMessage="",this._toastVisible=!1,this._toastVariant="goal",this._toastTimer=null}setConfig(e){if(!e.entity)throw new Error("Devi definire un'entità");this._config=e,this.maxEventsVisible=e.max_events_visible?e.max_events_visible:5,this.maxEventsTotal=e.max_events_total?e.max_events_total:50,this.showFinishedMatches=void 0===e.show_finished_matches||e.show_finished_matches,this.hideHeader=void 0!==e.hide_header&&e.hide_header,this.hidePastDays=void 0!==e.hide_past_days?e.hide_past_days:0,this.showEventToasts=!0===e.show_event_toasts,this.activeMatch=null,this.showPopup=!1}connectedCallback(){super.connectedCallback(),this._subscribeToEvents()}disconnectedCallback(){super.disconnectedCallback(),this._eventSubscriptions&&Array.isArray(this._eventSubscriptions)&&(this._eventSubscriptions.forEach((e=>{e&&e.unsubscribe()})),this._eventSubscriptions=[])}_subscribeToEvents(){this.hass&&this.hass.connection&&(this._eventSubscriptions=[],["calcio_live_goal","calcio_live_yellow_card","calcio_live_red_card"].forEach((e=>{this._eventSubscriptions.push(this.hass.connection.subscribeEvents(this._handleCalcioLiveEvent.bind(this),e))})))}_eventBelongsToThisCard(e){if(!this.hass||!this._config)return!1;const t=this.hass.states[this._config.entity];return!!t&&(t.attributes.matches||[]).some((t=>t.home_team===e.home_team&&t.away_team===e.away_team))}_handleCalcioLiveEvent(e){const t=e.event_type,i=e.data;if(!this._eventBelongsToThisCard(i))return;const a=`${i.home_team}_${i.away_team}`;this._recentEventMatches.set(a,"calcio_live_goal"===t?"goal":"card"),this.requestUpdate(),setTimeout((()=>{this._recentEventMatches.delete(a),this.requestUpdate()}),5e3),this.showEventToasts&&this._showEventToast(t,i)}_showEventToast(e,t){let i="",a="goal";"calcio_live_goal"===e?(i=`<strong>GOAL!</strong> ${t.player} · ${t.home_team} ${t.home_score} - ${t.away_score} ${t.away_team}`,a="goal"):"calcio_live_yellow_card"===e?(i=`🟨 <strong>Cartellino Giallo</strong> · ${t.player}${t.minute?` (${t.minute}')`:""}`,a="yellow"):"calcio_live_red_card"===e&&(i=`🟥 <strong>Cartellino Rosso</strong> · ${t.player}${t.minute?` (${t.minute}')`:""}`,a="red"),i&&(this._toastMessage=i,this._toastVariant=a,this._toastVisible=!0,this._toastTimer&&clearTimeout(this._toastTimer),this._toastTimer=setTimeout((()=>{this._toastVisible=!1,this.requestUpdate()}),4e3),this.requestUpdate())}getCardSize(){return 4}static getConfigElement(){return document.createElement("calcio-live-matches-editor")}static getStubConfig(){return{entity:"sensor.calcio_live",max_events_visible:5,max_events_total:50,hide_past_days:0,show_finished_matches:!0,hide_header:!1,show_event_toasts:!1}}_parseMatchDate(e){if(!e)return null;const[t,i]=e.split(" "),[a,s,r]=t.split("/").map(Number),[o,n]=i?i.split(":").map(Number):[0,0];return new Date(r,s-1,a,o,n)}_matchTimeLabel(e){if("in"===e.state)return e.clock&&"N/A"!==e.clock?e.clock:"LIVE";if("post"===e.state)return"FT";if(e.date){const t=e.date.split(" ");return t[1]||t[0]}return"—"}_matchScore(e,t){return"pre"===e.state?"-":e["home"===t?"home_score":"away_score"]??"-"}_isWinner(e,t){if("pre"===e.state)return null;const i=parseInt(e.home_score),a=parseInt(e.away_score);return isNaN(i)||isNaN(a)||i===a?null:"home"===t?i>a:a>i}_dayKey(e){if(!e.date)return"Altro";const t=this._parseMatchDate(e.date);if(!t)return e.date.split(" ")[0]||"Altro";const i=new Date;i.setHours(0,0,0,0);const a=new Date(t);a.setHours(0,0,0,0);const s=Math.round((a-i)/864e5);return 0===s?"⚡ Oggi":-1===s?"Ieri":1===s?"Domani":`${a.getDate()} ${["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"][a.getMonth()]}`}showDetails(e){this.activeMatch=e,this.showPopup=!0}closePopup(){this.showPopup=!1}separateEvents(e){const t=[],i=[],a=[];return e.forEach((e=>{e.includes("Goal")||e.includes("Penalty - Scored")?t.push(e):e.includes("Yellow Card")?i.push(e):e.includes("Red Card")&&a.push(e)})),{goals:t,yellowCards:i,redCards:a}}render(){if(!this.hass||!this._config)return B``;const e=this._config.entity,t=this.hass.states[e];if(!t)return B`<ha-card class="empty">Entità sconosciuta: ${e}</ha-card>`;let i=t.attributes.matches||[];const a=t.attributes.league_info?t.attributes.league_info[0]:null,s=t.attributes.team_logo||null;if(this.showFinishedMatches||(i=i.filter((e=>"Full Time"!==e.status))),i=i.slice().sort(((e,t)=>new Date(e.date)-new Date(t.date))),this.hidePastDays>0){const e=new Date;e.setDate(e.getDate()-this.hidePastDays),i=i.filter((t=>{const i=this._parseMatchDate(t.date);return!i||i>=e}))}const r=i.slice(0,this.maxEventsTotal);if(0===r.length)return B`<ha-card class="empty">Nessuna partita disponibile</ha-card>`;const o=r.filter((e=>"in"===e.state)).length,n=[];let l=null;r.forEach((e=>{const t=this._dayKey(e);t!==l?(l=t,n.push({key:t,matches:[e]})):n[n.length-1].matches.push(e)}));const c=Math.max(80*this.maxEventsVisible,240);return B`
       <ha-card>
         <div class="hero-bg"></div>
 
-        ${this.showEventToasts&&this._toastVisible?I`
+        ${this.showEventToasts&&this._toastVisible?B`
           <div class="event-toast variant-${this._toastVariant}" .innerHTML=${this._toastMessage}></div>
         `:""}
 
-        ${this.hideHeader?"":I`
+        ${this.hideHeader?"":B`
           <div class="matches-header">
-            ${a&&a.logo_href?I`<img class="league-logo" src="${a.logo_href}" alt="${a.abbreviation||""}" />`:i?I`<img class="league-logo" src="${i}" alt="" />`:""}
+            ${a&&a.logo_href?B`<img class="league-logo" src="${a.logo_href}" alt="${a.abbreviation||""}" />`:s?B`<img class="league-logo" src="${s}" alt="" />`:""}
             <div class="league-info">
-              <div class="league-name">${a&&a.abbreviation||e.state||"Calcio Live"}</div>
+              <div class="league-name">${a&&a.abbreviation||t.state||"Calcio Live"}</div>
               <div class="league-dates">
-                ${a&&a.startDate?`${a.startDate} → ${a.endDate}`:`${o.length} partite`}
+                ${a&&a.startDate?`${a.startDate} → ${a.endDate}`:`${r.length} partite`}
               </div>
             </div>
-            ${n>0?I`<span class="live-counter">${n} LIVE</span>`:""}
+            ${o>0?B`<span class="live-counter">${o} LIVE</span>`:""}
           </div>
         `}
 
         <div class="scroll-content" style="max-height: ${c}px;">
-          ${r.map((t=>I`
-            <div class="day-divider ${t.key.includes("Oggi")?"today":""}">${t.key}</div>
-            ${t.matches.map((t=>{const e=`${t.home_team}_${t.away_team}`,s="in"===t.state,a=this._recentEventMatches.get(e),i=this._isWinner(t,"home"),o=this._isWinner(t,"away");return I`
-                <div class="match-row ${s?"live":""} ${"goal"===a?"goal-pulse":""} ${"card"===a?"card-pulse":""}"
-                     @click="${()=>this.showDetails(t)}">
-                  <div class="match-time ${s?"live-time":""} ${"post"===t.state?"ft":""}">
-                    ${this._matchTimeLabel(t)}
+          ${n.map((e=>B`
+            <div class="day-divider ${e.key.includes("Oggi")?"today":""}">${e.key}</div>
+            ${e.matches.map((e=>{const t=`${e.home_team}_${e.away_team}`,i="in"===e.state,a=this._recentEventMatches.get(t),s=this._isWinner(e,"home"),r=this._isWinner(e,"away"),o=e.broadcast&&""!==e.broadcast&&"N/A"!==e.broadcast?e.broadcast:"",n="pre"===e.state;return B`
+                <div class="match-row ${i?"live":""} ${"goal"===a?"goal-pulse":""} ${"card"===a?"card-pulse":""}"
+                     @click="${()=>this.showDetails(e)}">
+                  <div class="match-time ${i?"live-time":""} ${"post"===e.state?"ft":""}">
+                    ${this._matchTimeLabel(e)}
                   </div>
                   <div class="match-teams">
                     <div class="match-team">
-                      <img src="${t.home_logo}" alt="${t.home_team}" />
-                      <span class="name ${!0===i?"winner":!1===i?"loser":""}">${t.home_team}</span>
-                      <span class="score ${!0===i?"winner":!1===i?"loser":""}">${this._matchScore(t,"home")}</span>
+                      <img src="${e.home_logo}" alt="${e.home_team}" />
+                      <span class="name ${!0===s?"winner":!1===s?"loser":""}">${e.home_team}</span>
+                      <span class="score ${!0===s?"winner":!1===s?"loser":""}">${this._matchScore(e,"home")}</span>
                     </div>
                     <div class="match-team">
-                      <img src="${t.away_logo}" alt="${t.away_team}" />
-                      <span class="name ${!0===o?"winner":!1===o?"loser":""}">${t.away_team}</span>
-                      <span class="score ${!0===o?"winner":!1===o?"loser":""}">${this._matchScore(t,"away")}</span>
+                      <img src="${e.away_logo}" alt="${e.away_team}" />
+                      <span class="name ${!0===r?"winner":!1===r?"loser":""}">${e.away_team}</span>
+                      <span class="score ${!0===r?"winner":!1===r?"loser":""}">${this._matchScore(e,"away")}</span>
                     </div>
+                    ${o&&n?B`
+                      <div class="row-extras">
+                        <span class="tv-chip" title="Diretta TV">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="13" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+                          ${o}
+                        </span>
+                      </div>
+                    `:""}
                   </div>
                   <div class="match-status-icon">›</div>
                 </div>
@@ -435,7 +443,7 @@
           `))}
         </div>
       </ha-card>
-    `}updated(t){(t.has("showPopup")||t.has("activeMatch"))&&this.renderPopupToBody()}renderPopupToBody(){if(!this.showPopup||!this.activeMatch){const t=document.getElementById("calcio-live-matches-popup");return void(t&&t.remove())}let t=document.getElementById("calcio-live-matches-popup");t||(t=document.createElement("div"),t.id="calcio-live-matches-popup",t.style.cssText="\n        position: fixed; inset: 0;\n        display: flex; justify-content: center; align-items: center;\n        z-index: 999999;\n        background: rgba(0,0,0,0.7);\n        backdrop-filter: blur(8px);\n        overflow: auto;\n      ",t.addEventListener("click",(e=>{e.target===t&&(this.showPopup=!1)})),document.body.appendChild(t));const e=this.activeMatch;t.innerHTML=`\n      <div style="background:#1a1f2e; padding:24px; border-radius:20px; width:90%; max-width:560px; max-height:85vh; overflow-y:auto; border:1px solid rgba(255,255,255,0.08); box-shadow:0 24px 64px rgba(0,0,0,0.6); margin:auto; color:#f8fafc; font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;">\n        <h3 style="margin:0 0 20px; font-size:22px; font-weight:800; letter-spacing:-0.02em; background:linear-gradient(135deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">Dettagli partita</h3>\n        <div style="display:flex; justify-content:center; align-items:center; gap:18px; margin-bottom:24px;">\n          <img style="width:64px; height:64px; object-fit:contain;" src="${e.home_logo}" alt="${e.home_team}" />\n          <div style="text-align:center;">\n            <div style="font-size:38px; font-weight:900; letter-spacing:-0.04em; line-height:1;">${e.home_score??"-"} <span style="opacity:0.4;">-</span> ${e.away_score??"-"}</div>\n            <div style="font-size:12px; color:#94a3b8; margin-top:8px; font-weight:600;">${e.clock??e.status??""}</div>\n          </div>\n          <img style="width:64px; height:64px; object-fit:contain;" src="${e.away_logo}" alt="${e.away_team}" />\n        </div>\n        <p style="text-align:center; color:#cbd5e1; font-size:14px; margin:0 0 20px;"><strong>${e.home_team}</strong> vs <strong>${e.away_team}</strong></p>\n        <div id="matches-events-container"></div>\n        <button id="popup-close-btn" style="background:linear-gradient(135deg,#6366f1,#ec4899); color:white; padding:12px 20px; border:none; border-radius:12px; cursor:pointer; margin-top:20px; font-weight:800; width:100%; font-size:14px;">Chiudi</button>\n      </div>\n    `;const s=t.querySelector("#popup-close-btn");s&&s.addEventListener("click",(()=>{this.showPopup=!1}));const a=t.querySelector("#matches-events-container"),{goals:i,yellowCards:o,redCards:n}=this.separateEvents(e.match_details||[]),r=(t,e,s)=>e.length?`<div style="margin-bottom:14px; padding:14px; background:${s.bg}; border-left:3px solid ${s.border}; border-radius:10px;">\n        <h5 style="margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:${s.border}; font-weight:800;">${t}</h5>\n        <ul style="margin:0; padding-left:18px; font-size:13px; color:#cbd5e1;">${e.map((t=>`<li style="margin:4px 0;">${t}</li>`)).join("")}</ul>\n      </div>`:"";let l="";l+=r("Goal",i,{bg:"rgba(99,102,241,0.1)",border:"#6366f1"}),l+=r("Cartellini Gialli",o,{bg:"rgba(245,158,11,0.1)",border:"#f59e0b"}),l+=r("Cartellini Rossi",n,{bg:"rgba(239,68,68,0.1)",border:"#ef4444"}),a.innerHTML=l||'<p style="text-align:center; color:#94a3b8; font-size:13px;">Nessun evento disponibile</p>'}static get styles(){return o`
+    `}updated(e){(e.has("showPopup")||e.has("activeMatch"))&&this.renderPopupToBody()}renderPopupToBody(){if(!this.showPopup||!this.activeMatch){const e=document.getElementById("calcio-live-matches-popup");return void(e&&e.remove())}let e=document.getElementById("calcio-live-matches-popup");e||(e=document.createElement("div"),e.id="calcio-live-matches-popup",e.style.cssText="\n        position: fixed; inset: 0;\n        display: flex; justify-content: center; align-items: center;\n        z-index: 999999;\n        background: rgba(0,0,0,0.7);\n        backdrop-filter: blur(8px);\n        overflow: auto;\n      ",e.addEventListener("click",(t=>{t.target===e&&(this.showPopup=!1)})),document.body.appendChild(e));const t=this.activeMatch;e.innerHTML=`\n      <div style="background:#1a1f2e; padding:24px; border-radius:20px; width:90%; max-width:560px; max-height:85vh; overflow-y:auto; border:1px solid rgba(255,255,255,0.08); box-shadow:0 24px 64px rgba(0,0,0,0.6); margin:auto; color:#f8fafc; font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;">\n        <h3 style="margin:0 0 20px; font-size:22px; font-weight:800; letter-spacing:-0.02em; background:linear-gradient(135deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">Dettagli partita</h3>\n        <div style="display:flex; justify-content:center; align-items:center; gap:18px; margin-bottom:24px;">\n          <img style="width:64px; height:64px; object-fit:contain;" src="${t.home_logo}" alt="${t.home_team}" />\n          <div style="text-align:center;">\n            <div style="font-size:38px; font-weight:900; letter-spacing:-0.04em; line-height:1;">${t.home_score??"-"} <span style="opacity:0.4;">-</span> ${t.away_score??"-"}</div>\n            <div style="font-size:12px; color:#94a3b8; margin-top:8px; font-weight:600;">${t.clock??t.status??""}</div>\n          </div>\n          <img style="width:64px; height:64px; object-fit:contain;" src="${t.away_logo}" alt="${t.away_team}" />\n        </div>\n        <p style="text-align:center; color:#cbd5e1; font-size:14px; margin:0 0 20px;"><strong>${t.home_team}</strong> vs <strong>${t.away_team}</strong></p>\n        <div id="matches-events-container"></div>\n        <button id="popup-close-btn" style="background:linear-gradient(135deg,#6366f1,#ec4899); color:white; padding:12px 20px; border:none; border-radius:12px; cursor:pointer; margin-top:20px; font-weight:800; width:100%; font-size:14px;">Chiudi</button>\n      </div>\n    `;const i=e.querySelector("#popup-close-btn");i&&i.addEventListener("click",(()=>{this.showPopup=!1}));const a=e.querySelector("#matches-events-container"),{goals:s,yellowCards:r,redCards:o}=this.separateEvents(t.match_details||[]),n=(e,t,i)=>t.length?`<div style="margin-bottom:14px; padding:14px; background:${i.bg}; border-left:3px solid ${i.border}; border-radius:10px;">\n        <h5 style="margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:${i.border}; font-weight:800;">${e}</h5>\n        <ul style="margin:0; padding-left:18px; font-size:13px; color:#cbd5e1;">${t.map((e=>`<li style="margin:4px 0;">${e}</li>`)).join("")}</ul>\n      </div>`:"";let l="";l+=n("Goal",s,{bg:"rgba(99,102,241,0.1)",border:"#6366f1"}),l+=n("Cartellini Gialli",r,{bg:"rgba(245,158,11,0.1)",border:"#f59e0b"}),l+=n("Cartellini Rossi",o,{bg:"rgba(239,68,68,0.1)",border:"#ef4444"}),a.innerHTML=l||'<p style="text-align:center; color:#94a3b8; font-size:13px;">Nessun evento disponibile</p>'}static get styles(){return r`
       :host {
         --cl-accent: #6366f1;
         --cl-accent-2: #ec4899;
@@ -647,6 +655,26 @@
       }
       .match-team .score.winner { color: var(--cl-accent); }
       .match-team .score.loser { color: var(--secondary-text-color); opacity: 0.6; }
+      .row-extras {
+        display: flex;
+        gap: 6px;
+        margin-top: 4px;
+      }
+      .tv-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 7px;
+        background: rgba(99,102,241,0.12);
+        border: 1px solid rgba(99,102,241,0.25);
+        border-radius: 999px;
+        font-size: 9px;
+        font-weight: 700;
+        color: var(--cl-accent);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .tv-chip svg { width: 10px; height: 10px; }
       .match-status-icon {
         color: var(--secondary-text-color);
         font-size: 18px;
@@ -702,7 +730,7 @@
         90%  { opacity: 1; transform: translate(-50%, 0) scale(1); }
         100% { opacity: 0; transform: translate(-50%, -10px) scale(0.95); }
       }
-    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-matches",name:"Calcio Live Matches Card",description:"Mostra le partite della settimana o del tuo Team"}),customElements.define("calcio-live-matches-editor",class extends ot{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array}}}constructor(){super(),this.entities=[]}static get styles(){return o`
+    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-matches",name:"Calcio Live Matches Card",description:"Mostra le partite della settimana o del tuo Team"}),customElements.define("calcio-live-matches-editor",class extends re{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array}}}constructor(){super(),this.entities=[]}static get styles(){return r`
       .card-config {
         display: flex;
         flex-direction: column;
@@ -751,15 +779,15 @@
         color: var(--secondary-text-color);
         margin-top: -4px;
       }
-    `}setConfig(t){if(!t)throw new Error("Invalid configuration");this._config={...t}}get config(){return this._config}updated(t){t.has("hass")&&this._fetchEntities()}_fireConfigChanged(t){this._config=t,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:t},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(t){if(!this._config)return;const e=t.target.value;e!==this._config.entity&&this._fireConfigChanged({...this._config,entity:e})}_switchChanged(t){if(!this._config)return;const e=t.target;if(!e.dataset||!e.dataset.configValue)return;const s=e.dataset.configValue,a=e.checked;this._config[s]!==a&&this._fireConfigChanged({...this._config,[s]:a})}_numberChanged(t){if(!this._config)return;const e=t.target;if(!e.dataset||!e.dataset.configValue)return;const s=e.dataset.configValue,a=parseInt(e.value,10);isNaN(a)||this._config[s]!==a&&this._fireConfigChanged({...this._config,[s]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((t=>t.startsWith("sensor.calciolive_all"))).sort())}render(){if(!this._config||!this.hass)return I``;const t=this._config.entity||"",e=t&&this.entities.includes(t);return I`
+    `}setConfig(e){if(!e)throw new Error("Invalid configuration");this._config={...e}}get config(){return this._config}updated(e){e.has("hass")&&this._fetchEntities()}_fireConfigChanged(e){this._config=e,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:e},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(e){if(!this._config)return;const t=e.target.value;t!==this._config.entity&&this._fireConfigChanged({...this._config,entity:t})}_switchChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=t.checked;this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_numberChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=parseInt(t.value,10);isNaN(a)||this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((e=>e.startsWith("sensor.calciolive_all"))).sort())}render(){if(!this._config||!this.hass)return B``;const e=this._config.entity||"",t=e&&this.entities.includes(e);return B`
       <div class="card-config">
         <h3>Sensore</h3>
         <div>
           <label class="field-label">Entity</label>
           <select @change=${this._entityChanged}>
-            ${e?"":I`<option value="${t}" selected>${t||"— seleziona —"}</option>`}
-            ${this.entities.map((e=>I`
-              <option value="${e}" ?selected=${e===t}>${e}</option>
+            ${t?"":B`<option value="${e}" selected>${e||"— seleziona —"}</option>`}
+            ${this.entities.map((t=>B`
+              <option value="${t}" ?selected=${t===e}>${t}</option>
             `))}
           </select>
         </div>
@@ -830,85 +858,112 @@
           <div class="hint">Per funzionare, "Show Finished Matches" deve essere attivo.</div>
         </div>
       </div>
-    `}}),customElements.define("calcio-live-team",class extends ot{static get properties(){return{hass:{},_config:{},showPopup:{type:Boolean},activeMatch:{type:Object},_eventSubscriptions:{type:Array},_toastMessage:{type:String},_toastVisible:{type:Boolean},_toastVariant:{type:String}}}setConfig(t){if(!t.entity)throw new Error("Devi definire un'entità");this._config=t,this.showPopup=!1,this.activeMatch=null,this.showEventToasts=!0===t.show_event_toasts,this._toastMessage="",this._toastVisible=!1,this._toastVariant="goal",this._toastTimer=null}connectedCallback(){super.connectedCallback(),this._subscribeToEvents()}disconnectedCallback(){super.disconnectedCallback(),this._eventSubscriptions&&Array.isArray(this._eventSubscriptions)&&(this._eventSubscriptions.forEach((t=>{t&&t.unsubscribe()})),this._eventSubscriptions=[])}_subscribeToEvents(){this.hass&&this.hass.connection&&(this._eventSubscriptions=[],["calcio_live_goal","calcio_live_yellow_card","calcio_live_red_card"].forEach((t=>{this._eventSubscriptions.push(this.hass.connection.subscribeEvents(this._handleCalcioLiveEvent.bind(this),t))})))}_eventBelongsToThisCard(t){if(!this.hass||!this._config)return!1;const e=this.hass.states[this._config.entity];if(!e)return!1;const s=e.attributes.matches||[];if(0===s.length)return!1;const a=s[0];return a.home_team===t.home_team&&a.away_team===t.away_team}_handleCalcioLiveEvent(t){const e=t.event_type,s=t.data;if(this._eventBelongsToThisCard(s)&&this.showEventToasts)if("calcio_live_goal"===e){const t=s.team===s.home_team?"home":"away";requestAnimationFrame((()=>this._triggerGoalCelebration(t,s)))}else this._showEventToast(e,s)}_showEventToast(t,e){let s="",a="goal";"calcio_live_goal"===t?(s=`<strong>GOAL!</strong> ${e.player} · ${e.home_team} ${e.home_score} - ${e.away_score} ${e.away_team}`,a="goal"):"calcio_live_yellow_card"===t?(s=`🟨 <strong>Cartellino Giallo</strong> · ${e.player}${e.minute?` (${e.minute}')`:""}`,a="yellow"):"calcio_live_red_card"===t&&(s=`🟥 <strong>Cartellino Rosso</strong> · ${e.player}${e.minute?` (${e.minute}')`:""}`,a="red"),s&&(this._toastMessage=s,this._toastVariant=a,this._toastVisible=!0,this._toastTimer&&clearTimeout(this._toastTimer),this._toastTimer=setTimeout((()=>{this._toastVisible=!1,this.requestUpdate()}),4e3),this.requestUpdate())}_triggerGoalCelebration(t,e){const s=this.shadowRoot&&this.shadowRoot.querySelector("ha-card");if(!s)return;s.querySelectorAll(".confetti, .goal-banner, .goal-flash-overlay").forEach((t=>t.remove())),s.classList.remove("goal-flash"),s.offsetWidth,s.classList.add("goal-flash"),setTimeout((()=>s.classList.remove("goal-flash")),1700);const a=document.createElement("div");a.className="goal-flash-overlay",s.appendChild(a),setTimeout((()=>a.remove()),1e3);const i=document.createElement("div");i.className="goal-banner",i.innerHTML='<div class="goal-banner-text">GOAL!</div>',s.appendChild(i),setTimeout((()=>i.remove()),1700);const o=s.querySelector(".score-numbers");o&&(o.classList.remove("goal-scored"),o.offsetWidth,o.classList.add("goal-scored"),setTimeout((()=>o.classList.remove("goal-scored")),1300));const n=s.querySelectorAll(".team-side .team-logo-big"),r="away"===t?n[1]:n[0];r&&(r.classList.remove("scorer-bounce"),r.offsetWidth,r.classList.add("scorer-bounce"),setTimeout((()=>r.classList.remove("scorer-bounce")),1300)),navigator.vibrate&&navigator.vibrate([180,80,180,80,280]),setTimeout((()=>this._showEventToast("calcio_live_goal",e)),600);const l=["#ec4899","#6366f1","#06b6d4","#fbbf24","#10b981","#ef4444"],c=["⚽","🎉","✨","🔥","⭐"];for(let t=0;t<36;t++){const t=document.createElement("div");t.className="confetti",Math.random()>.55?(t.textContent=c[Math.floor(Math.random()*c.length)],t.style.fontSize=14+10*Math.random()+"px",t.style.background="transparent"):(t.style.background=l[Math.floor(Math.random()*l.length)],t.style.borderRadius=Math.random()>.5?"50%":"2px");const e=380*(Math.random()-.5)+"px",a=240*Math.random()+100+"px";t.style.setProperty("--dx",e),t.style.setProperty("--dy",a),t.style.animationDelay=.3*Math.random()+"s",s.appendChild(t),setTimeout((()=>t.remove()),2e3)}}getCardSize(){return 4}static getConfigElement(){return document.createElement("calcio-live-team-editor")}static getStubConfig(){return{entity:"sensor.calcio_live",show_event_toasts:!1}}showDetails(t){this.activeMatch=t,this.showPopup=!0}closePopup(){this.showPopup=!1}separateEvents(t){const e=[],s=[],a=[];return t.forEach((t=>{t.includes("Goal")||t.includes("Penalty - Scored")?e.push(t):t.includes("Yellow Card")?s.push(t):t.includes("Red Card")&&a.push(t)})),{goals:e,yellowCards:s,redCards:a}}_renderStatusBadge(t){const e=t.state;return"in"===e?I`<span class="status-badge live"><span class="dot"></span>Live</span>`:"post"===e?I`<span class="status-badge finished">Finita</span>`:I`<span class="status-badge scheduled">${t.date||"Programmata"}</span>`}_renderClock(t){const e=t.state;if("in"===e){const e=t.clock&&"N/A"!==t.clock?t.clock:t.status||"";return I`<div class="clock"><span class="dot"></span>${e}</div>`}return"post"===e?I`<div class="clock finished">Full Time</div>`:I`<div class="clock upcoming">${t.date||""}</div>`}_renderForm(t){if(!t||"N/A"===t)return"";const e=String(t).replace(/[^WLDwld]/g,"").toUpperCase();if(!e.length)return"";const s=e.slice(-5).split("");return I`
-      <div class="form-pills">
-        ${s.map((t=>I`<div class="form-pill ${t}">${(t=>"W"===t?"V":"L"===t?"P":"N")(t)}</div>`))}
+    `}}),customElements.define("calcio-live-team",class extends re{static get properties(){return{hass:{},_config:{},showPopup:{type:Boolean},activeMatch:{type:Object},_eventSubscriptions:{type:Array},_toastMessage:{type:String},_toastVisible:{type:Boolean},_toastVariant:{type:String}}}setConfig(e){if(!e.entity)throw new Error("Devi definire un'entità");this._config=e,this.showPopup=!1,this.activeMatch=null,this.showEventToasts=!0===e.show_event_toasts,this._toastMessage="",this._toastVisible=!1,this._toastVariant="goal",this._toastTimer=null}connectedCallback(){super.connectedCallback(),this._subscribeToEvents()}disconnectedCallback(){super.disconnectedCallback(),this._eventSubscriptions&&Array.isArray(this._eventSubscriptions)&&(this._eventSubscriptions.forEach((e=>{e&&e.unsubscribe()})),this._eventSubscriptions=[])}_subscribeToEvents(){this.hass&&this.hass.connection&&(this._eventSubscriptions=[],["calcio_live_goal","calcio_live_yellow_card","calcio_live_red_card"].forEach((e=>{this._eventSubscriptions.push(this.hass.connection.subscribeEvents(this._handleCalcioLiveEvent.bind(this),e))})))}_eventBelongsToThisCard(e){if(!this.hass||!this._config)return!1;const t=this.hass.states[this._config.entity];if(!t)return!1;const i=t.attributes.matches||[];if(0===i.length)return!1;const a=i[0];return a.home_team===e.home_team&&a.away_team===e.away_team}_handleCalcioLiveEvent(e){const t=e.event_type,i=e.data;if(this._eventBelongsToThisCard(i)&&this.showEventToasts)if("calcio_live_goal"===t){const e=i.team===i.home_team?"home":"away";requestAnimationFrame((()=>this._triggerGoalCelebration(e,i)))}else this._showEventToast(t,i)}_showEventToast(e,t){let i="",a="goal";"calcio_live_goal"===e?(i=`<strong>GOAL!</strong> ${t.player} · ${t.home_team} ${t.home_score} - ${t.away_score} ${t.away_team}`,a="goal"):"calcio_live_yellow_card"===e?(i=`🟨 <strong>Cartellino Giallo</strong> · ${t.player}${t.minute?` (${t.minute}')`:""}`,a="yellow"):"calcio_live_red_card"===e&&(i=`🟥 <strong>Cartellino Rosso</strong> · ${t.player}${t.minute?` (${t.minute}')`:""}`,a="red"),i&&(this._toastMessage=i,this._toastVariant=a,this._toastVisible=!0,this._toastTimer&&clearTimeout(this._toastTimer),this._toastTimer=setTimeout((()=>{this._toastVisible=!1,this.requestUpdate()}),4e3),this.requestUpdate())}_triggerGoalCelebration(e,t){const i=this.shadowRoot&&this.shadowRoot.querySelector("ha-card");if(!i)return;i.querySelectorAll(".confetti, .goal-banner, .goal-flash-overlay").forEach((e=>e.remove())),i.classList.remove("goal-flash"),i.offsetWidth,i.classList.add("goal-flash"),setTimeout((()=>i.classList.remove("goal-flash")),1700);const a=document.createElement("div");a.className="goal-flash-overlay",i.appendChild(a),setTimeout((()=>a.remove()),1e3);const s=document.createElement("div");s.className="goal-banner",s.innerHTML='<div class="goal-banner-text">GOAL!</div>',i.appendChild(s),setTimeout((()=>s.remove()),1700);const r=i.querySelector(".score-numbers");r&&(r.classList.remove("goal-scored"),r.offsetWidth,r.classList.add("goal-scored"),setTimeout((()=>r.classList.remove("goal-scored")),1300));const o=i.querySelectorAll(".team-side .team-logo-big"),n="away"===e?o[1]:o[0];n&&(n.classList.remove("scorer-bounce"),n.offsetWidth,n.classList.add("scorer-bounce"),setTimeout((()=>n.classList.remove("scorer-bounce")),1300)),navigator.vibrate&&navigator.vibrate([180,80,180,80,280]),setTimeout((()=>this._showEventToast("calcio_live_goal",t)),600);const l=["#ec4899","#6366f1","#06b6d4","#fbbf24","#10b981","#ef4444"],c=["⚽","🎉","✨","🔥","⭐"];for(let e=0;e<36;e++){const e=document.createElement("div");e.className="confetti",Math.random()>.55?(e.textContent=c[Math.floor(Math.random()*c.length)],e.style.fontSize=14+10*Math.random()+"px",e.style.background="transparent"):(e.style.background=l[Math.floor(Math.random()*l.length)],e.style.borderRadius=Math.random()>.5?"50%":"2px");const t=380*(Math.random()-.5)+"px",a=240*Math.random()+100+"px";e.style.setProperty("--dx",t),e.style.setProperty("--dy",a),e.style.animationDelay=.3*Math.random()+"s",i.appendChild(e),setTimeout((()=>e.remove()),2e3)}}getCardSize(){return 4}static getConfigElement(){return document.createElement("calcio-live-team-editor")}static getStubConfig(){return{entity:"sensor.calcio_live",show_event_toasts:!1}}showDetails(e){this.activeMatch=e,this.showPopup=!0}closePopup(){this.showPopup=!1}separateEvents(e){const t=[],i=[],a=[];return e.forEach((e=>{e.includes("Goal")||e.includes("Penalty - Scored")?t.push(e):e.includes("Yellow Card")?i.push(e):e.includes("Red Card")&&a.push(e)})),{goals:t,yellowCards:i,redCards:a}}_renderStatusBadge(e){const t=e.state;return"in"===t?B`<span class="status-badge live"><span class="dot"></span>Live</span>`:"post"===t?B`<span class="status-badge finished">Finita</span>`:B`<span class="status-badge scheduled">${e.date||"Programmata"}</span>`}_renderClock(e){const t=e.state;if("in"===t){const t=e.status_detail&&"N/A"!==e.status_detail?e.status_detail:"",i=(e.clock&&"N/A"!==e.clock?e.clock:"")||t||e.status||"";return B`<div class="clock"><span class="dot"></span>${i}</div>`}return"post"===t?B`<div class="clock finished">Full Time</div>`:B`<div class="clock upcoming">${e.date||""}</div>`}_renderRecord(e){if(!e||"N/A"===e)return"";const t=String(e).split("-");return 3===t.length?B`<div class="record"><span class="rec rec-w">${t[0]}V</span><span class="rec rec-d">${t[1]}N</span><span class="rec rec-l">${t[2]}P</span></div>`:B`<div class="record"><span class="rec">${e}</span></div>`}_renderTopScorer(e){if(!e||!e.name)return"";const t=e.short_name||e.name;return B`
+      <div class="top-scorer" title="Capocannoniere">
+        <span class="ts-icon">⚽</span>
+        <span class="ts-name">${t}</span>
+        <span class="ts-val">${e.value}</span>
       </div>
-    `}_renderStatsRow(t){const e=t.home_statistics||{},s=t.away_statistics||{},a=[],i=t=>{const e=parseFloat(t);return isNaN(e)?null:e},o=function(t,o,n){let r=arguments.length>3&&void 0!==arguments[3]?arguments[3]:"";const l=i(e[o]),c=i(s[n]);null!==l&&null!==c&&a.push({label:t,home:e[o],away:s[n],hNum:l,aNum:c,suffix:r})};return o("Possesso","possessionPct","possessionPct","%"),o("Tiri","totalShots","totalShots"),o("In porta","shotsOnTarget","shotsOnTarget"),0===a.length?"":I`
+    `}_renderForm(e){if(!e||"N/A"===e)return"";const t=String(e).replace(/[^WLDwld]/g,"").toUpperCase();if(!t.length)return"";const i=t.slice(-5).split("");return B`
+      <div class="form-pills">
+        ${i.map((e=>B`<div class="form-pill ${e}">${(e=>"W"===e?"V":"L"===e?"P":"N")(e)}</div>`))}
+      </div>
+    `}_renderStatsRow(e){const t=e.home_statistics||{},i=e.away_statistics||{},a=[],s=e=>{const t=parseFloat(e);return isNaN(t)?null:t},r=function(e,r,o){let n=arguments.length>3&&void 0!==arguments[3]?arguments[3]:"";const l=s(t[r]),c=s(i[o]);null!==l&&null!==c&&a.push({label:e,home:t[r],away:i[o],hNum:l,aNum:c,suffix:n})};return r("Possesso","possessionPct","possessionPct","%"),r("Tiri","totalShots","totalShots"),r("In porta","shotsOnTarget","shotsOnTarget"),0===a.length?"":B`
       <div class="stats-row">
-        ${a.map((t=>{const e=t.hNum+t.aNum,s=e>0?t.hNum/e*100:50,a=100-s;return I`
+        ${a.map((e=>{const t=e.hNum+e.aNum,i=t>0?e.hNum/t*100:50,a=100-i;return B`
             <div class="stat-bar">
               <div class="stat-bar-label">
-                <span class="home-val">${t.home}${t.suffix}</span>
-                <span class="label-text">${t.label}</span>
-                <span class="away-val">${t.away}${t.suffix}</span>
+                <span class="home-val">${e.home}${e.suffix}</span>
+                <span class="label-text">${e.label}</span>
+                <span class="away-val">${e.away}${e.suffix}</span>
               </div>
               <div class="stat-bar-track">
-                <div class="stat-bar-home" style="width: ${s}%;"></div>
+                <div class="stat-bar-home" style="width: ${i}%;"></div>
                 <div class="stat-bar-away" style="width: ${a}%;"></div>
               </div>
             </div>
           `}))}
       </div>
-    `}render(){if(!this.hass||!this._config)return I``;const t=this._config.entity,e=this.hass.states[t];if(!e)return I`<ha-card class="empty">Entità sconosciuta: ${t}</ha-card>`;if(!e.attributes.matches||0===e.attributes.matches.length)return I`<ha-card class="empty">Nessuna partita disponibile</ha-card>`;const s=e.attributes.matches[0],a="in"===s.state,i="post"===s.state,o=a||i,n=s.league_name&&"N/A"!==s.league_name?s.league_name:s.season_info&&"N/A"!==s.season_info?s.season_info:"",r=s.venue&&"N/A"!==s.venue?s.venue:"";return I`
+    `}render(){if(!this.hass||!this._config)return B``;const e=this._config.entity,t=this.hass.states[e];if(!t)return B`<ha-card class="empty">Entità sconosciuta: ${e}</ha-card>`;if(!t.attributes.matches||0===t.attributes.matches.length)return B`<ha-card class="empty">Nessuna partita disponibile</ha-card>`;const i=t.attributes.matches[0],a="in"===i.state,s="post"===i.state,r=a||s,o=i.league_name&&"N/A"!==i.league_name?i.league_name:i.season_info&&"N/A"!==i.season_info?i.season_info:"",n=i.venue&&"N/A"!==i.venue?i.venue:"",l=i.venue_city&&"N/A"!==i.venue_city?i.venue_city:"",c=n?l?`${n}, ${l}`:n:"—",d=i.broadcast&&""!==i.broadcast&&"N/A"!==i.broadcast?i.broadcast:"",p=parseInt(i.attendance,10),h=!isNaN(p)&&p>0;return B`
       <ha-card class="${a?"live":""}">
         <div class="bg-logos">
-          <div class="bg-logo home"><img src="${s.home_logo}" alt="" loading="lazy"></div>
-          <div class="bg-logo away"><img src="${s.away_logo}" alt="" loading="lazy"></div>
+          <div class="bg-logo home"><img src="${i.home_logo}" alt="" loading="lazy"></div>
+          <div class="bg-logo away"><img src="${i.away_logo}" alt="" loading="lazy"></div>
         </div>
         <div class="hero-bg"></div>
 
-        ${this.showEventToasts&&this._toastVisible?I`
+        ${this.showEventToasts&&this._toastVisible?B`
           <div class="event-toast variant-${this._toastVariant}" .innerHTML=${this._toastMessage}></div>
         `:""}
 
         <div class="top-bar">
           <div class="competition">
             <span class="comp-icon">⚽</span>
-            <span class="comp-name">${n||" "}</span>
+            <span class="comp-name">${o||" "}</span>
           </div>
-          ${this._renderStatusBadge(s)}
+          ${this._renderStatusBadge(i)}
         </div>
 
         <div class="scoreboard">
           <div class="team-side home">
             <div class="team-logo-wrap">
-              <img class="team-logo-big" src="${s.home_logo}" alt="${s.home_team}" />
+              <img class="team-logo-big" src="${i.home_logo}" alt="${i.home_team}" />
             </div>
-            <div class="team-name-big">${s.home_team}</div>
-            ${this._renderForm(s.home_form)}
+            <div class="team-name-big">${i.home_team}</div>
+            ${this._renderRecord(i.home_record)}
+            ${this._renderForm(i.home_form)}
+            ${a?"":this._renderTopScorer(i.home_top_scorer)}
           </div>
 
           <div class="score-center">
-            ${o?I`<div class="score-numbers">${s.home_score} <span class="dash">-</span> ${s.away_score}</div>`:I`<div class="score-vs">VS</div>`}
-            ${this._renderClock(s)}
+            ${r?B`<div class="score-numbers">${i.home_score} <span class="dash">-</span> ${i.away_score}</div>`:B`<div class="score-vs">VS</div>`}
+            ${this._renderClock(i)}
           </div>
 
           <div class="team-side away">
             <div class="team-logo-wrap">
-              <img class="team-logo-big" src="${s.away_logo}" alt="${s.away_team}" />
+              <img class="team-logo-big" src="${i.away_logo}" alt="${i.away_team}" />
             </div>
-            <div class="team-name-big">${s.away_team}</div>
-            ${this._renderForm(s.away_form)}
+            <div class="team-name-big">${i.away_team}</div>
+            ${this._renderRecord(i.away_record)}
+            ${this._renderForm(i.away_form)}
+            ${a?"":this._renderTopScorer(i.away_top_scorer)}
           </div>
         </div>
 
-        ${a?this._renderStatsRow(s):""}
+        ${a?this._renderStatsRow(i):""}
 
         <div class="meta-row">
-          <div class="meta-item">
+          <div class="meta-item venue-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>${r||"—"}</span>
+            <span>${c}</span>
           </div>
-          ${o?I`<button class="info-btn" @click="${()=>this.showDetails(s)}">Dettagli ›</button>`:I`
+          ${r?B`<button class="info-btn" @click="${()=>this.showDetails(i)}">Dettagli ›</button>`:B`
               <div class="meta-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>${s.date||""}</span>
+                <span>${i.date||""}</span>
               </div>
             `}
         </div>
+
+        ${d||h?B`
+          <div class="extras-row">
+            ${d?B`
+              <div class="extra-chip broadcast">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="13" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+                <span>${d}</span>
+              </div>
+            `:""}
+            ${h?B`
+              <div class="extra-chip attendance">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                <span>${p.toLocaleString("it-IT")} spettatori</span>
+              </div>
+            `:""}
+          </div>
+        `:""}
       </ha-card>
-    `}updated(t){(t.has("showPopup")||t.has("activeMatch"))&&this.renderPopupToBody()}renderPopupToBody(){if(!this.showPopup||!this.activeMatch){const t=document.getElementById("calcio-live-team-popup");return void(t&&t.remove())}let t=document.getElementById("calcio-live-team-popup");t||(t=document.createElement("div"),t.id="calcio-live-team-popup",t.style.cssText="\n        position: fixed; inset: 0;\n        display: flex; justify-content: center; align-items: center;\n        z-index: 999999;\n        background: rgba(0,0,0,0.7);\n        backdrop-filter: blur(8px);\n        overflow: auto;\n      ",t.addEventListener("click",(e=>{e.target===t&&(this.showPopup=!1)})),document.body.appendChild(t));const e=this.activeMatch;t.innerHTML=`\n      <div style="background: #1a1f2e; padding: 24px; border-radius: 20px; width: 90%; max-width: 560px; max-height: 85vh; overflow-y: auto; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 24px 64px rgba(0,0,0,0.6); margin: auto; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;">\n        <h3 style="margin:0 0 20px; font-size: 22px; font-weight: 800; letter-spacing:-0.02em; background: linear-gradient(135deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color: transparent;">Dettagli partita</h3>\n        <div style="display:flex; justify-content:center; align-items:center; gap:18px; margin-bottom:24px;">\n          <img style="width:72px; height:72px; object-fit:contain; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));" src="${e.home_logo}" alt="${e.home_team}" />\n          <div style="text-align:center;">\n            <div style="font-size:42px; font-weight:900; letter-spacing:-0.04em; line-height:1;">${e.home_score??"-"} <span style="opacity:0.4;">-</span> ${e.away_score??"-"}</div>\n            <div style="font-size:12px; color:#94a3b8; margin-top:8px; font-weight:600;">${e.clock??e.status??""}</div>\n          </div>\n          <img style="width:72px; height:72px; object-fit:contain; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));" src="${e.away_logo}" alt="${e.away_team}" />\n        </div>\n        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">\n          <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:14px;">\n            <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8; font-weight:700; margin-bottom:6px;">${e.home_team}</div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Possesso:</span> <strong>${e.home_statistics?.possessionPct??"—"}%</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Tiri:</span> <strong>${e.home_statistics?.totalShots??"—"}</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">In porta:</span> <strong>${e.home_statistics?.shotsOnTarget??"—"}</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Falli:</span> <strong>${e.home_statistics?.foulsCommitted??"—"}</strong></div>\n          </div>\n          <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:14px;">\n            <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8; font-weight:700; margin-bottom:6px;">${e.away_team}</div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Possesso:</span> <strong>${e.away_statistics?.possessionPct??"—"}%</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Tiri:</span> <strong>${e.away_statistics?.totalShots??"—"}</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">In porta:</span> <strong>${e.away_statistics?.shotsOnTarget??"—"}</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Falli:</span> <strong>${e.away_statistics?.foulsCommitted??"—"}</strong></div>\n          </div>\n        </div>\n        <div id="team-events-container"></div>\n        <button id="popup-close-btn" style="background:linear-gradient(135deg,#6366f1,#ec4899); color:white; padding:12px 20px; border:none; border-radius:12px; cursor:pointer; margin-top:20px; font-weight:800; width:100%; font-size:14px;">Chiudi</button>\n      </div>\n    `;const s=t.querySelector("#popup-close-btn");s&&s.addEventListener("click",(()=>{this.showPopup=!1}));const a=t.querySelector("#team-events-container"),{goals:i,yellowCards:o,redCards:n}=this.separateEvents(e.match_details||[]),r=(t,e,s)=>e.length?`<div style="margin-bottom:14px; padding:14px; background:${s.bg}; border-left:3px solid ${s.border}; border-radius:10px;">\n        <h5 style="margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:${s.border}; font-weight:800;">${t}</h5>\n        <ul style="margin:0; padding-left:18px; font-size:13px; color:#cbd5e1;">${e.map((t=>`<li style="margin:4px 0;">${t}</li>`)).join("")}</ul>\n      </div>`:"";let l="";l+=r("Goal",i,{bg:"rgba(99,102,241,0.1)",border:"#6366f1"}),l+=r("Cartellini Gialli",o,{bg:"rgba(245,158,11,0.1)",border:"#f59e0b"}),l+=r("Cartellini Rossi",n,{bg:"rgba(239,68,68,0.1)",border:"#ef4444"}),a.innerHTML=l||'<p style="text-align:center; color:#94a3b8; font-size:13px;">Nessun evento disponibile</p>'}static get styles(){return o`
+    `}updated(e){(e.has("showPopup")||e.has("activeMatch"))&&this.renderPopupToBody()}renderPopupToBody(){if(!this.showPopup||!this.activeMatch){const e=document.getElementById("calcio-live-team-popup");return void(e&&e.remove())}let e=document.getElementById("calcio-live-team-popup");e||(e=document.createElement("div"),e.id="calcio-live-team-popup",e.style.cssText="\n        position: fixed; inset: 0;\n        display: flex; justify-content: center; align-items: center;\n        z-index: 999999;\n        background: rgba(0,0,0,0.7);\n        backdrop-filter: blur(8px);\n        overflow: auto;\n      ",e.addEventListener("click",(t=>{t.target===e&&(this.showPopup=!1)})),document.body.appendChild(e));const t=this.activeMatch;e.innerHTML=`\n      <div style="background: #1a1f2e; padding: 24px; border-radius: 20px; width: 90%; max-width: 560px; max-height: 85vh; overflow-y: auto; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 24px 64px rgba(0,0,0,0.6); margin: auto; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;">\n        <h3 style="margin:0 0 20px; font-size: 22px; font-weight: 800; letter-spacing:-0.02em; background: linear-gradient(135deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color: transparent;">Dettagli partita</h3>\n        <div style="display:flex; justify-content:center; align-items:center; gap:18px; margin-bottom:24px;">\n          <img style="width:72px; height:72px; object-fit:contain; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));" src="${t.home_logo}" alt="${t.home_team}" />\n          <div style="text-align:center;">\n            <div style="font-size:42px; font-weight:900; letter-spacing:-0.04em; line-height:1;">${t.home_score??"-"} <span style="opacity:0.4;">-</span> ${t.away_score??"-"}</div>\n            <div style="font-size:12px; color:#94a3b8; margin-top:8px; font-weight:600;">${t.clock??t.status??""}</div>\n          </div>\n          <img style="width:72px; height:72px; object-fit:contain; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));" src="${t.away_logo}" alt="${t.away_team}" />\n        </div>\n        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">\n          <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:14px;">\n            <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8; font-weight:700; margin-bottom:6px;">${t.home_team}</div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Possesso:</span> <strong>${t.home_statistics?.possessionPct??"—"}%</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Tiri:</span> <strong>${t.home_statistics?.totalShots??"—"}</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">In porta:</span> <strong>${t.home_statistics?.shotsOnTarget??"—"}</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Falli:</span> <strong>${t.home_statistics?.foulsCommitted??"—"}</strong></div>\n          </div>\n          <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:14px;">\n            <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8; font-weight:700; margin-bottom:6px;">${t.away_team}</div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Possesso:</span> <strong>${t.away_statistics?.possessionPct??"—"}%</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Tiri:</span> <strong>${t.away_statistics?.totalShots??"—"}</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">In porta:</span> <strong>${t.away_statistics?.shotsOnTarget??"—"}</strong></div>\n            <div style="font-size:13px;"><span style="color:#94a3b8;">Falli:</span> <strong>${t.away_statistics?.foulsCommitted??"—"}</strong></div>\n          </div>\n        </div>\n        <div id="team-events-container"></div>\n        <button id="popup-close-btn" style="background:linear-gradient(135deg,#6366f1,#ec4899); color:white; padding:12px 20px; border:none; border-radius:12px; cursor:pointer; margin-top:20px; font-weight:800; width:100%; font-size:14px;">Chiudi</button>\n      </div>\n    `;const i=e.querySelector("#popup-close-btn");i&&i.addEventListener("click",(()=>{this.showPopup=!1}));const a=e.querySelector("#team-events-container"),{goals:s,yellowCards:r,redCards:o}=this.separateEvents(t.match_details||[]),n=(e,t,i)=>t.length?`<div style="margin-bottom:14px; padding:14px; background:${i.bg}; border-left:3px solid ${i.border}; border-radius:10px;">\n        <h5 style="margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:${i.border}; font-weight:800;">${e}</h5>\n        <ul style="margin:0; padding-left:18px; font-size:13px; color:#cbd5e1;">${t.map((e=>`<li style="margin:4px 0;">${e}</li>`)).join("")}</ul>\n      </div>`:"";let l="";l+=n("Goal",s,{bg:"rgba(99,102,241,0.1)",border:"#6366f1"}),l+=n("Cartellini Gialli",r,{bg:"rgba(245,158,11,0.1)",border:"#f59e0b"}),l+=n("Cartellini Rossi",o,{bg:"rgba(239,68,68,0.1)",border:"#ef4444"});const c=t.lineup_home||[],d=t.lineup_away||[];if(c.length||d.length){const e=t.formation_home||"",i=t.formation_away||"",a=(e,t,i)=>{const a=(e||[]).filter((e=>e.starter));return a.length?`<div style="margin-bottom:8px;">\n          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;">\n            <span style="font-size:12px; font-weight:800; color:#fff;">${i}</span>\n            ${t?`<span style="font-size:10px; font-weight:700; color:#6366f1; letter-spacing:0.1em;">${t}</span>`:""}\n          </div>\n          <div style="font-size:12px; color:#cbd5e1; line-height:1.7;">\n            ${a.map((e=>`<span style="display:inline-block; padding:2px 8px; background:rgba(255,255,255,0.05); border-radius:6px; margin:2px;">${e.jersey?`<strong style="color:#fbbf24;">${e.jersey}</strong> `:""}${e.short_name||e.name}</span>`)).join("")}\n          </div>\n        </div>`:""};l+=`<div style="margin-bottom:14px; padding:14px; background:rgba(16,185,129,0.08); border-left:3px solid #10b981; border-radius:10px;">\n        <h5 style="margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#10b981; font-weight:800;">Formazioni</h5>\n        ${a(c,e,t.home_team)}\n        ${a(d,i,t.away_team)}\n      </div>`}const p=t.key_events||[];if(p.length){const e=e=>{const t=(e.type||"").toLowerCase(),i=(e.type_text||"").toLowerCase();return"goal"===t||e.scoring_play?"⚽":i.includes("yellow")?"🟨":i.includes("red")?"🟥":"substitution"===t?"🔄":i.includes("halftime")?"⏸":i.includes("kickoff")?"▶":i.includes("end")?"🏁":"·"};l+=`<div style="margin-bottom:14px; padding:14px; background:rgba(251,191,36,0.08); border-left:3px solid #fbbf24; border-radius:10px;">\n        <h5 style="margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#fbbf24; font-weight:800;">Cronologia</h5>\n        <ul style="margin:0; padding:0; list-style:none;">\n          ${p.map((t=>`<li style="display:grid; grid-template-columns:36px 24px 1fr; gap:8px; align-items:start; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; color:#cbd5e1;">\n            <span style="text-align:right; font-weight:700; color:#94a3b8; font-variant-numeric:tabular-nums;">${t.clock||""}</span>\n            <span style="text-align:center;">${e(t)}</span>\n            <span><strong style="color:#fff;">${(t.athletes||[]).filter(Boolean).join(", ")||t.type_text||""}</strong>${t.team?`<br><span style="color:#94a3b8; font-size:11px;">${t.team}</span>`:""}</span>\n          </li>`)).join("")}\n        </ul>\n      </div>`}const h=t.head_to_head||[];h.length&&(l+=`<div style="margin-bottom:14px; padding:14px; background:rgba(99,102,241,0.08); border-left:3px solid #6366f1; border-radius:10px;">\n        <h5 style="margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#6366f1; font-weight:800;">Precedenti (${h.length})</h5>\n        <ul style="margin:0; padding:0; list-style:none;">\n          ${h.slice(0,8).map((e=>{const t=e.date?new Date(e.date).toLocaleDateString("it-IT"):"";return`<li style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; color:#cbd5e1;">\n              <span>${e.home_team} <strong>${e.home_score??"-"}</strong> - <strong>${e.away_score??"-"}</strong> ${e.away_team}</span>\n              <span style="color:#94a3b8;">${t}</span>\n            </li>`})).join("")}\n        </ul>\n      </div>`),a.innerHTML=l||'<p style="text-align:center; color:#94a3b8; font-size:13px;">Nessun evento disponibile</p>'}static get styles(){return r`
       :host {
         --cl-accent: #6366f1;
         --cl-accent-2: #ec4899;
@@ -1117,6 +1172,45 @@
         border: 1px solid var(--cl-glass-border);
         border-radius: 999px;
       }
+      .record {
+        display: flex; gap: 4px;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+      }
+      .record .rec {
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-variant-numeric: tabular-nums;
+      }
+      .record .rec-w { background: rgba(16,185,129,0.18); color: var(--cl-green); }
+      .record .rec-d { background: rgba(245,158,11,0.18); color: #f59e0b; }
+      .record .rec-l { background: rgba(239,68,68,0.18); color: var(--cl-live); }
+      .top-scorer {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 9px;
+        background: var(--cl-card-2);
+        border: 1px solid var(--cl-glass-border);
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--secondary-text-color);
+        max-width: 130px;
+      }
+      .top-scorer .ts-icon { font-size: 11px; }
+      .top-scorer .ts-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--primary-text-color);
+      }
+      .top-scorer .ts-val {
+        color: var(--cl-gold);
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+      }
       .form-pill {
         width: 14px; height: 14px;
         border-radius: 4px;
@@ -1230,9 +1324,48 @@
       .meta-row {
         display: flex; justify-content: space-between;
         align-items: center;
+        gap: 12px;
         padding: 12px 18px;
         border-top: 1px solid var(--cl-divider);
         background: var(--cl-card-2);
+      }
+      .venue-item { min-width: 0; }
+      .venue-item span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .extras-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 8px 18px 12px;
+        background: var(--cl-card-2);
+        position: relative;
+        z-index: 2;
+      }
+      .extra-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 10px;
+        background: rgba(99,102,241,0.12);
+        border: 1px solid rgba(99,102,241,0.25);
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--cl-accent);
+      }
+      .extra-chip svg { width: 12px; height: 12px; }
+      .extra-chip.broadcast {
+        background: rgba(99,102,241,0.12);
+        border-color: rgba(99,102,241,0.3);
+        color: var(--cl-accent);
+      }
+      .extra-chip.attendance {
+        background: rgba(16,185,129,0.12);
+        border-color: rgba(16,185,129,0.3);
+        color: var(--cl-green);
       }
       .meta-item {
         display: flex; align-items: center; gap: 6px;
@@ -1416,7 +1549,7 @@
           opacity: 0;
         }
       }
-    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-team",name:"Calcio Live team Card",description:"Mostra la prossima partita / partita in corso del tuo Team"}),customElements.define("calcio-live-team-editor",class extends ot{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array}}}constructor(){super(),this.entities=[]}static get styles(){return o`
+    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-team",name:"Calcio Live team Card",description:"Mostra la prossima partita / partita in corso del tuo Team"}),customElements.define("calcio-live-team-editor",class extends re{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array}}}constructor(){super(),this.entities=[]}static get styles(){return r`
       .card-config {
         display: flex;
         flex-direction: column;
@@ -1460,15 +1593,15 @@
         letter-spacing: 0.05em;
         color: var(--secondary-text-color);
       }
-    `}setConfig(t){if(!t)throw new Error("Invalid configuration");this._config={...t}}get config(){return this._config}updated(t){t.has("hass")&&this._fetchEntities()}_fireConfigChanged(t){this._config=t,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:t},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(t){if(!this._config)return;const e=t.target.value;e!==this._config.entity&&this._fireConfigChanged({...this._config,entity:e})}_switchChanged(t){if(!this._config)return;const e=t.target;if(!e.dataset||!e.dataset.configValue)return;const s=e.dataset.configValue,a=e.checked;this._config[s]!==a&&this._fireConfigChanged({...this._config,[s]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((t=>t.startsWith("sensor.calciolive_next"))).sort())}render(){if(!this._config||!this.hass)return I``;const t=this._config.entity||"",e=t&&this.entities.includes(t);return I`
+    `}setConfig(e){if(!e)throw new Error("Invalid configuration");this._config={...e}}get config(){return this._config}updated(e){e.has("hass")&&this._fetchEntities()}_fireConfigChanged(e){this._config=e,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:e},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(e){if(!this._config)return;const t=e.target.value;t!==this._config.entity&&this._fireConfigChanged({...this._config,entity:t})}_switchChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=t.checked;this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((e=>e.startsWith("sensor.calciolive_next"))).sort())}render(){if(!this._config||!this.hass)return B``;const e=this._config.entity||"",t=e&&this.entities.includes(e);return B`
       <div class="card-config">
         <h3>Sensore</h3>
         <div>
           <label class="field-label">Entity</label>
           <select @change=${this._entityChanged}>
-            ${e?"":I`<option value="${t}" selected>${t||"— seleziona —"}</option>`}
-            ${this.entities.map((e=>I`
-              <option value="${e}" ?selected=${e===t}>${e}</option>
+            ${t?"":B`<option value="${e}" selected>${e||"— seleziona —"}</option>`}
+            ${this.entities.map((t=>B`
+              <option value="${t}" ?selected=${t===e}>${t}</option>
             `))}
           </select>
         </div>
@@ -1479,6 +1612,1531 @@
           <ha-switch
             .checked=${!0===this._config.show_event_toasts}
             data-config-value="show_event_toasts"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+      </div>
+    `}}),customElements.define("calcio-live-news",class extends re{static get properties(){return{hass:{},_config:{}}}setConfig(e){if(!e.entity)throw new Error("Devi definire un'entità");this._config=e,this.maxArticles=e.max_articles?e.max_articles:5,this.hideHeader=!0===e.hide_header,this.hideImages=!0===e.hide_images}getCardSize(){return 4}static getConfigElement(){return document.createElement("calcio-live-news-editor")}static getStubConfig(){return{entity:"sensor.calciolive_news",max_articles:5,hide_header:!1,hide_images:!1}}_formatDate(e){if(!e)return"";try{const t=new Date(e),i=(new Date-t)/1e3;if(i<3600)return`${Math.floor(i/60)} min fa`;if(i<86400)return`${Math.floor(i/3600)} h fa`;if(i<604800)return`${Math.floor(i/86400)} g fa`;const a=["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"];return`${t.getDate()} ${a[t.getMonth()]}`}catch(e){return""}}_openLink(e){e&&window.open(e,"_blank","noopener,noreferrer")}render(){if(!this.hass||!this._config)return B``;const e=this.hass.states[this._config.entity];if(!e)return B`<ha-card class="empty">Entità sconosciuta: ${this._config.entity}</ha-card>`;const t=(e.attributes.articles||[]).slice(0,this.maxArticles);return 0===t.length?B`<ha-card class="empty">Nessuna notizia disponibile</ha-card>`:B`
+      <ha-card>
+        <div class="hero-bg"></div>
+        ${this.hideHeader?"":B`
+          <div class="news-header">
+            <div class="header-icon">📰</div>
+            <div class="header-text">
+              <div class="title">News</div>
+              <div class="subtitle">${e.state}</div>
+            </div>
+          </div>
+        `}
+        <div class="news-list">
+          ${t.map((e=>B`
+            <article class="news-item ${this.hideImages||!e.image?"no-img":""}" @click="${()=>this._openLink(e.link)}">
+              ${!this.hideImages&&e.image?B`
+                <div class="news-img" style="background-image: url('${e.image}');"></div>
+              `:""}
+              <div class="news-body">
+                <div class="news-meta">
+                  ${e.category?B`<span class="cat">${e.category}</span>`:""}
+                  <span class="date">${this._formatDate(e.published)}</span>
+                </div>
+                <div class="news-headline">${e.headline}</div>
+                ${e.description?B`<div class="news-desc">${e.description}</div>`:""}
+              </div>
+            </article>
+          `))}
+        </div>
+      </ha-card>
+    `}static get styles(){return r`
+      :host {
+        --cl-accent: #6366f1;
+        --cl-accent-2: #ec4899;
+        --cl-card-2: rgba(255,255,255,0.05);
+        --cl-divider: rgba(255,255,255,0.08);
+      }
+      ha-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 0;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      }
+      ha-card.empty {
+        padding: 24px;
+        text-align: center;
+        color: var(--secondary-text-color);
+      }
+      .hero-bg {
+        position: absolute; inset: 0; z-index: 0;
+        background:
+          radial-gradient(ellipse at 0% 0%, rgba(236,72,153,0.10), transparent 50%),
+          radial-gradient(ellipse at 100% 0%, rgba(99,102,241,0.10), transparent 50%);
+        pointer-events: none;
+      }
+      .news-header {
+        position: relative; z-index: 1;
+        display: flex; align-items: center; gap: 12px;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--cl-divider);
+      }
+      .news-header::after {
+        content: '';
+        position: absolute;
+        left: 18px; right: 18px; bottom: -1px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--cl-accent-2), transparent);
+        opacity: 0.4;
+      }
+      .header-icon {
+        width: 40px; height: 40px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--cl-accent), var(--cl-accent-2));
+        display: flex; align-items: center; justify-content: center;
+        font-size: 20px;
+        box-shadow: 0 4px 16px rgba(236,72,153,0.4);
+      }
+      .header-text .title {
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        color: var(--primary-text-color);
+      }
+      .header-text .subtitle {
+        font-size: 11px;
+        color: var(--secondary-text-color);
+        margin-top: 2px;
+        font-weight: 600;
+      }
+
+      .news-list {
+        position: relative; z-index: 1;
+        display: flex; flex-direction: column;
+        padding: 6px;
+      }
+      .news-item {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+        gap: 14px;
+        padding: 12px;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .news-item.no-img {
+        grid-template-columns: 1fr;
+      }
+      .news-item:hover {
+        background: var(--cl-card-2);
+        transform: translateX(3px);
+      }
+      .news-img {
+        width: 96px;
+        height: 72px;
+        border-radius: 10px;
+        background-size: cover;
+        background-position: center;
+        background-color: var(--cl-card-2);
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      }
+      .news-body {
+        display: flex; flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+      }
+      .news-meta {
+        display: flex; gap: 8px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--secondary-text-color);
+      }
+      .news-meta .cat {
+        color: var(--cl-accent);
+      }
+      .news-meta .date::before {
+        content: '·';
+        margin-right: 8px;
+        opacity: 0.4;
+      }
+      .news-meta .cat + .date::before { content: '·'; }
+      .news-headline {
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 1.3;
+        color: var(--primary-text-color);
+        letter-spacing: -0.01em;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .news-desc {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--secondary-text-color);
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-news",name:"Calcio Live News Card",description:"Mostra le ultime notizie di calcio (per competizione)"}),customElements.define("calcio-live-news-editor",class extends re{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array}}}constructor(){super(),this.entities=[]}static get styles(){return r`
+      .card-config { display: flex; flex-direction: column; gap: 16px; }
+      .option { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      label { font-size: 14px; color: var(--primary-text-color); }
+      .field-label { display: block; font-size: 12px; color: var(--secondary-text-color); margin-bottom: 4px; font-weight: 600; }
+      select, input[type="number"] {
+        width: 100%; padding: 10px 12px; font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid var(--divider-color, rgba(0,0,0,0.12));
+        background: var(--card-background-color, #fff);
+        color: var(--primary-text-color, #000);
+        box-sizing: border-box;
+      }
+      h3 { margin: 8px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-text-color); }
+    `}setConfig(e){if(!e)throw new Error("Invalid configuration");this._config={...e}}get config(){return this._config}updated(e){e.has("hass")&&this._fetchEntities()}_fireConfigChanged(e){this._config=e,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:e},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(e){if(!this._config)return;const t=e.target.value;t!==this._config.entity&&this._fireConfigChanged({...this._config,entity:t})}_switchChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=t.checked;this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_numberChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=parseInt(t.value,10);isNaN(a)||this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((e=>e.startsWith("sensor.calciolive_news"))).sort())}render(){if(!this._config||!this.hass)return B``;const e=this._config.entity||"",t=e&&this.entities.includes(e);return B`
+      <div class="card-config">
+        <h3>Sensore</h3>
+        <div>
+          <label class="field-label">Entity (sensore news)</label>
+          <select @change=${this._entityChanged}>
+            ${t?"":B`<option value="${e}" selected>${e||"— seleziona —"}</option>`}
+            ${this.entities.map((t=>B`<option value="${t}" ?selected=${t===e}>${t}</option>`))}
+          </select>
+        </div>
+
+        <h3>Impostazioni</h3>
+        <div class="option">
+          <label>Hide Header</label>
+          <ha-switch
+            .checked=${!0===this._config.hide_header}
+            data-config-value="hide_header"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+        <div class="option">
+          <label>Hide Images</label>
+          <ha-switch
+            .checked=${!0===this._config.hide_images}
+            data-config-value="hide_images"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+        <div>
+          <label class="field-label">Max Articles</label>
+          <input type="number" min="1" max="20"
+            .value=${this._config.max_articles||5}
+            data-config-value="max_articles"
+            @change=${this._numberChanged} />
+        </div>
+      </div>
+    `}}),customElements.define("calcio-live-lineup",class extends re{static get properties(){return{hass:{},_config:{}}}setConfig(e){if(!e.entity)throw new Error("Devi definire un'entità");this._config=e,this.hideHeader=!0===e.hide_header}getCardSize(){return 6}static getConfigElement(){return document.createElement("calcio-live-lineup-editor")}static getStubConfig(){return{entity:"sensor.calciolive_next",hide_header:!1}}_starters(e){return(e||[]).filter((e=>!0===e.starter))}_bench(e){return(e||[]).filter((e=>!e.starter))}_renderPlayer(e){const t=(e.short_name||e.name||"").split(" ").map((e=>e[0])).slice(0,2).join("");return B`
+      <div class="player" title="${e.name}">
+        <div class="player-card">
+          ${e.headshot?B`<img class="player-img" src="${e.headshot}" alt="${e.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                   <div class="player-init" style="display:none;">${t}</div>`:B`<div class="player-init">${t}</div>`}
+          ${e.jersey?B`<div class="player-num">${e.jersey}</div>`:""}
+        </div>
+        <div class="player-name">${e.short_name||e.name}</div>
+        ${e.position?B`<div class="player-pos">${e.position}</div>`:""}
+      </div>
+    `}render(){if(!this.hass||!this._config)return B``;const e=this.hass.states[this._config.entity];if(!e)return B`<ha-card class="empty">Entità sconosciuta: ${this._config.entity}</ha-card>`;const t=e.attributes.matches||[];if(0===t.length)return B`<ha-card class="empty">Nessuna partita</ha-card>`;const i=t[0],a=i.lineup_home||e.attributes.lineup_home||[],s=i.lineup_away||e.attributes.lineup_away||[],r=i.formation_home||e.attributes.formation_home||"",o=i.formation_away||e.attributes.formation_away||"";if(0===a.length&&0===s.length)return B`
+        <ha-card class="empty">
+          <div class="hero-bg"></div>
+          <div class="empty-state">
+            <div class="empty-icon">👥</div>
+            <div class="empty-title">Formazioni non disponibili</div>
+            <div class="empty-sub">Le formazioni vengono pubblicate poco prima del fischio d'inizio</div>
+          </div>
+        </ha-card>
+      `;const n=this._starters(a),l=this._bench(a),c=this._starters(s),d=this._bench(s);return B`
+      <ha-card>
+        <div class="hero-bg"></div>
+        ${this.hideHeader?"":B`
+          <div class="lineup-header">
+            <div class="header-icon">👥</div>
+            <div class="header-text">
+              <div class="title">Formazioni</div>
+              <div class="subtitle">${i.home_team} vs ${i.away_team}</div>
+            </div>
+          </div>
+        `}
+
+        <div class="teams-row">
+          <div class="team-block">
+            <div class="team-block-head">
+              <img src="${i.home_logo}" alt="${i.home_team}" />
+              <div class="team-block-info">
+                <div class="team-block-name">${i.home_team}</div>
+                ${r?B`<div class="formation">${r}</div>`:""}
+              </div>
+            </div>
+            <div class="players-grid">
+              ${n.map((e=>this._renderPlayer(e)))}
+            </div>
+            ${l.length?B`
+              <div class="bench-label">Panchina</div>
+              <div class="players-grid bench">
+                ${l.map((e=>this._renderPlayer(e)))}
+              </div>
+            `:""}
+          </div>
+
+          <div class="team-block">
+            <div class="team-block-head">
+              <img src="${i.away_logo}" alt="${i.away_team}" />
+              <div class="team-block-info">
+                <div class="team-block-name">${i.away_team}</div>
+                ${o?B`<div class="formation">${o}</div>`:""}
+              </div>
+            </div>
+            <div class="players-grid">
+              ${c.map((e=>this._renderPlayer(e)))}
+            </div>
+            ${d.length?B`
+              <div class="bench-label">Panchina</div>
+              <div class="players-grid bench">
+                ${d.map((e=>this._renderPlayer(e)))}
+              </div>
+            `:""}
+          </div>
+        </div>
+      </ha-card>
+    `}static get styles(){return r`
+      :host {
+        --cl-accent: #6366f1;
+        --cl-accent-2: #ec4899;
+        --cl-card-2: rgba(255,255,255,0.05);
+        --cl-divider: rgba(255,255,255,0.08);
+        --cl-glass-border: rgba(255,255,255,0.08);
+      }
+      ha-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 0;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      }
+      ha-card.empty {
+        padding: 24px;
+        text-align: center;
+        color: var(--secondary-text-color);
+      }
+      .empty-state {
+        display: flex; flex-direction: column;
+        align-items: center; gap: 8px;
+        padding: 24px;
+      }
+      .empty-icon { font-size: 38px; opacity: 0.4; }
+      .empty-title { font-weight: 800; color: var(--primary-text-color); }
+      .empty-sub { font-size: 12px; color: var(--secondary-text-color); }
+
+      .hero-bg {
+        position: absolute; inset: 0; z-index: 0;
+        background:
+          radial-gradient(ellipse at 0% 0%, rgba(99,102,241,0.10), transparent 50%),
+          radial-gradient(ellipse at 100% 100%, rgba(16,185,129,0.10), transparent 50%);
+        pointer-events: none;
+      }
+
+      .lineup-header {
+        position: relative; z-index: 1;
+        display: flex; align-items: center; gap: 12px;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--cl-divider);
+      }
+      .header-icon {
+        width: 40px; height: 40px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--cl-accent), #10b981);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 20px;
+        box-shadow: 0 4px 16px rgba(99,102,241,0.4);
+      }
+      .header-text .title {
+        font-size: 18px; font-weight: 900;
+        letter-spacing: -0.02em;
+        color: var(--primary-text-color);
+      }
+      .header-text .subtitle {
+        font-size: 11px;
+        color: var(--secondary-text-color);
+        margin-top: 2px;
+        font-weight: 600;
+      }
+
+      .teams-row {
+        position: relative; z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .team-block {
+        padding: 16px 12px;
+        border-right: 1px solid var(--cl-divider);
+      }
+      .team-block:last-child { border-right: none; }
+      .team-block-head {
+        display: flex; align-items: center; gap: 10px;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid var(--cl-divider);
+      }
+      .team-block-head img {
+        width: 32px; height: 32px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+      .team-block-info { min-width: 0; flex: 1; }
+      .team-block-name {
+        font-size: 13px; font-weight: 800;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        color: var(--primary-text-color);
+      }
+      .formation {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--cl-accent);
+        margin-top: 2px;
+        font-variant-numeric: tabular-nums;
+      }
+      .players-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+        gap: 10px;
+      }
+      .players-grid.bench { opacity: 0.85; }
+      .player {
+        display: flex; flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        text-align: center;
+      }
+      .player-card {
+        position: relative;
+        width: 48px; height: 48px;
+      }
+      .player-img {
+        width: 48px; height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: var(--cl-card-2);
+        border: 2px solid var(--cl-glass-border);
+      }
+      .player-init {
+        width: 48px; height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--cl-accent), var(--cl-accent-2));
+        color: white;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 14px; font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .player-num {
+        position: absolute;
+        bottom: -3px; right: -4px;
+        background: #0b0f1a;
+        color: white;
+        border: 2px solid var(--card-background-color, #1a1f2e);
+        font-size: 9px; font-weight: 800;
+        min-width: 18px; height: 18px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-variant-numeric: tabular-nums;
+        padding: 0 3px;
+      }
+      .player-name {
+        font-size: 10px; font-weight: 700;
+        line-height: 1.1;
+        max-width: 64px;
+        color: var(--primary-text-color);
+        word-wrap: break-word;
+        text-align: center;
+      }
+      .player-pos {
+        font-size: 8px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--secondary-text-color);
+        background: var(--cl-card-2);
+        padding: 1px 5px;
+        border-radius: 4px;
+      }
+      .bench-label {
+        margin-top: 16px; margin-bottom: 8px;
+        font-size: 10px; font-weight: 800;
+        text-transform: uppercase; letter-spacing: 0.15em;
+        color: var(--secondary-text-color);
+        display: flex; align-items: center; gap: 8px;
+      }
+      .bench-label::after {
+        content: '';
+        flex: 1; height: 1px;
+        background: linear-gradient(90deg, var(--cl-divider), transparent);
+      }
+
+      @media (max-width: 480px) {
+        .teams-row { grid-template-columns: 1fr; }
+        .team-block { border-right: none; border-bottom: 1px solid var(--cl-divider); }
+        .team-block:last-child { border-bottom: none; }
+      }
+    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-lineup",name:"Calcio Live Lineup Card",description:"Mostra le formazioni di entrambe le squadre della prossima/attuale partita"}),customElements.define("calcio-live-lineup-editor",class extends re{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array}}}constructor(){super(),this.entities=[]}static get styles(){return r`
+      .card-config { display: flex; flex-direction: column; gap: 16px; }
+      .option { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      label { font-size: 14px; color: var(--primary-text-color); }
+      .field-label { display: block; font-size: 12px; color: var(--secondary-text-color); margin-bottom: 4px; font-weight: 600; }
+      select {
+        width: 100%; padding: 10px 12px; font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid var(--divider-color, rgba(0,0,0,0.12));
+        background: var(--card-background-color, #fff);
+        color: var(--primary-text-color, #000);
+        box-sizing: border-box;
+      }
+      h3 { margin: 8px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-text-color); }
+      .hint { font-size: 12px; color: var(--secondary-text-color); }
+    `}setConfig(e){if(!e)throw new Error("Invalid configuration");this._config={...e}}get config(){return this._config}updated(e){e.has("hass")&&this._fetchEntities()}_fireConfigChanged(e){this._config=e,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:e},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(e){if(!this._config)return;const t=e.target.value;t!==this._config.entity&&this._fireConfigChanged({...this._config,entity:t})}_switchChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=t.checked;this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((e=>e.startsWith("sensor.calciolive_next"))).sort())}render(){if(!this._config||!this.hass)return B``;const e=this._config.entity||"",t=e&&this.entities.includes(e);return B`
+      <div class="card-config">
+        <h3>Sensore</h3>
+        <div>
+          <label class="field-label">Entity (sensore team_match — calciolive_next_*)</label>
+          <select @change=${this._entityChanged}>
+            ${t?"":B`<option value="${e}" selected>${e||"— seleziona —"}</option>`}
+            ${this.entities.map((t=>B`<option value="${t}" ?selected=${t===e}>${t}</option>`))}
+          </select>
+          <div class="hint" style="margin-top: 4px;">Le formazioni vengono pubblicate poco prima dell'inizio della partita.</div>
+        </div>
+
+        <h3>Impostazioni</h3>
+        <div class="option">
+          <label>Hide Header</label>
+          <ha-switch
+            .checked=${!0===this._config.hide_header}
+            data-config-value="hide_header"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+      </div>
+    `}}),customElements.define("calcio-live-timeline",class extends re{static get properties(){return{hass:{},_config:{}}}setConfig(e){if(!e.entity)throw new Error("Devi definire un'entità");this._config=e,this.hideHeader=!0===e.hide_header,this.reverseOrder=!0===e.reverse_order}getCardSize(){return 5}static getConfigElement(){return document.createElement("calcio-live-timeline-editor")}static getStubConfig(){return{entity:"sensor.calciolive_next",hide_header:!1,reverse_order:!0}}_eventMeta(e){const t=(e.type||"").toLowerCase(),i=(e.type_text||"").toLowerCase();return i.includes("kickoff")||"kickoff"===t?{icon:"⚽",label:"Inizio",cls:"meta"}:i.includes("halftime")||i.includes("intervallo")?{icon:"⏸",label:"Intervallo",cls:"meta"}:i.includes("start 2nd")||i.includes("secondo tempo")?{icon:"▶",label:"Inizio 2°T",cls:"meta"}:i.includes("end regular")||i.includes("full time")?{icon:"🏁",label:"Fine",cls:"meta"}:"goal"===t||e.scoring_play?{icon:"⚽",label:"Goal",cls:"goal"}:i.includes("penalty")?{icon:"⚽",label:"Rigore",cls:"goal"}:i.includes("yellow card")?{icon:"🟨",label:"Cartellino giallo",cls:"yellow"}:i.includes("red card")?{icon:"🟥",label:"Cartellino rosso",cls:"red"}:"substitution"===t||i.includes("substitution")?{icon:"🔄",label:"Sostituzione",cls:"sub"}:i.includes("var")?{icon:"📺",label:"VAR",cls:"meta"}:{icon:"·",label:e.type_text||"Evento",cls:"meta"}}render(){if(!this.hass||!this._config)return B``;const e=this.hass.states[this._config.entity];if(!e)return B`<ha-card class="empty">Entità sconosciuta: ${this._config.entity}</ha-card>`;const t=e.attributes.matches||[];if(0===t.length)return B`<ha-card class="empty">Nessuna partita</ha-card>`;const i=t[0],a=i.key_events||e.attributes.key_events||[];if(0===a.length)return B`
+        <ha-card class="empty">
+          <div class="hero-bg"></div>
+          <div class="empty-state">
+            <div class="empty-icon">⏱</div>
+            <div class="empty-title">Nessun evento ancora</div>
+            <div class="empty-sub">Gli eventi compaiono durante la partita</div>
+          </div>
+        </ha-card>
+      `;const s=this.reverseOrder?[...a].reverse():a;return B`
+      <ha-card>
+        <div class="hero-bg"></div>
+        ${this.hideHeader?"":B`
+          <div class="tl-header">
+            <div class="header-icon">⏱</div>
+            <div class="header-text">
+              <div class="title">Cronologia</div>
+              <div class="subtitle">
+                <img class="mini-logo" src="${i.home_logo}" alt="" />
+                <span>${i.home_score??"-"} - ${i.away_score??"-"}</span>
+                <img class="mini-logo" src="${i.away_logo}" alt="" />
+              </div>
+            </div>
+          </div>
+        `}
+
+        <div class="tl-body">
+          ${s.map((e=>{const t=this._eventMeta(e),a=i.home_team&&e.team===i.home_team,s=i.away_team&&e.team===i.away_team,r=a?"home":s?"away":"meta",o=(e.athletes||[]).filter(Boolean);return B`
+              <div class="tl-row side-${r} type-${t.cls}">
+                <div class="tl-time">${e.clock||""}</div>
+                <div class="tl-axis">
+                  <div class="tl-dot ${t.cls}">${t.icon}</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-head">
+                    <span class="tl-label">${t.label}</span>
+                    ${e.team?B`<span class="tl-team">${e.team}</span>`:""}
+                  </div>
+                  ${o.length?B`
+                    <div class="tl-athletes">${o.join(", ")}</div>
+                  `:""}
+                  ${e.short_text?B`<div class="tl-text">${e.short_text}</div>`:""}
+                </div>
+              </div>
+            `}))}
+        </div>
+      </ha-card>
+    `}static get styles(){return r`
+      :host {
+        --cl-accent: #6366f1;
+        --cl-accent-2: #ec4899;
+        --cl-live: #ef4444;
+        --cl-green: #10b981;
+        --cl-gold: #fbbf24;
+        --cl-card-2: rgba(255,255,255,0.05);
+        --cl-divider: rgba(255,255,255,0.08);
+        --cl-glass-border: rgba(255,255,255,0.08);
+      }
+      ha-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 0;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      }
+      ha-card.empty {
+        padding: 24px;
+        text-align: center;
+        color: var(--secondary-text-color);
+      }
+      .empty-state {
+        display: flex; flex-direction: column;
+        align-items: center; gap: 8px;
+        padding: 24px;
+      }
+      .empty-icon { font-size: 38px; opacity: 0.4; }
+      .empty-title { font-weight: 800; color: var(--primary-text-color); }
+      .empty-sub { font-size: 12px; color: var(--secondary-text-color); }
+
+      .hero-bg {
+        position: absolute; inset: 0; z-index: 0;
+        background:
+          radial-gradient(ellipse at 0% 0%, rgba(99,102,241,0.10), transparent 50%),
+          radial-gradient(ellipse at 100% 100%, rgba(251,191,36,0.10), transparent 50%);
+        pointer-events: none;
+      }
+
+      .tl-header {
+        position: relative; z-index: 1;
+        display: flex; align-items: center; gap: 12px;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--cl-divider);
+      }
+      .header-icon {
+        width: 40px; height: 40px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--cl-accent), var(--cl-gold));
+        display: flex; align-items: center; justify-content: center;
+        font-size: 20px;
+      }
+      .header-text .title {
+        font-size: 18px; font-weight: 900;
+        letter-spacing: -0.02em;
+        color: var(--primary-text-color);
+      }
+      .header-text .subtitle {
+        display: flex; align-items: center; gap: 6px;
+        font-size: 12px;
+        color: var(--secondary-text-color);
+        margin-top: 2px;
+        font-weight: 700;
+      }
+      .mini-logo { width: 16px; height: 16px; object-fit: contain; }
+
+      .tl-body {
+        position: relative; z-index: 1;
+        padding: 16px 12px 20px;
+      }
+      .tl-row {
+        display: grid;
+        grid-template-columns: 44px 32px 1fr;
+        gap: 10px;
+        align-items: flex-start;
+        position: relative;
+      }
+      .tl-row + .tl-row { margin-top: 4px; }
+      .tl-time {
+        text-align: right;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--secondary-text-color);
+        font-variant-numeric: tabular-nums;
+        padding: 8px 0;
+      }
+      .tl-axis {
+        position: relative;
+        display: flex; justify-content: center;
+        padding: 4px 0;
+      }
+      .tl-axis::before {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0;
+        left: 50%;
+        width: 2px;
+        background: var(--cl-divider);
+        transform: translateX(-50%);
+      }
+      .tl-row:first-child .tl-axis::before { top: 50%; }
+      .tl-row:last-child .tl-axis::before { bottom: 50%; }
+      .tl-dot {
+        position: relative;
+        z-index: 1;
+        width: 26px; height: 26px;
+        border-radius: 50%;
+        background: var(--card-background-color, #1a1f2e);
+        border: 2px solid var(--cl-divider);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 12px;
+      }
+      .tl-dot.goal {
+        background: linear-gradient(135deg, var(--cl-gold), #d97706);
+        border-color: var(--cl-gold);
+        box-shadow: 0 0 0 4px rgba(251,191,36,0.2);
+      }
+      .tl-dot.yellow {
+        background: rgba(245,158,11,0.18);
+        border-color: #f59e0b;
+      }
+      .tl-dot.red {
+        background: rgba(239,68,68,0.18);
+        border-color: var(--cl-live);
+      }
+      .tl-dot.sub {
+        background: rgba(99,102,241,0.18);
+        border-color: var(--cl-accent);
+      }
+      .tl-dot.meta {
+        background: var(--cl-card-2);
+      }
+      .tl-card {
+        background: var(--cl-card-2);
+        border: 1px solid var(--cl-glass-border);
+        border-radius: 12px;
+        padding: 8px 12px;
+      }
+      .tl-row.type-goal .tl-card {
+        background: linear-gradient(135deg, rgba(251,191,36,0.10), rgba(251,191,36,0.02));
+        border-color: rgba(251,191,36,0.3);
+      }
+      .tl-row.type-red .tl-card {
+        border-color: rgba(239,68,68,0.3);
+      }
+      .tl-row.type-yellow .tl-card {
+        border-color: rgba(245,158,11,0.3);
+      }
+      .tl-card-head {
+        display: flex; justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+      }
+      .tl-label {
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--primary-text-color);
+      }
+      .tl-row.type-goal .tl-label { color: var(--cl-gold); }
+      .tl-row.type-yellow .tl-label { color: #f59e0b; }
+      .tl-row.type-red .tl-label { color: var(--cl-live); }
+      .tl-row.type-sub .tl-label { color: var(--cl-accent); }
+      .tl-team {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--secondary-text-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 50%;
+      }
+      .tl-athletes {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--primary-text-color);
+        margin-top: 3px;
+        line-height: 1.3;
+      }
+      .tl-text {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--secondary-text-color);
+        margin-top: 3px;
+        line-height: 1.4;
+      }
+    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-timeline",name:"Calcio Live Timeline Card",description:"Cronologia minuto-per-minuto degli eventi della partita"}),customElements.define("calcio-live-timeline-editor",class extends re{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array}}}constructor(){super(),this.entities=[]}static get styles(){return r`
+      .card-config { display: flex; flex-direction: column; gap: 16px; }
+      .option { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      label { font-size: 14px; color: var(--primary-text-color); }
+      .field-label { display: block; font-size: 12px; color: var(--secondary-text-color); margin-bottom: 4px; font-weight: 600; }
+      select {
+        width: 100%; padding: 10px 12px; font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid var(--divider-color, rgba(0,0,0,0.12));
+        background: var(--card-background-color, #fff);
+        color: var(--primary-text-color, #000);
+        box-sizing: border-box;
+      }
+      h3 { margin: 8px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-text-color); }
+      .hint { font-size: 12px; color: var(--secondary-text-color); }
+    `}setConfig(e){if(!e)throw new Error("Invalid configuration");this._config={...e}}get config(){return this._config}updated(e){e.has("hass")&&this._fetchEntities()}_fireConfigChanged(e){this._config=e,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:e},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(e){if(!this._config)return;const t=e.target.value;t!==this._config.entity&&this._fireConfigChanged({...this._config,entity:t})}_switchChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=t.checked;this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((e=>e.startsWith("sensor.calciolive_next"))).sort())}render(){if(!this._config||!this.hass)return B``;const e=this._config.entity||"",t=e&&this.entities.includes(e);return B`
+      <div class="card-config">
+        <h3>Sensore</h3>
+        <div>
+          <label class="field-label">Entity (sensore team_match — calciolive_next_*)</label>
+          <select @change=${this._entityChanged}>
+            ${t?"":B`<option value="${e}" selected>${e||"— seleziona —"}</option>`}
+            ${this.entities.map((t=>B`<option value="${t}" ?selected=${t===e}>${t}</option>`))}
+          </select>
+          <div class="hint" style="margin-top: 4px;">Gli eventi vengono pubblicati durante la partita.</div>
+        </div>
+
+        <h3>Impostazioni</h3>
+        <div class="option">
+          <label>Hide Header</label>
+          <ha-switch
+            .checked=${!0===this._config.hide_header}
+            data-config-value="hide_header"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+        <div class="option">
+          <label>Reverse order (più recenti in alto)</label>
+          <ha-switch
+            .checked=${!0===this._config.reverse_order}
+            data-config-value="reverse_order"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+      </div>
+    `}}),customElements.define("calcio-live-bracket",class extends re{static get properties(){return{hass:{},_config:{}}}setConfig(e){if(!e.entity)throw new Error("Devi definire un'entità");this._config=e,this.hideHeader=!0===e.hide_header,this.compactMode=!0===e.compact,this.style="tree"===e.style?"tree":"list",this.treeShowPlayoffs=!0===e.tree_show_playoffs}getCardSize(){return 6}static getConfigElement(){return document.createElement("calcio-live-bracket-editor")}static getStubConfig(){return{entity:"sensor.calciolive_bracket",hide_header:!1,compact:!1,style:"list"}}_formatScore(e){return null==e?"-":String(e)}_formatDate(e){if(!e)return"";try{const t=new Date(e),i=["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"];return`${t.getDate()} ${i[t.getMonth()]}`}catch(e){return""}}_renderTie(e){const t=e.team_a||{},i=e.team_b||{},a=e.leg1,s=e.leg2,r=e.single,o=e.winner_team,n=o&&t.name&&o===t.name,l=o&&i.name&&o===i.name,c=(e,t)=>e&&t&&t.name?e.home_team===t.name?e.home_score:e.away_team===t.name?e.away_score:null:null,d=c(a,t),p=c(a,i),h=c(s,t),g=c(s,i),f=c(r,t),m=c(r,i),u=a&&"in"===a.state||s&&"in"===s.state||r&&"in"===r.state,v=!a&&!r;return B`
+      <div class="tie ${u?"live":""} ${e.completed?"done":""}">
+        <div class="tie-row ${n?"winner":""} ${l?"loser":""}">
+          <img src="${t.logo}" alt="${t.name}" />
+          <span class="tname">${t.name||"TBD"}</span>
+          <span class="legs">
+            ${r?B`<span class="leg">${this._formatScore(f)}</span>`:B`
+              <span class="leg">${this._formatScore(d)}</span>
+              <span class="leg">${this._formatScore(h)}</span>
+            `}
+          </span>
+        </div>
+        <div class="tie-row ${l?"winner":""} ${n?"loser":""}">
+          <img src="${i.logo}" alt="${i.name}" />
+          <span class="tname">${i.name||"TBD"}</span>
+          <span class="legs">
+            ${r?B`<span class="leg">${this._formatScore(m)}</span>`:B`
+              <span class="leg">${this._formatScore(p)}</span>
+              <span class="leg">${this._formatScore(g)}</span>
+            `}
+          </span>
+        </div>
+        <div class="tie-foot">
+          ${u?B`<span class="live-badge"><span class="dot"></span>LIVE</span>`:""}
+          ${e.aggregate?B`<span class="agg">Agg. ${e.aggregate}</span>`:""}
+          ${e.tied?B`<span class="agg tied">Tied agg.</span>`:""}
+          ${e.completed||u||!e.first_leg_date?"":B`<span class="date">${this._formatDate(e.first_leg_date)}</span>`}
+          ${v?B`<span class="date pending">TBD</span>`:""}
+        </div>
+      </div>
+    `}_aggregateFor(e,t){if(!t||!t.name)return null;const i=(e,t)=>e&&t&&t.name?e.home_team===t.name?e.home_score:e.away_team===t.name?e.away_score:null:null;if(e.single)return i(e.single,t);let a=0,s=!1;const r=i(e.leg1,t),o=i(e.leg2,t);return null!=r&&(a+=r,s=!0),null!=o&&(a+=o,s=!0),s?a:null}_renderMiniTie(e){const t=e.team_a||{},i=e.team_b||{},a=this._aggregateFor(e,t),s=this._aggregateFor(e,i),r=e.winner_team,o=r&&t.name&&r===t.name,n=r&&i.name&&r===i.name,l=e.leg1&&"in"===e.leg1.state||e.leg2&&"in"===e.leg2.state||e.single&&"in"===e.single.state,c=!e.leg1&&!e.single,d=t.abbrev||(t.name?t.name.substring(0,3).toUpperCase():"TBD"),p=i.abbrev||(i.name?i.name.substring(0,3).toUpperCase():"TBD");return B`
+      <div class="mini-tie ${l?"live":""} ${e.completed?"done":""} ${c?"pending":""}">
+        <div class="mini-team ${o?"winner":""} ${n?"loser":""}">
+          ${t.logo?B`<img src="${t.logo}" alt="${t.name}" />`:B`<div class="logo-ph"></div>`}
+          <span class="abbr">${d}</span>
+          <span class="agg-num">${null!==a?a:"-"}</span>
+        </div>
+        <div class="mini-team ${n?"winner":""} ${o?"loser":""}">
+          ${i.logo?B`<img src="${i.logo}" alt="${i.name}" />`:B`<div class="logo-ph"></div>`}
+          <span class="abbr">${p}</span>
+          <span class="agg-num">${null!==s?s:"-"}</span>
+        </div>
+        ${l?B`<span class="mini-live"><span class="dot"></span></span>`:""}
+      </div>
+    `}_renderTreeRound(e,t,i){return B`
+      <div class="tree-col">
+        <div class="tree-col-label">
+          <span class="tree-col-label-en">${t}</span>
+          ${i&&i!==t?B`<span class="tree-col-label-it">${i}</span>`:""}
+        </div>
+        <div class="tree-col-ties">
+          ${e.map((e=>this._renderMiniTie(e)))}
+        </div>
+      </div>
+    `}_renderArrows(e,t){if(e<=0)return"";const i=2*e,a=[];for(let s=0;s<e;s++){const r=(2*s+.5)/i*100,o=(2*s+1.5)/i*100,n=(s+.5)/e*100;"left"===t?(a.push(`<line x1="0" y1="${r}%" x2="50%" y2="${r}%" />`),a.push(`<line x1="0" y1="${o}%" x2="50%" y2="${o}%" />`),a.push(`<line x1="50%" y1="${r}%" x2="50%" y2="${o}%" />`),a.push(`<line x1="50%" y1="${n}%" x2="92%" y2="${n}%" />`),a.push(`<polygon class="arrow-head" points="92%,${n-2.2} 100%,${n} 92%,${n+2.2}" />`)):(a.push(`<line x1="100%" y1="${r}%" x2="50%" y2="${r}%" />`),a.push(`<line x1="100%" y1="${o}%" x2="50%" y2="${o}%" />`),a.push(`<line x1="50%" y1="${r}%" x2="50%" y2="${o}%" />`),a.push(`<line x1="50%" y1="${n}%" x2="8%" y2="${n}%" />`),a.push(`<polygon class="arrow-head" points="8%,${n-2.2} 0,${n} 8%,${n+2.2}" />`))}const s=`<svg class="connector-svg ${t}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">${a.join("")}</svg>`;return B`<div class="tree-arrows ${t}" .innerHTML=${s}></div>`}_renderTree(e){const t=t=>{const i=e.filter((e=>e.size===t));if(0===i.length)return null;return i.find((e=>"Knockout Playoffs"!==e.name&&"Preliminary Round"!==e.name))||i[i.length-1]},i=e.find((e=>"Knockout Playoffs"===e.name)),a=t(8),s=t(4),r=t(2),o=t(1),n=e=>{if(!e)return{left:[],right:[]};const t=e.ties||[],i=Math.ceil(t.length/2);return{left:t.slice(0,i),right:t.slice(i)}},l=n(a),c=n(s),d=n(r),p=this.treeShowPlayoffs?n(i):null,h=o?o.ties[0]:null;return B`
+      <div class="tree-wrap">
+        <div class="tree">
+          <div class="tree-half left">
+            ${p&&p.left.length?B`
+              ${this._renderTreeRound(p.left,"Playoffs","Spareggi")}
+              ${l.left.length?this._renderArrows(l.left.length,"left"):""}
+            `:""}
+            ${l.left.length?this._renderTreeRound(l.left,"Round of 16","Ottavi"):""}
+            ${l.left.length&&c.left.length?this._renderArrows(c.left.length,"left"):""}
+            ${c.left.length?this._renderTreeRound(c.left,"Quarterfinals","Quarti"):""}
+            ${c.left.length&&d.left.length?this._renderArrows(d.left.length,"left"):""}
+            ${d.left.length?this._renderTreeRound(d.left,"Semifinals","Semifinali"):""}
+            ${d.left.length?this._renderArrows(1,"left"):""}
+          </div>
+
+          <div class="tree-center">
+            <div class="trophy">🏆</div>
+            <div class="trophy-label">FINAL <span class="trophy-label-it">· Finale</span></div>
+            ${h?B`<div class="final-tie-wrap">${this._renderMiniTie(h)}</div>`:B`<div class="final-placeholder">TBD</div>`}
+          </div>
+
+          <div class="tree-half right">
+            ${d.right.length?this._renderArrows(1,"right"):""}
+            ${d.right.length?this._renderTreeRound(d.right,"Semifinals","Semifinali"):""}
+            ${d.right.length&&c.right.length?this._renderArrows(d.right.length,"right"):""}
+            ${c.right.length?this._renderTreeRound(c.right,"Quarterfinals","Quarti"):""}
+            ${c.right.length&&l.right.length?this._renderArrows(c.right.length,"right"):""}
+            ${l.right.length?this._renderTreeRound(l.right,"Round of 16","Ottavi"):""}
+            ${p&&p.right.length?B`
+              ${l.right.length?this._renderArrows(l.right.length,"right"):""}
+              ${this._renderTreeRound(p.right,"Playoffs","Spareggi")}
+            `:""}
+          </div>
+        </div>
+      </div>
+    `}render(){if(!this.hass||!this._config)return B``;const e=this.hass.states[this._config.entity];if(!e)return B`<ha-card class="empty">Entità sconosciuta: ${this._config.entity}</ha-card>`;const t=e.attributes.rounds||[];return 0===t.length?B`
+        <ha-card class="empty">
+          <div class="hero-bg"></div>
+          <div class="empty-state">
+            <div class="empty-icon">🏆</div>
+            <div class="empty-title">Bracket not available</div>
+            <div class="empty-sub">Knockout stage starts soon · La fase a eliminazione diretta inizierà presto</div>
+          </div>
+        </ha-card>
+      `:B`
+      <ha-card class="${this.compactMode?"compact":""} style-${this.style}">
+        <div class="hero-bg"></div>
+        ${this.hideHeader?"":B`
+          <div class="bracket-header">
+            <div class="header-icon">🏆</div>
+            <div class="header-text">
+              <div class="title">Bracket <span class="title-it">· Tabellone</span></div>
+              <div class="subtitle">${e.state}</div>
+            </div>
+          </div>
+        `}
+
+        ${"tree"===this.style?this._renderTree(t):B`
+          <div class="rounds-container">
+            ${t.map((e=>B`
+              <div class="round">
+                <div class="round-name">
+                  <span class="round-name-en">${e.name}</span>
+                  ${e.name_it&&e.name_it!==e.name?B`<span class="round-name-it">${e.name_it}</span>`:""}
+                </div>
+                <div class="round-ties">
+                  ${e.ties.map((e=>this._renderTie(e)))}
+                </div>
+              </div>
+            `))}
+          </div>
+        `}
+      </ha-card>
+    `}static get styles(){return r`
+      :host {
+        --cl-accent: #6366f1;
+        --cl-accent-2: #ec4899;
+        --cl-live: #ef4444;
+        --cl-live-glow: rgba(239,68,68,0.5);
+        --cl-green: #10b981;
+        --cl-gold: #fbbf24;
+        --cl-card-2: rgba(255,255,255,0.05);
+        --cl-divider: rgba(255,255,255,0.08);
+        --cl-glass-border: rgba(255,255,255,0.08);
+      }
+      ha-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 0;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      }
+      ha-card.empty {
+        padding: 24px;
+        text-align: center;
+        color: var(--secondary-text-color);
+      }
+      .empty-state {
+        display: flex; flex-direction: column;
+        align-items: center; gap: 8px;
+        padding: 24px;
+      }
+      .empty-icon { font-size: 38px; opacity: 0.4; }
+      .empty-title { font-weight: 800; color: var(--primary-text-color); }
+      .empty-sub { font-size: 12px; color: var(--secondary-text-color); }
+
+      .hero-bg {
+        position: absolute; inset: 0; z-index: 0;
+        background:
+          radial-gradient(ellipse at 0% 0%, rgba(99,102,241,0.10), transparent 50%),
+          radial-gradient(ellipse at 100% 100%, rgba(251,191,36,0.10), transparent 50%);
+        pointer-events: none;
+      }
+
+      .bracket-header {
+        position: relative; z-index: 1;
+        display: flex; align-items: center; gap: 12px;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--cl-divider);
+      }
+      .header-icon {
+        width: 40px; height: 40px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--cl-gold), #d97706);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 22px;
+        box-shadow: 0 4px 16px rgba(251,191,36,0.4);
+      }
+      .header-text .title {
+        font-size: 18px; font-weight: 900;
+        letter-spacing: -0.02em;
+        color: var(--primary-text-color);
+      }
+      .header-text .title-it {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--secondary-text-color);
+        margin-left: 4px;
+        opacity: 0.85;
+      }
+      .header-text .subtitle {
+        font-size: 11px;
+        color: var(--secondary-text-color);
+        margin-top: 2px;
+        font-weight: 600;
+      }
+
+      .rounds-container {
+        position: relative; z-index: 1;
+        display: flex;
+        gap: 16px;
+        padding: 18px;
+        overflow-x: auto;
+      }
+      .round {
+        flex: 1 0 240px;
+        min-width: 240px;
+        display: flex; flex-direction: column;
+        gap: 8px;
+        justify-content: space-around;
+      }
+      .round-name {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        text-align: center;
+        padding: 6px 12px;
+        border-radius: 12px;
+        background: rgba(99,102,241,0.12);
+        align-self: center;
+        margin-bottom: 4px;
+      }
+      .round-name-en {
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--cl-accent);
+        line-height: 1;
+      }
+      .round-name-it {
+        font-size: 9px;
+        font-weight: 600;
+        color: var(--secondary-text-color);
+        opacity: 0.85;
+        line-height: 1;
+      }
+      .round-ties {
+        display: flex; flex-direction: column;
+        gap: 12px;
+        justify-content: space-around;
+        flex: 1;
+      }
+
+      .tie {
+        background: var(--cl-card-2);
+        border: 1px solid var(--cl-glass-border);
+        border-radius: 12px;
+        padding: 10px 12px;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+      .tie:hover {
+        border-color: var(--cl-accent);
+        transform: translateY(-2px);
+      }
+      .tie.live {
+        border-color: var(--cl-live);
+        box-shadow: 0 0 0 1px var(--cl-live), 0 0 20px var(--cl-live-glow);
+        animation: tie-pulse 2s ease-in-out infinite;
+      }
+      @keyframes tie-pulse {
+        0%, 100% { box-shadow: 0 0 0 1px var(--cl-live), 0 0 20px var(--cl-live-glow); }
+        50% { box-shadow: 0 0 0 2px var(--cl-live), 0 0 30px var(--cl-live-glow); }
+      }
+      .tie.done {
+        border-color: rgba(16,185,129,0.3);
+      }
+
+      .tie-row {
+        display: grid;
+        grid-template-columns: 22px 1fr auto;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 0;
+      }
+      .tie-row + .tie-row {
+        border-top: 1px solid var(--cl-divider);
+      }
+      .tie-row img {
+        width: 22px; height: 22px;
+        object-fit: contain;
+      }
+      .tie-row .tname {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary-text-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        letter-spacing: -0.01em;
+      }
+      .tie-row.winner .tname { font-weight: 800; }
+      .tie-row.loser .tname { color: var(--secondary-text-color); }
+      .tie-row.loser img { opacity: 0.55; }
+
+      .legs {
+        display: inline-flex;
+        gap: 4px;
+      }
+      .leg {
+        min-width: 22px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+        padding: 2px 6px;
+        border-radius: 6px;
+        background: rgba(255,255,255,0.06);
+        color: var(--primary-text-color);
+      }
+      .tie-row.winner .leg {
+        background: rgba(16,185,129,0.2);
+        color: var(--cl-green);
+      }
+      .tie-row.loser .leg {
+        opacity: 0.5;
+      }
+
+      .tie-foot {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px dashed var(--cl-divider);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .agg {
+        font-size: 10px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--cl-green);
+        padding: 2px 8px;
+        background: rgba(16,185,129,0.12);
+        border-radius: 6px;
+      }
+      .agg.tied {
+        color: var(--cl-gold);
+        background: rgba(251,191,36,0.12);
+      }
+      .date {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--secondary-text-color);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .date.pending {
+        color: var(--cl-accent);
+      }
+      .live-badge {
+        display: inline-flex; align-items: center; gap: 5px;
+        background: linear-gradient(135deg, var(--cl-live), #f97316);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .live-badge .dot {
+        width: 5px; height: 5px;
+        border-radius: 50%;
+        background: white;
+        animation: dot-pulse 1.2s ease-in-out infinite;
+      }
+      @keyframes dot-pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.3; transform: scale(0.7); }
+      }
+
+      /* Compact mode (vertical, single column per round) */
+      ha-card.compact .rounds-container {
+        flex-direction: column;
+        overflow-x: visible;
+      }
+      ha-card.compact .round {
+        flex: none;
+        min-width: 0;
+      }
+
+      @media (max-width: 600px) {
+        ha-card.style-list .rounds-container {
+          flex-direction: column;
+        }
+        ha-card.style-list .round {
+          flex: none;
+          min-width: 0;
+        }
+      }
+
+      /* ============== STYLE: TREE ============== */
+      .tree-wrap {
+        position: relative;
+        z-index: 1;
+        overflow-x: auto;
+        padding: 24px 12px 24px;
+      }
+      .tree {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        min-height: 480px;
+        gap: 0;
+      }
+      .tree-half {
+        flex: 1;
+        display: flex;
+        align-items: stretch;
+        min-width: 0;
+      }
+      /* Niente row-reverse: per la "specularità" del lato destro renderizziamo
+         direttamente i figli nell'ordine SF→QF→R16 (vedi _renderTree). */
+
+      .tree-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 0 6px;
+        min-width: 110px;
+        max-width: 140px;
+      }
+      .tree-col-label {
+        text-align: center;
+        padding: 4px 8px;
+        background: rgba(99,102,241,0.12);
+        border-radius: 8px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
+      }
+      .tree-col-label-en {
+        font-size: 9px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--cl-accent);
+        line-height: 1;
+      }
+      .tree-col-label-it {
+        font-size: 8px;
+        font-weight: 600;
+        color: var(--secondary-text-color);
+        line-height: 1;
+        opacity: 0.85;
+      }
+      .tree-col-ties {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 6px;
+        position: relative;
+      }
+
+      /* SVG bracket arrow connectors — colonne più larghe e con frecce sempre visibili */
+      .tree-arrows {
+        flex: 0 0 36px;
+        min-width: 36px;
+        display: flex;
+        align-items: stretch;
+        padding-top: 44px; /* compensa la label dei round */
+        padding-bottom: 0;
+      }
+      .connector-svg {
+        width: 100%;
+        height: 100%;
+        stroke: var(--cl-accent);
+        stroke-width: 2;
+        fill: none;
+        overflow: visible;
+        display: block;
+      }
+      .connector-svg .arrow-head {
+        fill: var(--cl-accent);
+        stroke: none;
+      }
+
+      /* Mini tie card */
+      .mini-tie {
+        background: var(--card-background-color, rgba(20, 24, 36, 0.6));
+        border: 1.5px solid var(--cl-accent);
+        border-radius: 10px;
+        padding: 7px 9px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        box-shadow: 0 2px 8px rgba(99,102,241,0.15);
+      }
+      .mini-tie:hover {
+        border-color: var(--cl-accent);
+        transform: scale(1.04);
+        z-index: 5;
+      }
+      .mini-tie.live {
+        border-color: var(--cl-live);
+        box-shadow: 0 0 0 1px var(--cl-live), 0 0 16px var(--cl-live-glow);
+        animation: tie-pulse 2s ease-in-out infinite;
+      }
+      .mini-tie.done {
+        border-color: rgba(16,185,129,0.3);
+      }
+      .mini-tie.pending {
+        opacity: 0.55;
+        background: transparent;
+        border-style: dashed;
+      }
+      .mini-team {
+        display: grid;
+        grid-template-columns: 18px 1fr auto;
+        align-items: center;
+        gap: 6px;
+        padding: 2px 0;
+      }
+      .mini-team img {
+        width: 18px; height: 18px;
+        object-fit: contain;
+      }
+      .mini-team .logo-ph {
+        width: 18px; height: 18px;
+        border-radius: 50%;
+        background: var(--cl-card-2);
+      }
+      .mini-team .abbr {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--primary-text-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        letter-spacing: -0.01em;
+      }
+      .mini-team .agg-num {
+        font-size: 12px;
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+        min-width: 14px;
+        text-align: right;
+        color: var(--secondary-text-color);
+      }
+      .mini-team.winner .abbr {
+        font-weight: 800;
+      }
+      .mini-team.winner .agg-num {
+        color: var(--cl-green);
+      }
+      .mini-team.loser .abbr {
+        color: var(--secondary-text-color);
+      }
+      .mini-team.loser img {
+        opacity: 0.5;
+      }
+      .mini-team.loser .agg-num {
+        opacity: 0.55;
+      }
+      .mini-live {
+        position: absolute;
+        top: -3px; right: -3px;
+        width: 10px; height: 10px;
+      }
+      .mini-live .dot {
+        display: block;
+        width: 10px; height: 10px;
+        border-radius: 50%;
+        background: var(--cl-live);
+        box-shadow: 0 0 8px var(--cl-live-glow);
+        animation: dot-pulse 1.2s ease-in-out infinite;
+      }
+
+      /* Tree center (trophy + final) */
+      .tree-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 12px;
+        gap: 12px;
+        min-width: 180px;
+        position: relative;
+      }
+      .tree-center::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at center, rgba(251,191,36,0.18), transparent 60%);
+        pointer-events: none;
+      }
+      .trophy {
+        position: relative;
+        font-size: 72px;
+        line-height: 1;
+        filter: drop-shadow(0 4px 24px rgba(251,191,36,0.7));
+        animation: trophy-shine 4s ease-in-out infinite;
+      }
+      @keyframes trophy-shine {
+        0%, 100% { filter: drop-shadow(0 4px 24px rgba(251,191,36,0.7)); transform: scale(1); }
+        50% { filter: drop-shadow(0 4px 36px rgba(251,191,36,1)) drop-shadow(0 0 12px #fbbf24); transform: scale(1.04); }
+      }
+      .trophy-label {
+        position: relative;
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        background: linear-gradient(135deg, var(--cl-gold), #d97706);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+      }
+      .trophy-label-it {
+        font-weight: 600;
+        opacity: 0.85;
+      }
+      .final-tie-wrap {
+        position: relative;
+        width: 140px;
+      }
+      .final-tie-wrap .mini-tie {
+        background: linear-gradient(135deg, rgba(251,191,36,0.12), rgba(251,191,36,0.02));
+        border-color: rgba(251,191,36,0.4);
+        box-shadow: 0 4px 16px rgba(251,191,36,0.2);
+      }
+      .final-tie-wrap .mini-team.winner .agg-num {
+        color: var(--cl-gold);
+      }
+      .final-placeholder {
+        position: relative;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--secondary-text-color);
+        padding: 8px 14px;
+        background: var(--cl-card-2);
+        border: 1px dashed var(--cl-glass-border);
+        border-radius: 8px;
+        letter-spacing: 0.1em;
+      }
+
+      /* Mobile per tree */
+      @media (max-width: 720px) {
+        ha-card.style-tree .tree-col {
+          min-width: 100px;
+        }
+        ha-card.style-tree .tree-center {
+          min-width: 140px;
+        }
+        ha-card.style-tree .trophy {
+          font-size: 56px;
+        }
+      }
+      @media (max-width: 520px) {
+        ha-card.style-tree .tree {
+          flex-direction: column;
+          min-height: 0;
+        }
+        ha-card.style-tree .tree-half {
+          flex-direction: row;
+        }
+        ha-card.style-tree .tree-half.right {
+          flex-direction: row;
+        }
+        ha-card.style-tree .tree-center {
+          order: -1;
+          padding: 12px;
+        }
+      }
+    `}}),window.customCards=window.customCards||[],window.customCards.push({type:"calcio-live-bracket",name:"Calcio Live Bracket Card",description:"Tabellone della fase a eliminazione diretta (Champions, Europa, Coppe)"}),customElements.define("calcio-live-bracket-editor",class extends re{static get properties(){return{_config:{type:Object},hass:{type:Object},entities:{type:Array}}}constructor(){super(),this.entities=[]}static get styles(){return r`
+      .card-config { display: flex; flex-direction: column; gap: 16px; }
+      .option { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      label { font-size: 14px; color: var(--primary-text-color); }
+      .field-label { display: block; font-size: 12px; color: var(--secondary-text-color); margin-bottom: 4px; font-weight: 600; }
+      select {
+        width: 100%; padding: 10px 12px; font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid var(--divider-color, rgba(0,0,0,0.12));
+        background: var(--card-background-color, #fff);
+        color: var(--primary-text-color, #000);
+        box-sizing: border-box;
+      }
+      h3 { margin: 8px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-text-color); }
+      .hint { font-size: 12px; color: var(--secondary-text-color); }
+    `}setConfig(e){if(!e)throw new Error("Invalid configuration");this._config={...e}}get config(){return this._config}updated(e){e.has("hass")&&this._fetchEntities()}_fireConfigChanged(e){this._config=e,this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:e},bubbles:!0,composed:!0})),this.requestUpdate()}_entityChanged(e){if(!this._config)return;const t=e.target.value;t!==this._config.entity&&this._fireConfigChanged({...this._config,entity:t})}_switchChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=t.checked;this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_selectChanged(e){if(!this._config)return;const t=e.target;if(!t.dataset||!t.dataset.configValue)return;const i=t.dataset.configValue,a=t.value;this._config[i]!==a&&this._fireConfigChanged({...this._config,[i]:a})}_fetchEntities(){this.hass&&(this.entities=Object.keys(this.hass.states).filter((e=>e.startsWith("sensor.calciolive_bracket"))).sort())}render(){if(!this._config||!this.hass)return B``;const e=this._config.entity||"",t=e&&this.entities.includes(e);return B`
+      <div class="card-config">
+        <h3>Sensore</h3>
+        <div>
+          <label class="field-label">Entity (sensore bracket — calciolive_bracket_*)</label>
+          <select @change=${this._entityChanged}>
+            ${t?"":B`<option value="${e}" selected>${e||"— seleziona —"}</option>`}
+            ${this.entities.map((t=>B`<option value="${t}" ?selected=${t===e}>${t}</option>`))}
+          </select>
+          <div class="hint" style="margin-top: 4px;">Disponibile per Champions, Europa, Conference, FIFA World Cup e altre coppe.</div>
+        </div>
+
+        <h3>Impostazioni</h3>
+        <div>
+          <label class="field-label">Style · Stile</label>
+          <select data-config-value="style" @change=${this._selectChanged}>
+            <option value="list" ?selected=${"tree"!==this._config.style}>List · Lista (default)</option>
+            <option value="tree" ?selected=${"tree"===this._config.style}>Tree · Tabellone con coppa centrale</option>
+          </select>
+        </div>
+        <div class="option">
+          <label>Hide Header</label>
+          <ha-switch
+            .checked=${!0===this._config.hide_header}
+            data-config-value="hide_header"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+        <div class="option">
+          <label>Compact (list mode: round in colonna)</label>
+          <ha-switch
+            .checked=${!0===this._config.compact}
+            data-config-value="compact"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+        <div class="option">
+          <label>Tree: include Playoffs · Includi spareggi</label>
+          <ha-switch
+            .checked=${!0===this._config.tree_show_playoffs}
+            data-config-value="tree_show_playoffs"
             @change=${this._switchChanged}
           ></ha-switch>
         </div>

@@ -1,0 +1,113 @@
+import { LitElement, html, css } from 'lit';
+
+class CalcioLiveTimelineEditor extends LitElement {
+  static get properties() {
+    return {
+      _config: { type: Object },
+      hass: { type: Object },
+      entities: { type: Array },
+    };
+  }
+
+  constructor() { super(); this.entities = []; }
+
+  static get styles() {
+    return css`
+      .card-config { display: flex; flex-direction: column; gap: 16px; }
+      .option { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      label { font-size: 14px; color: var(--primary-text-color); }
+      .field-label { display: block; font-size: 12px; color: var(--secondary-text-color); margin-bottom: 4px; font-weight: 600; }
+      select {
+        width: 100%; padding: 10px 12px; font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid var(--divider-color, rgba(0,0,0,0.12));
+        background: var(--card-background-color, #fff);
+        color: var(--primary-text-color, #000);
+        box-sizing: border-box;
+      }
+      h3 { margin: 8px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-text-color); }
+      .hint { font-size: 12px; color: var(--secondary-text-color); }
+    `;
+  }
+
+  setConfig(config) {
+    if (!config) throw new Error('Invalid configuration');
+    this._config = { ...config };
+  }
+  get config() { return this._config; }
+
+  updated(changedProperties) {
+    if (changedProperties.has('hass')) this._fetchEntities();
+  }
+
+  _fireConfigChanged(newConfig) {
+    this._config = newConfig;
+    this.dispatchEvent(new CustomEvent('config-changed', {
+      detail: { config: newConfig }, bubbles: true, composed: true,
+    }));
+    this.requestUpdate();
+  }
+
+  _entityChanged(ev) {
+    if (!this._config) return;
+    const value = ev.target.value;
+    if (value === this._config.entity) return;
+    this._fireConfigChanged({ ...this._config, entity: value });
+  }
+
+  _switchChanged(ev) {
+    if (!this._config) return;
+    const target = ev.target;
+    if (!target.dataset || !target.dataset.configValue) return;
+    const key = target.dataset.configValue;
+    const value = target.checked;
+    if (this._config[key] === value) return;
+    this._fireConfigChanged({ ...this._config, [key]: value });
+  }
+
+  _fetchEntities() {
+    if (!this.hass) return;
+    this.entities = Object.keys(this.hass.states)
+      .filter(id => id.startsWith('sensor.calciolive_next'))
+      .sort();
+  }
+
+  render() {
+    if (!this._config || !this.hass) return html``;
+    const cur = this._config.entity || '';
+    const inList = cur && this.entities.includes(cur);
+    return html`
+      <div class="card-config">
+        <h3>Sensore</h3>
+        <div>
+          <label class="field-label">Entity (sensore team_match — calciolive_next_*)</label>
+          <select @change=${this._entityChanged}>
+            ${!inList ? html`<option value="${cur}" selected>${cur || '— seleziona —'}</option>` : ''}
+            ${this.entities.map(e => html`<option value="${e}" ?selected=${e === cur}>${e}</option>`)}
+          </select>
+          <div class="hint" style="margin-top: 4px;">Gli eventi vengono pubblicati durante la partita.</div>
+        </div>
+
+        <h3>Impostazioni</h3>
+        <div class="option">
+          <label>Hide Header</label>
+          <ha-switch
+            .checked=${this._config.hide_header === true}
+            data-config-value="hide_header"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+        <div class="option">
+          <label>Reverse order (più recenti in alto)</label>
+          <ha-switch
+            .checked=${this._config.reverse_order === true}
+            data-config-value="reverse_order"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+      </div>
+    `;
+  }
+}
+
+customElements.define('calcio-live-timeline-editor', CalcioLiveTimelineEditor);
