@@ -14,7 +14,7 @@ class CalcioLiveBracketCard extends LitElement {
     this._config = config;
     this.hideHeader = config.hide_header === true;
     this.compactMode = config.compact === true;
-    this.style = config.style === 'tree' ? 'tree' : 'list';
+    this._cardStyle = config.style === 'tree' ? 'tree' : 'list';
     this.treeShowPlayoffs = config.tree_show_playoffs === true;
   }
 
@@ -310,7 +310,7 @@ class CalcioLiveBracketCard extends LitElement {
     }
 
     return html`
-      <ha-card class="${this.compactMode ? 'compact' : ''} style-${this.style}">
+      <ha-card class="${this.compactMode ? 'compact' : ''} style-${this._cardStyle}">
         <div class="hero-bg"></div>
         ${!this.hideHeader ? html`
           <div class="bracket-header">
@@ -322,7 +322,7 @@ class CalcioLiveBracketCard extends LitElement {
           </div>
         ` : ''}
 
-        ${this.style === 'tree' ? this._renderTree(rounds) : html`
+        ${this._cardStyle === 'tree' ? this._renderTree(rounds) : html`
           <div class="rounds-container">
             ${rounds.map(round => html`
               <div class="round">
@@ -802,25 +802,28 @@ class CalcioLiveBracketCard extends LitElement {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 20px 12px;
-        gap: 12px;
-        min-width: 180px;
+        padding: 20px 16px;
+        gap: 14px;
+        min-width: 200px;
+        flex: 0 0 200px;
         position: relative;
       }
       .tree-center::before {
         content: '';
         position: absolute;
-        inset: 0;
+        inset: 20% 8%;
         background:
-          radial-gradient(circle at center, rgba(251,191,36,0.18), transparent 60%);
+          radial-gradient(circle at center, rgba(251,191,36,0.20), transparent 65%);
         pointer-events: none;
+        border-radius: 50%;
       }
       .trophy {
         position: relative;
-        font-size: 72px;
+        font-size: 64px;
         line-height: 1;
         filter: drop-shadow(0 4px 24px rgba(251,191,36,0.7));
         animation: trophy-shine 4s ease-in-out infinite;
+        z-index: 2;
       }
       @keyframes trophy-shine {
         0%, 100% { filter: drop-shadow(0 4px 24px rgba(251,191,36,0.7)); transform: scale(1); }
@@ -837,6 +840,7 @@ class CalcioLiveBracketCard extends LitElement {
         background-clip: text;
         -webkit-text-fill-color: transparent;
         text-align: center;
+        z-index: 2;
       }
       .trophy-label-it {
         font-weight: 600;
@@ -844,7 +848,9 @@ class CalcioLiveBracketCard extends LitElement {
       }
       .final-tie-wrap {
         position: relative;
-        width: 140px;
+        width: 100%;
+        max-width: 170px;
+        z-index: 2;
       }
       .final-tie-wrap .mini-tie {
         background: linear-gradient(135deg, rgba(251,191,36,0.12), rgba(251,191,36,0.02));

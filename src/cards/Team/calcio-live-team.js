@@ -235,9 +235,11 @@ class CalcioLiveTeamNextCard extends LitElement {
     const label = this._t('team.top_scorer');
     return html`
       <div class="top-scorer" title="${label}: ${scorer.name} (${scorer.value})">
-        <span class="ts-label">${label}</span>
-        <span class="ts-name">${name}</span>
-        <span class="ts-val">${scorer.value}<span class="ts-unit">★</span></span>
+        <span class="ts-label">⚽ ${label}</span>
+        <div class="ts-row">
+          <span class="ts-name">${name}</span>
+          <span class="ts-val">${scorer.value}<span class="ts-unit">★</span></span>
+        </div>
       </div>
     `;
   }
@@ -790,34 +792,41 @@ class CalcioLiveTeamNextCard extends LitElement {
       .record .rec-l { background: rgba(239,68,68,0.18); color: var(--cl-live); }
       .top-scorer {
         display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 3px 8px 3px 4px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 5px 9px 6px;
         background: var(--cl-card-2);
         border: 1px solid var(--cl-glass-border);
-        border-radius: 999px;
+        border-radius: 10px;
         font-size: 10px;
         font-weight: 700;
         color: var(--secondary-text-color);
-        max-width: 140px;
+        max-width: 150px;
       }
       .top-scorer .ts-label {
         font-size: 8px;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
-        background: rgba(251,191,36,0.18);
+        letter-spacing: 0.08em;
         color: var(--cl-gold);
-        padding: 2px 5px;
-        border-radius: 4px;
+        text-align: center;
         line-height: 1;
       }
+      .top-scorer .ts-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
       .top-scorer .ts-name {
+        max-width: 90px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         color: var(--primary-text-color);
-        font-size: 10px;
+        font-size: 11px;
+        font-weight: 700;
       }
       .top-scorer .ts-val {
         display: inline-flex;
@@ -826,6 +835,7 @@ class CalcioLiveTeamNextCard extends LitElement {
         color: var(--cl-gold);
         font-weight: 800;
         font-variant-numeric: tabular-nums;
+        font-size: 12px;
       }
       .top-scorer .ts-unit {
         font-size: 9px;
