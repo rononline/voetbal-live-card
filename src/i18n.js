@@ -127,6 +127,113 @@ const TRANSLATIONS = {
     'month.5': 'May', 'month.6': 'Jun', 'month.7': 'Jul', 'month.8': 'Aug',
     'month.9': 'Sep', 'month.10': 'Oct', 'month.11': 'Nov', 'month.12': 'Dec',
   },
+  nl: {
+    'card.bracket': 'Schema',
+    'card.lineup': 'Opstellingen',
+    'card.timeline': 'Tijdlijn',
+    'card.news': 'Nieuws',
+    'card.standings': 'Stand',
+
+    'round.final': 'Finale',
+    'round.semifinals': 'Halve finales',
+    'round.quarterfinals': 'Kwartfinales',
+    'round.r16': 'Achtste finales',
+    'round.r32': 'Zestiende finales',
+    'round.knockout_playoffs': 'Knock-out play-offs',
+    'round.preliminary': 'Voorronde',
+    'round.short.semifinals': 'Halve finales',
+    'round.short.quarterfinals': 'Kwart',
+    'round.short.r16': '8e finale',
+
+    'bracket.empty.title': 'Schema niet beschikbaar',
+    'bracket.empty.sub': 'De knock-outfase begint binnenkort',
+    'bracket.tbd': 'N.t.b.',
+    'bracket.tied_agg': 'Gelijk totaal',
+    'bracket.agg': 'Totaal',
+
+    'status.live': 'Live',
+    'status.finished': 'Afgelopen',
+    'status.scheduled': 'Gepland',
+    'status.full_time': 'Einde wedstrijd',
+    'status.halftime': 'Rust',
+    'status.first_half': '1e helft',
+    'status.second_half': '2e helft',
+    'status.kickoff': 'Aftrap',
+    'status.end': 'Einde',
+
+    'event.goal': 'Doelpunt',
+    'event.yellow_card': 'Gele kaart',
+    'event.red_card': 'Rode kaart',
+    'event.substitution': 'Wissel',
+    'event.var': 'VAR',
+
+    'form.W': 'W',
+    'form.D': 'G',
+    'form.L': 'V',
+
+    'team.details': 'Details',
+    'team.possession': 'Balbezit',
+    'team.shots': 'Schoten',
+    'team.on_target': 'Op doel',
+    'team.fouls': 'Overtredingen',
+    'team.spectators': 'toeschouwers',
+    'team.top_scorer': 'Topscorer',
+    'team.next_match': 'Volgende wedstrijd',
+    'team.in': 'Over',
+    'team.no_match': 'Geen wedstrijd beschikbaar',
+    'team.unknown_entity': 'Onbekende entiteit',
+
+    'time.today': 'Vandaag',
+    'time.yesterday': 'Gisteren',
+    'time.tomorrow': 'Morgen',
+    'time.now': 'nu',
+    'time.in_n_min': 'over {n} min',
+    'time.in_n_h': 'over {n} uur',
+    'time.in_n_d': 'over {n} dagen',
+    'time.n_min_ago': '{n} min geleden',
+    'time.n_h_ago': '{n} uur geleden',
+    'time.n_d_ago': '{n} dagen geleden',
+
+    'lineup.bench': 'Bank',
+    'lineup.empty.title': 'Opstellingen niet beschikbaar',
+    'lineup.empty.sub': 'Opstellingen worden kort voor de aftrap gepubliceerd',
+
+    'timeline.empty.title': 'Nog geen gebeurtenissen',
+    'timeline.empty.sub': 'Gebeurtenissen verschijnen tijdens de wedstrijd',
+    'timeline.event': 'Gebeurtenis',
+    'timeline.penalty': 'Penalty',
+
+    'news.empty': 'Geen nieuws beschikbaar',
+    'news.articles': '{n} artikelen',
+
+    'zone.champions': 'Champions League',
+    'zone.europa': 'Europa League',
+    'zone.relegation': 'Degradatie',
+
+    'col.pos': '#',
+    'col.team': 'Team',
+    'col.played': 'G',
+    'col.wins': 'W',
+    'col.draws': 'G',
+    'col.losses': 'V',
+    'col.gd': '+/-',
+    'col.points': 'Pnt',
+
+    'generic.no_match': 'Geen wedstrijd beschikbaar',
+    'generic.matches_count': '{n} wedstrijden',
+    'generic.unknown_entity': 'Onbekende entiteit',
+    'generic.close': 'Sluiten',
+
+    'popup.match_details': 'Wedstrijddetails',
+    'popup.lineups': 'Opstellingen',
+    'popup.timeline': 'Tijdlijn',
+    'popup.h2h': 'Onderlinge duels',
+    'popup.no_events': 'Geen gebeurtenissen beschikbaar',
+
+    'month.1': 'Jan', 'month.2': 'Feb', 'month.3': 'Mrt', 'month.4': 'Apr',
+    'month.5': 'Mei', 'month.6': 'Jun', 'month.7': 'Jul', 'month.8': 'Aug',
+    'month.9': 'Sep', 'month.10': 'Okt', 'month.11': 'Nov', 'month.12': 'Dec',
+  },
   it: {
     'card.bracket': 'Tabellone',
     'card.lineup': 'Formazioni',
@@ -450,7 +557,7 @@ const TRANSLATIONS = {
   },
 };
 
-const SUPPORTED_LANGS = ['en', 'it', 'fr', 'es'];
+const SUPPORTED_LANGS = ['en', 'it', 'fr', 'es', 'nl'];
 
 /**
  * Risolve la lingua da usare per la card.
