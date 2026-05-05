@@ -40,19 +40,31 @@ class CalcioLiveTeamNextCard extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+
     if (this._eventSubscriptions && Array.isArray(this._eventSubscriptions)) {
-      this._eventSubscriptions.forEach(sub => { if (sub) sub.unsubscribe(); });
+      this._eventSubscriptions.forEach(unsub => {
+        if (typeof unsub === 'function') {
+          unsub();
+        }
+      });
       this._eventSubscriptions = [];
     }
   }
 
   _subscribeToEvents() {
     if (!this.hass || !this.hass.connection) return;
+
     this._eventSubscriptions = [];
+
     ['calcio_live_goal', 'calcio_live_yellow_card', 'calcio_live_red_card'].forEach(evt => {
-      this._eventSubscriptions.push(
-        this.hass.connection.subscribeEvents(this._handleCalcioLiveEvent.bind(this), evt)
-      );
+      this.hass.connection.subscribeEvents(
+        this._handleCalcioLiveEvent.bind(this),
+        evt
+      ).then(unsub => {
+        if (typeof unsub === 'function') {
+          this._eventSubscriptions.push(unsub);
+        }
+      });
     });
   }
 
@@ -183,12 +195,53 @@ class CalcioLiveTeamNextCard extends LitElement {
 
   separateEvents(details) {
     const goals = [], yellowCards = [], redCards = [];
+
     details.forEach(event => {
-      if (event.includes('Goal') || event.includes('Penalty - Scored')) goals.push(event);
-      else if (event.includes('Yellow Card')) yellowCards.push(event);
-      else if (event.includes('Red Card')) redCards.push(event);
+      const raw = String(event || '');
+
+      if (raw.includes('Goal') || raw.includes('Penalty - Scored')) {
+        goals.push(this.formatMatchEvent(raw));
+      } else if (raw.includes('Yellow Card')) {
+        yellowCards.push(this.formatMatchEvent(raw));
+      } else if (raw.includes('Red Card')) {
+        redCards.push(this.formatMatchEvent(raw));
+      }
     });
+
     return { goals, yellowCards, redCards };
+  }
+
+  formatMatchEvent(event) {
+    const tx = (key) => this._t(key);
+    let text = String(event || '').trim();
+
+    text = text
+      .replace(/^Goal\s*-\s*/i, '')
+      .replace(/^Yellow Card\s*-\s*/i, '')
+      .replace(/^Red Card\s*-\s*/i, '')
+      .replace(/^Penalty - Scored\s*-\s*/i, `${tx('event.penalty')} - `)
+      .replace(/^Header\s*-\s*/i, `${tx('event.header')} - `)
+      .replace(/^Shot\s*-\s*/i, `${tx('event.shot')} - `)
+      .replace(/^Free-kick\s*-\s*/i, `${tx('event.free_kick')} - `)
+      .replace(/^Penalty\s*-\s*/i, `${tx('event.penalty')} - `);
+
+    text = text.replace(/^([^:]+):\s*/, '$1 ');
+
+    const eventTypes = [
+      tx('event.header'),
+      tx('event.shot'),
+      tx('event.penalty'),
+      tx('event.free_kick'),
+    ].map(type => type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
+    text = text.replace(
+      new RegExp(`^(${eventTypes.join('|')})\\s*-\\s*(.+)$`, 'i'),
+      (_, eventType, rest) => `${rest} (${eventType.toLowerCase()})`
+    );
+
+    text = text.replace(/\bN\/A\b/g, tx('generic.unknown'));
+
+    return text;
   }
 
   _renderStatusBadge(match) {

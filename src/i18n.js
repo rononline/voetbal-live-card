@@ -49,6 +49,11 @@ const TRANSLATIONS = {
     'event.substitution': 'Substitution',
     'event.var': 'VAR',
 
+    'event.header': 'Header',
+    'event.shot': 'Shot',
+    'event.penalty': 'Penalty',
+    'event.free_kick': 'Free kick',
+
     // Form pills
     'form.W': 'W',
     'form.D': 'D',
@@ -98,6 +103,7 @@ const TRANSLATIONS = {
     'zone.champions': 'Champions',
     'zone.europa': 'Europa',
     'zone.relegation': 'Relegation',
+    'zone.conference': 'Conference League',
 
     // Standings table
     'col.pos': '#',
@@ -114,6 +120,8 @@ const TRANSLATIONS = {
     'generic.matches_count': '{n} matches',
     'generic.unknown_entity': 'Unknown entity',
     'generic.close': 'Close',
+
+    'generic.unknown': 'Unknown',
 
     // Match details popup
     'popup.match_details': 'Match details',
@@ -167,6 +175,11 @@ const TRANSLATIONS = {
     'event.substitution': 'Wissel',
     'event.var': 'VAR',
 
+    'event.header': 'Kopbal',
+    'event.shot': 'Schot',
+    'event.penalty': 'Penalty',
+    'event.free_kick': 'Vrije trap',
+
     'form.W': 'W',
     'form.D': 'G',
     'form.L': 'V',
@@ -208,6 +221,7 @@ const TRANSLATIONS = {
 
     'zone.champions': 'Champions League',
     'zone.europa': 'Europa League',
+    'zone.conference': 'Conference League',
     'zone.relegation': 'Degradatie',
 
     'col.pos': '#',
@@ -223,6 +237,8 @@ const TRANSLATIONS = {
     'generic.matches_count': '{n} wedstrijden',
     'generic.unknown_entity': 'Onbekende entiteit',
     'generic.close': 'Sluiten',
+
+    'generic.unknown': 'Onbekend',
 
     'popup.match_details': 'Wedstrijddetails',
     'popup.lineups': 'Opstellingen',

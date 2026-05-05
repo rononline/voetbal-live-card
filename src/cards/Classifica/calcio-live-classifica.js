@@ -42,19 +42,31 @@ class CalcioLiveStandingsCard extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+
     if (this._eventSubscriptions && Array.isArray(this._eventSubscriptions)) {
-      this._eventSubscriptions.forEach(sub => { if (sub) sub.unsubscribe(); });
+      this._eventSubscriptions.forEach(unsub => {
+        if (typeof unsub === 'function') {
+          unsub();
+        }
+      });
       this._eventSubscriptions = [];
     }
   }
 
   _subscribeToEvents() {
     if (!this.hass || !this.hass.connection) return;
+
     this._eventSubscriptions = [];
-    ['calcio_live_goal', 'calcio_live_yellow_card', 'calcio_live_red_card', 'calcio_live_match_finished'].forEach(evt => {
-      this._eventSubscriptions.push(
-        this.hass.connection.subscribeEvents(this._handleCalcioLiveEvent.bind(this), evt)
-      );
+
+    ['calcio_live_goal', 'calcio_live_yellow_card', 'calcio_live_red_card'].forEach(evt => {
+      this.hass.connection.subscribeEvents(
+        this._handleCalcioLiveEvent.bind(this),
+        evt
+      ).then(unsub => {
+        if (typeof unsub === 'function') {
+          this._eventSubscriptions.push(unsub);
+        }
+      });
     });
   }
 
@@ -115,11 +127,52 @@ class CalcioLiveStandingsCard extends LitElement {
     };
   }
 
+  _getZoneConfig() {
+    return this._config.zone_config || {
+      champions: [1, 2, 3, 4],
+      europa: [5, 6],
+      conference: [],
+      relegation: 'bottom3',
+    };
+  }
+
+  _positionInZone(rank, total, zonePositions) {
+    if (!zonePositions) return false;
+
+    if (zonePositions === 'bottom3') {
+      return total && rank > total - 3;
+    }
+
+    if (zonePositions === 'bottom2') {
+      return total && rank > total - 2;
+    }
+
+    if (Array.isArray(zonePositions)) {
+      return zonePositions.includes(Number(rank));
+    }
+
+    return false;
+  }
+
   _zoneClass(rank, total) {
-    if (rank === 1) return 'zone-cl rank-first';
-    if (rank <= 4) return 'zone-cl';
-    if (rank <= 6) return 'zone-el';
-    if (total && rank > total - 3) return 'zone-rel';
+    const zones = this._getZoneConfig();
+
+    if (this._positionInZone(rank, total, zones.champions)) {
+      return rank === 1 ? 'zone-cl rank-first' : 'zone-cl';
+    }
+
+    if (this._positionInZone(rank, total, zones.europa)) {
+      return 'zone-el';
+    }
+
+    if (this._positionInZone(rank, total, zones.conference)) {
+      return 'zone-conf';
+    }
+
+    if (this._positionInZone(rank, total, zones.relegation)) {
+      return 'zone-rel';
+    }
+
     return 'zone-default';
   }
 
@@ -214,6 +267,7 @@ class CalcioLiveStandingsCard extends LitElement {
         <div class="legend">
           <div class="legend-item"><span class="legend-dot cl"></span>${this._t('zone.champions')}</div>
           <div class="legend-item"><span class="legend-dot el"></span>${this._t('zone.europa')}</div>
+          <div class="legend-item"><span class="legend-dot conf"></span>${this._t('zone.conference')}</div>
           <div class="legend-item"><span class="legend-dot rel"></span>${this._t('zone.relegation')}</div>
         </div>
       </ha-card>
@@ -235,6 +289,7 @@ class CalcioLiveStandingsCard extends LitElement {
         --cl-cl: #6366f1;
         --cl-el: #f97316;
         --cl-rel: #ef4444;
+        --cl-conf: #a855f7;
       }
       ha-card {
         position: relative;
@@ -364,6 +419,11 @@ class CalcioLiveStandingsCard extends LitElement {
         color: white;
         box-shadow: 0 2px 12px rgba(239,68,68,0.4);
       }
+      .zone-conf .rank-num {
+        background: linear-gradient(135deg, var(--cl-conf), #7e22ce);
+        color: white;
+        box-shadow: 0 2px 12px rgba(168,85,247,0.4);
+      }
       .zone-default .rank-num {
         background: var(--cl-card-2);
         color: var(--secondary-text-color);
@@ -413,6 +473,7 @@ class CalcioLiveStandingsCard extends LitElement {
       .legend-dot.cl { background: linear-gradient(135deg, var(--cl-cl), #4f46e5); }
       .legend-dot.el { background: linear-gradient(135deg, var(--cl-el), #ea580c); }
       .legend-dot.rel { background: linear-gradient(135deg, var(--cl-rel), #b91c1c); }
+      .legend-dot.conf { background: linear-gradient(135deg, var(--cl-conf), #7e22ce); }
 
       /* Toast */
       .event-toast {
