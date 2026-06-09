@@ -360,6 +360,10 @@ const TRANSLATIONS = {
     'hero.teams': 'squadre',
     'hero.not_started': 'Non iniziato',
 
+    'phase.regular_season': 'Campionato',
+    'phase.group_stage': 'Fase a gironi',
+    'phase.playoffs': 'Play-off',
+
     'col.pos': '#',
     'col.team': 'Squadra',
     'col.played': 'P',
@@ -465,6 +469,7 @@ const TRANSLATIONS = {
 
     'zone.champions': 'Champions',
     'zone.europa': 'Europa',
+    'zone.conference': 'Conference League',
     'zone.relegation': 'Relégation',
     'zone.qualified': 'Qualifiées',
     'zone.third_place_playoff': 'Meilleurs 3es',
@@ -472,6 +477,10 @@ const TRANSLATIONS = {
     'hero.groups': 'groupes',
     'hero.teams': 'équipes',
     'hero.not_started': 'Pas commencé',
+
+    'phase.regular_season': 'Saison régulière',
+    'phase.group_stage': 'Phase de groupes',
+    'phase.playoffs': 'Barrages',
 
     'col.pos': '#',
     'col.team': 'Équipe',
@@ -578,6 +587,7 @@ const TRANSLATIONS = {
 
     'zone.champions': 'Champions',
     'zone.europa': 'Europa',
+    'zone.conference': 'Conference League',
     'zone.relegation': 'Descenso',
     'zone.qualified': 'Clasificadas',
     'zone.third_place_playoff': 'Mejores 3°',
@@ -585,6 +595,10 @@ const TRANSLATIONS = {
     'hero.groups': 'grupos',
     'hero.teams': 'equipos',
     'hero.not_started': 'No iniciado',
+
+    'phase.regular_season': 'Temporada regular',
+    'phase.group_stage': 'Fase de grupos',
+    'phase.playoffs': 'Eliminatorias',
 
     'col.pos': '#',
     'col.team': 'Equipo',
