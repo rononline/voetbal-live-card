@@ -311,11 +311,11 @@ class CalcioLiveStandingsCard extends LitElement {
 
   _shouldShowPhase(phase) {
     if (!phase) return false;
-
     const lower = String(phase).toLowerCase();
-
     if (lower === 'regular-season') return false;
-
+    // Group names that contain a year are season identifiers, not meaningful
+    // phase labels (e.g. "2025-2026 Dutch Eredivisie" duplicates seasonName).
+    if (/\d{4}/.test(phase)) return false;
     return true;
   }
 
