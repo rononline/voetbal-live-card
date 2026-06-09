@@ -329,7 +329,7 @@ class CalcioLiveTodayMatchesCard extends LitElement {
 
         <div class="scroll-content" style="max-height: ${scrollHeight}px;">
           ${grouped.map(group => html`
-            <div class="day-divider ${group.key.includes('Oggi') ? 'today' : ''}">${group.key}</div>
+            <div class="day-divider ${group.key.startsWith('⚡') ? 'today' : ''}">${group.key}</div>
             ${group.matches.map(match => {
               const matchKey = `${match.home_team}_${match.away_team}`;
               const isLive = match.state === 'in';
