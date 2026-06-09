@@ -317,6 +317,6 @@ customElements.define("calcio-live-timeline", CalcioLiveTimelineCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: 'calcio-live-timeline',
-  name: 'Calcio Live Timeline Card',
-  description: 'Cronologia minuto-per-minuto degli eventi della partita',
+  name: 'Voetbal Live Tijdlijn Card',
+  description: 'Minute-by-minute timeline of match events',
 });

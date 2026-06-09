@@ -889,6 +889,6 @@ customElements.define("calcio-live-bracket", CalcioLiveBracketCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: 'calcio-live-bracket',
-  name: 'Calcio Live Bracket Card',
+  name: 'Voetbal Live Schema Card',
   description: 'Knockout bracket for Champions League, Europa League, and other cup competitions',
 });

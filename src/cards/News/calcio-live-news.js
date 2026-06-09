@@ -241,6 +241,6 @@ customElements.define("calcio-live-news", CalcioLiveNewsCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: 'calcio-live-news',
-  name: 'Calcio Live News Card',
+  name: 'Voetbal Live Nieuws Card',
   description: 'Shows the latest football news for a competition',
 });

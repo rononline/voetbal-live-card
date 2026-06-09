@@ -963,6 +963,6 @@ customElements.define("calcio-live-classifica", CalcioLiveStandingsCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: 'calcio-live-classifica',
-  name: 'Calcio Live Classifica Card',
+  name: 'Voetbal Live Stand Card',
   description: 'Shows the standings for a league or cup competition',
 });

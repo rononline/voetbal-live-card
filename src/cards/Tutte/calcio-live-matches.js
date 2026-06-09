@@ -354,7 +354,7 @@ class CalcioLiveTodayMatchesCard extends LitElement {
               ? html`<img class="league-logo" src="${leagueInfo.logo_href}" alt="${leagueInfo.abbreviation || ''}" />`
               : (teamLogo ? html`<img class="league-logo" src="${teamLogo}" alt="" />` : '')}
             <div class="league-info">
-              <div class="league-name">${(leagueInfo && leagueInfo.abbreviation) || stateObj.state || 'Calcio Live'}</div>
+              <div class="league-name">${(leagueInfo && leagueInfo.abbreviation) || stateObj.state || 'Voetbal Live'}</div>
               <div class="league-dates">
                 ${leagueInfo && leagueInfo.startDate ? `${leagueInfo.startDate} → ${leagueInfo.endDate}` : this._t('generic.matches_count', { n: limited.length })}
               </div>
@@ -793,6 +793,6 @@ customElements.define("calcio-live-matches", CalcioLiveTodayMatchesCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: 'calcio-live-matches',
-  name: 'Calcio Live Matches Card',
+  name: 'Voetbal Live Wedstrijden Card',
   description: 'Shows all matches for a competition or team',
 });

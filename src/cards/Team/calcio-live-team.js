@@ -1306,6 +1306,6 @@ customElements.define("calcio-live-team", CalcioLiveTeamNextCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: 'calcio-live-team',
-  name: 'Calcio Live team Card',
+  name: 'Voetbal Live Team Card',
   description: 'Shows the next or current match for your team',
 });

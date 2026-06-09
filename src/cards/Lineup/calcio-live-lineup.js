@@ -332,6 +332,6 @@ customElements.define("calcio-live-lineup", CalcioLiveLineupCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: 'calcio-live-lineup',
-  name: 'Calcio Live Lineup Card',
+  name: 'Voetbal Live Opstelling Card',
   description: 'Shows the lineups of both teams for the current or upcoming match',
 });
