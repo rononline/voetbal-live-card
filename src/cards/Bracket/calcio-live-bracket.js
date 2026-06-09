@@ -296,7 +296,7 @@ class CalcioLiveBracketCard extends LitElement {
   render() {
     if (!this.hass || !this._config) return html``;
     const stateObj = this.hass.states[this._config.entity];
-    if (!stateObj) return html`<ha-card class="empty">Entità sconosciuta: ${this._config.entity}</ha-card>`;
+    if (!stateObj) return html`<ha-card class="empty">${this._t('generic.unknown_entity')}: ${this._config.entity}</ha-card>`;
 
     const rounds = stateObj.attributes.rounds || [];
     if (rounds.length === 0) {
@@ -406,13 +406,6 @@ class CalcioLiveBracketCard extends LitElement {
         letter-spacing: -0.02em;
         color: var(--cl-text);
       }
-      .header-text .title-it {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--cl-text-2);
-        margin-left: 4px;
-        opacity: 0.85;
-      }
       .header-text .subtitle {
         font-size: 11px;
         color: var(--cl-text-2);
@@ -452,13 +445,6 @@ class CalcioLiveBracketCard extends LitElement {
         text-transform: uppercase;
         letter-spacing: 0.12em;
         color: var(--cl-accent);
-        line-height: 1;
-      }
-      .round-name-it {
-        font-size: 9px;
-        font-weight: 600;
-        color: var(--cl-text-2);
-        opacity: 0.85;
         line-height: 1;
       }
       .round-ties {
@@ -669,13 +655,6 @@ class CalcioLiveBracketCard extends LitElement {
         color: var(--cl-accent);
         line-height: 1;
       }
-      .tree-col-label-it {
-        font-size: 8px;
-        font-weight: 600;
-        color: var(--cl-text-2);
-        line-height: 1;
-        opacity: 0.85;
-      }
       .tree-col-ties {
         flex: 1;
         display: flex;
@@ -846,10 +825,6 @@ class CalcioLiveBracketCard extends LitElement {
         -webkit-text-fill-color: transparent;
         text-align: center;
         z-index: 2;
-      }
-      .trophy-label-it {
-        font-weight: 600;
-        opacity: 0.85;
       }
       .final-tie-wrap {
         position: relative;
