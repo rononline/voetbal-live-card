@@ -1230,7 +1230,7 @@
           </div>
 
           <div class="score-center">
-            ${s?F`<div class="score-numbers">${i.home_score} <span class="dash">-</span> ${i.away_score}</div>`:F`<div class="score-vs">VS</div>`}
+            ${s?F`<div class="score-numbers">${i.home_score} <span class="dash">-</span> ${i.away_score}</div>`:F`<div class="score-vs">tegen</div>`}
             ${this._renderClock(i)}
           </div>
 

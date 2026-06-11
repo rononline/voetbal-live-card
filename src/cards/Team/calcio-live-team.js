@@ -468,7 +468,7 @@ class CalcioLiveTeamNextCard extends LitElement {
           <div class="score-center">
             ${showScore
               ? html`<div class="score-numbers">${match.home_score} <span class="dash">-</span> ${match.away_score}</div>`
-              : html`<div class="score-vs">VS</div>`
+              : html`<div class="score-vs">tegen</div>`
             }
             ${this._renderClock(match)}
           </div>
