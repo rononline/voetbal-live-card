@@ -401,12 +401,10 @@ class CalcioLiveStandingsCard extends LitElement {
     const tableHeight = maxVisible * 48 + 50;
 
     const isPreSeason = total > 0 && filteredStandings.every(
-      t => parseInt(t.games_played ?? t.wins ?? '0') === 0 &&
-           parseInt(t.wins ?? '0') === 0 &&
+      t => parseInt(t.wins ?? '0') === 0 &&
            parseInt(t.draws ?? '0') === 0 &&
            parseInt(t.losses ?? '0') === 0
     );
-    const seasonStart = stateObj.attributes.season_start || null;
 
     return html`
       <ha-card>
@@ -419,7 +417,7 @@ class CalcioLiveStandingsCard extends LitElement {
         ${isPreSeason ? html`
           <div class="preseason-banner">
             <span class="preseason-icon">🗓️</span>
-            <span>Seizoen begint${seasonStart ? ` op ${seasonStart}` : ' binnenkort'}</span>
+            <span>Seizoen ${seasonName || ''} is nog niet begonnen</span>
           </div>
         ` : ''}
 

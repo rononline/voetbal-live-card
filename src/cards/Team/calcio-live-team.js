@@ -525,14 +525,18 @@ class CalcioLiveTeamNextCard extends LitElement {
           </div>
         ` : ''}
 
-        ${this._renderUpcomingList(stateObj.attributes.matches)}
+        ${this._renderUpcomingList(stateObj.attributes.upcoming_matches, stateObj.attributes.matches)}
       </ha-card>
     `;
   }
 
-  _renderUpcomingList(matches) {
-    if (!matches || matches.length <= 1) return '';
-    const upcoming = matches.slice(1).filter(m => m.state === 'pre').slice(0, 4);
+  _renderUpcomingList(upcomingMatches, fallbackMatches) {
+    // Gebruik upcoming_matches van sensor (team_match), of val terug op matches[1..] (team_matches)
+    const upcoming = upcomingMatches && upcomingMatches.length > 0
+      ? upcomingMatches
+      : (fallbackMatches && fallbackMatches.length > 1
+          ? fallbackMatches.slice(1).filter(m => m.state === 'pre').slice(0, 4)
+          : []);
     if (upcoming.length === 0) return '';
     return html`
       <div class="upcoming-list">
