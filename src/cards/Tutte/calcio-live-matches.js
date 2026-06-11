@@ -452,7 +452,7 @@ class CalcioLiveTodayMatchesCard extends LitElement {
           </div>
           <img style="width:64px; height:64px; object-fit:contain;" src="${m.away_logo}" alt="${m.away_team}" />
         </div>
-        <p style="text-align:center; color:#cbd5e1; font-size:14px; margin:0 0 20px;"><strong>${m.home_team}</strong> vs <strong>${m.away_team}</strong></p>
+        <p style="text-align:center; color:#cbd5e1; font-size:14px; margin:0 0 20px;"><strong>${m.home_team}</strong> tegen <strong>${m.away_team}</strong></p>
         <div id="matches-events-container"></div>
         <button id="popup-close-btn" style="background:linear-gradient(135deg,#6366f1,#ec4899); color:white; padding:12px 20px; border:none; border-radius:12px; cursor:pointer; margin-top:20px; font-weight:800; width:100%; font-size:14px;">${tx('generic.close')}</button>
       </div>
