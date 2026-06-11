@@ -181,7 +181,7 @@ class CalcioLiveTodayMatchesCard extends LitElement {
   _parseMatchDate(dateStr) {
     if (!dateStr) return null;
     const [datePart, timePart] = dateStr.split(' ');
-    const [day, month, year] = datePart.split('/').map(Number);
+    const [day, month, year] = datePart.split(/[-\/]/).map(Number);
     const [hours, minutes] = timePart ? timePart.split(':').map(Number) : [0, 0];
     return new Date(year, month - 1, day, hours, minutes);
   }
@@ -198,7 +198,9 @@ class CalcioLiveTodayMatchesCard extends LitElement {
 
   _matchScore(match, side) {
     if (match.state === 'pre') return '-';
-    return match[side === 'home' ? 'home_score' : 'away_score'] ?? '-';
+    const score = match[side === 'home' ? 'home_score' : 'away_score'];
+    if (score === null || score === undefined || score === 'N/A') return '-';
+    return score;
   }
 
   _isWinner(match, side) {

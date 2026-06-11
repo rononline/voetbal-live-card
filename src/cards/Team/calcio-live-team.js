@@ -215,7 +215,7 @@ class CalcioLiveTeamNextCard extends LitElement {
     if (!dateStr || dateStr === 'N/A') return null;
     try {
       const [datePart, timePart] = dateStr.split(' ');
-      const [day, month, year] = datePart.split('/').map(Number);
+      const [day, month, year] = datePart.split(/[-\/]/).map(Number);
       const [hours, minutes] = (timePart || '00:00').split(':').map(Number);
       return new Date(year, month - 1, day, hours, minutes);
     } catch (e) { return null; }
@@ -552,7 +552,7 @@ class CalcioLiveTeamNextCard extends LitElement {
   _relativeDate(dateStr) {
     if (!dateStr) return '';
     const parts = dateStr.split(' ');
-    const [day, month, year] = (parts[0] || '').split('/').map(Number);
+    const [day, month, year] = (parts[0] || '').split(/[-\/]/).map(Number);
     if (!day || !month || !year) return parts[0] || '';
     const match = new Date(year, month - 1, day);
     const today = new Date(); today.setHours(0, 0, 0, 0);
