@@ -542,12 +542,8 @@ class CalcioLiveStandingsCard extends LitElement {
       }
     }
 
-    const leagueLogo = stateObj.attributes.league_logo && stateObj.attributes.league_logo !== 'N/A'
-      ? stateObj.attributes.league_logo : null;
-
     return html`
       <div class="top-bar ${isCupGroup ? 'top-bar-cup' : ''} ${hero ? `accent-${hero.accent}` : ''}">
-        ${leagueLogo && !hero ? html`<img class="league-logo" src="${leagueLogo}" alt="" />` : ''}
         ${hero && hero.icon ? html`<div class="hero-icon">${hero.icon}</div>` : ''}
         <div class="league-title">
           <h2>${leagueAbbr || stateObj.state}</h2>
@@ -701,14 +697,6 @@ class CalcioLiveStandingsCard extends LitElement {
         color: var(--cl-text);
         backdrop-filter: blur(8px);
       }
-      .top-bar .league-logo {
-        width: 42px; height: 42px;
-        object-fit: contain;
-        filter: drop-shadow(0 2px 8px rgba(99,102,241,0.3));
-        margin-bottom: 8px;
-        display: block;
-      }
-      .league-title { display: inline; }
       .top-bar h2 {
         margin: 0;
         font-size: 20px;

@@ -127,9 +127,8 @@
             `}))}
         </tbody>
       </table>
-    `}_renderHeader(e,t,i,a,n){const s=this._getZoneConfig(),o=this._isCupGroupStage(),r=s&&s.hero?s.hero:null,l=e.attributes.league_abbreviation&&"N/A"!==e.attributes.league_abbreviation?e.attributes.league_abbreviation:null,c=l&&t?t.replace(l,"").trim():t&&"n/a"!==t.toLowerCase()?t:"",d=n?this._t("phase.group_stage"):this._shouldShowPhase(i&&i.name)?this._translatePhase(i.name):"",p=[];l&&p.push(this._t("card.standings")),c&&p.push(c),d&&p.push(d);let h=0;if(n)for(const e of a)h+=(e.standings||[]).filter((e=>null!=e.rank)).length;const g=e.attributes.league_logo&&"N/A"!==e.attributes.league_logo?e.attributes.league_logo:null;return F`
+    `}_renderHeader(e,t,i,a,n){const s=this._getZoneConfig(),o=this._isCupGroupStage(),r=s&&s.hero?s.hero:null,l=e.attributes.league_abbreviation&&"N/A"!==e.attributes.league_abbreviation?e.attributes.league_abbreviation:null,c=l&&t?t.replace(l,"").trim():t&&"n/a"!==t.toLowerCase()?t:"",d=n?this._t("phase.group_stage"):this._shouldShowPhase(i&&i.name)?this._translatePhase(i.name):"",p=[];l&&p.push(this._t("card.standings")),c&&p.push(c),d&&p.push(d);let h=0;if(n)for(const e of a)h+=(e.standings||[]).filter((e=>null!=e.rank)).length;return F`
       <div class="top-bar ${o?"top-bar-cup":""} ${r?`accent-${r.accent}`:""}">
-        ${g&&!r?F`<img class="league-logo" src="${g}" alt="" />`:""}
         ${r&&r.icon?F`<div class="hero-icon">${r.icon}</div>`:""}
         <div class="league-title">
           <h2>${l||e.state}</h2>
@@ -255,14 +254,6 @@
         color: var(--cl-text);
         backdrop-filter: blur(8px);
       }
-      .top-bar .league-logo {
-        width: 42px; height: 42px;
-        object-fit: contain;
-        filter: drop-shadow(0 2px 8px rgba(99,102,241,0.3));
-        margin-bottom: 8px;
-        display: block;
-      }
-      .league-title { display: inline; }
       .top-bar h2 {
         margin: 0;
         font-size: 20px;
