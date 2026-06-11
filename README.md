@@ -28,6 +28,14 @@ Fork van [Calcio Live Card](https://github.com/Bobsilvio/calcio-live-card) door 
 
 ---
 
+## 📸 Screenshots
+
+| Stand | Team | Wedstrijden |
+|---|---|---|
+| ![Stand](images/classifica.png) | ![Team](images/squadra.png) | ![Wedstrijden](images/campionato.png) |
+
+---
+
 ## 📦 Installatie via HACS
 
 1. Voeg de repository toe als **custom repository** in HACS:  
