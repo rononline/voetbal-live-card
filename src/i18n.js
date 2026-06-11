@@ -1,7 +1,7 @@
-// Traduzioni centralizzate per tutte le card Calcio Live.
-// Lingue supportate: en (default), it, fr, es.
-// La lingua viene rilevata da hass.locale.language o hass.language; può essere
-// sovrascritta tramite config.language sulla singola card.
+// Vertalingen voor alle Voetbal Live kaarten.
+// Ondersteunde talen: en (standaard), nl, it, fr, es.
+// Taal wordt bepaald via hass.locale.language of hass.language;
+// kan worden overschreven met config.language op de kaart.
 
 const TRANSLATIONS = {
   en: {

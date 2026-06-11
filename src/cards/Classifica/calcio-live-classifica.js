@@ -514,15 +514,24 @@ class CalcioLiveStandingsCard extends LitElement {
     const isCupGroup = this._isCupGroupStage();
     const hero = zones && zones.hero ? zones.hero : null;
 
-    // Sub: niente "N/A" sporco. Solo phase se disponibile.
+    const leagueAbbr = stateObj.attributes.league_abbreviation && stateObj.attributes.league_abbreviation !== 'N/A'
+      ? stateObj.attributes.league_abbreviation : null;
+
+    // Seizoensjaar extraheren ("2026-27 Eredivisie" → "2026-27")
+    const seasonYear = leagueAbbr && seasonName
+      ? seasonName.replace(leagueAbbr, '').trim()
+      : (seasonName && seasonName.toLowerCase() !== 'n/a' ? seasonName : '');
+
     const phaseLabel = showAllGroups
       ? this._t('phase.group_stage')
       : (this._shouldShowPhase(standingsGroup && standingsGroup.name)
           ? this._translatePhase(standingsGroup.name)
           : '');
-    const hasSeason = seasonName && seasonName.toLowerCase() !== 'n/a';
+
+    // Sub: toon "Stand" alleen als de h2 de abbreviation toont (anders is "Stand" al de h2)
     const subParts = [];
-    if (hasSeason) subParts.push(seasonName);
+    if (leagueAbbr) subParts.push(this._t('card.standings'));
+    if (seasonYear) subParts.push(seasonYear);
     if (phaseLabel) subParts.push(phaseLabel);
 
     // Conteggio gironi e squadre totali (utile su tornei a gironi)
@@ -541,7 +550,7 @@ class CalcioLiveStandingsCard extends LitElement {
         ${leagueLogo && !hero ? html`<img class="league-logo" src="${leagueLogo}" alt="" />` : ''}
         ${hero && hero.icon ? html`<div class="hero-icon">${hero.icon}</div>` : ''}
         <div class="league-title">
-          <h2>${stateObj.state}</h2>
+          <h2>${leagueAbbr || stateObj.state}</h2>
           <div class="sub">${subParts.join(' · ')}</div>
         </div>
         ${showAllGroups && isCupGroup ? html`

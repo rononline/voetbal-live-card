@@ -127,18 +127,18 @@
             `}))}
         </tbody>
       </table>
-    `}_renderHeader(e,t,i,a,n){const s=this._getZoneConfig(),o=this._isCupGroupStage(),r=s&&s.hero?s.hero:null,l=n?this._t("phase.group_stage"):this._shouldShowPhase(i&&i.name)?this._translatePhase(i.name):"",c=[];t&&"n/a"!==t.toLowerCase()&&c.push(t),l&&c.push(l);let d=0;if(n)for(const e of a)d+=(e.standings||[]).filter((e=>null!=e.rank)).length;const p=e.attributes.league_logo&&"N/A"!==e.attributes.league_logo?e.attributes.league_logo:null;return F`
+    `}_renderHeader(e,t,i,a,n){const s=this._getZoneConfig(),o=this._isCupGroupStage(),r=s&&s.hero?s.hero:null,l=e.attributes.league_abbreviation&&"N/A"!==e.attributes.league_abbreviation?e.attributes.league_abbreviation:null,c=l&&t?t.replace(l,"").trim():t&&"n/a"!==t.toLowerCase()?t:"",d=n?this._t("phase.group_stage"):this._shouldShowPhase(i&&i.name)?this._translatePhase(i.name):"",p=[];l&&p.push(this._t("card.standings")),c&&p.push(c),d&&p.push(d);let h=0;if(n)for(const e of a)h+=(e.standings||[]).filter((e=>null!=e.rank)).length;const g=e.attributes.league_logo&&"N/A"!==e.attributes.league_logo?e.attributes.league_logo:null;return F`
       <div class="top-bar ${o?"top-bar-cup":""} ${r?`accent-${r.accent}`:""}">
-        ${p&&!r?F`<img class="league-logo" src="${p}" alt="" />`:""}
+        ${g&&!r?F`<img class="league-logo" src="${g}" alt="" />`:""}
         ${r&&r.icon?F`<div class="hero-icon">${r.icon}</div>`:""}
         <div class="league-title">
-          <h2>${e.state}</h2>
-          <div class="sub">${c.join(" · ")}</div>
+          <h2>${l||e.state}</h2>
+          <div class="sub">${p.join(" · ")}</div>
         </div>
         ${n&&o?F`
           <div class="hero-badges">
             <span class="badge">${a.length} ${this._t("hero.groups")}</span>
-            <span class="badge">${d} ${this._t("hero.teams")}</span>
+            <span class="badge">${h} ${this._t("hero.teams")}</span>
           </div>
         `:""}
       </div>
@@ -700,7 +700,7 @@
                           <span class="league-chip">${e.league_name}</span>
                         `:""}
                         ${o&&r?F`
-                          <span class="tv-chip" title="Diretta TV">
+                          <span class="tv-chip" title="Live TV">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="13" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
                             ${o}
                           </span>
