@@ -1,26 +1,11 @@
 import { css } from "lit-element";
 
-// Skin condivise per tutte le card Calcio Live.
-//
-// Obiettivo: un flag `skin` per card (valori: 'dark' | 'light', default 'dark')
-// indipendente dal tema di Home Assistant. Le card NON devono più dipendere da
-// --primary-text-color / --secondary-text-color / --card-background-color del
-// tema HA per testo e sfondo, altrimenti una skin chiara su tema HA scuro (o
-// viceversa) risulterebbe illeggibile.
-//
-// Strategia per ridurre al minimo le modifiche nei corpi delle card:
-// - si mantengono i NOMI delle variabili già usate (--cl-card-2, --cl-divider,
-//   --cl-glass-border, gli accent --cl-accent/--cl-live/...).
-// - le DEFINIZIONI vengono centralizzate qui con varianti dark/light.
-// - si introducono --cl-bg / --cl-surface / --cl-text / --cl-text-2 che le card
-//   usano per sfondo e testo al posto delle variabili del tema HA.
-//
-// Gli accent restano colorati identici nelle due skin (richiesta esplicita):
-// cambia solo la base (sfondo + superfici + testo + divisori).
+// Beschikbare themes: dark (standaard), light, feyenoord, classic, neon, gold
+// Gebruik: skin: feyenoord  in de kaart-YAML
 
 export const skinStyles = css`
   :host {
-    /* Accent palette — identica in dark e light */
+    /* Accent palette — standaard (dark/light) */
     --cl-accent: #6366f1;
     --cl-accent-2: #ec4899;
     --cl-live: #ef4444;
@@ -29,14 +14,13 @@ export const skinStyles = css`
     --cl-gold: #fbbf24;
     --cl-gold-glow: rgba(251,191,36,0.4);
     --cl-gold-text: #fde047;
-    /* Zone classifica */
     --cl-cl: #6366f1;
     --cl-el: #f97316;
     --cl-rel: #ef4444;
     --cl-conf: #a855f7;
   }
 
-  /* ---------- DARK (default) ---------- */
+  /* ---------- DARK (standaard) ---------- */
   :host,
   :host([data-skin="dark"]) {
     --cl-bg: #14182a;
@@ -74,16 +58,130 @@ export const skinStyles = css`
     --cl-toast-bg: #1a1f33;
     --cl-num-bg: #1a1f33;
   }
+
+  /* ---------- FEYENOORD (rood/zwart) ---------- */
+  :host([data-skin="feyenoord"]) {
+    --cl-accent: #cc0000;
+    --cl-accent-2: #ff2200;
+    --cl-live: #ff4444;
+    --cl-live-glow: rgba(204,0,0,0.6);
+    --cl-cl: #cc0000;
+    --cl-el: #ff6600;
+    --cl-rel: #990000;
+    --cl-conf: #cc3300;
+    --cl-gold: #ffd700;
+    --cl-gold-glow: rgba(255,215,0,0.4);
+    --cl-gold-text: #ffe55c;
+    --cl-bg: #130303;
+    --cl-surface: rgba(204,0,0,0.07);
+    --cl-surface-2: rgba(204,0,0,0.12);
+    --cl-card-2: rgba(204,0,0,0.07);
+    --cl-divider: rgba(204,0,0,0.18);
+    --cl-glass-border: rgba(204,0,0,0.20);
+    --cl-text: #f4f0f0;
+    --cl-text-2: #c09090;
+    --cl-shadow: rgba(0,0,0,0.40);
+    --cl-overlay-strong: rgba(0,0,0,0.60);
+    --cl-overlay-soft: rgba(0,0,0,0.30);
+    --cl-chip-bg: rgba(204,0,0,0.12);
+    --cl-chip-border: rgba(204,0,0,0.22);
+    --cl-toast-bg: #0d0101;
+    --cl-num-bg: #0d0101;
+  }
+
+  /* ---------- CLASSIC (groen/goud — voetbalveld) ---------- */
+  :host([data-skin="classic"]) {
+    --cl-accent: #16a34a;
+    --cl-accent-2: #22c55e;
+    --cl-live: #ef4444;
+    --cl-live-glow: rgba(239,68,68,0.5);
+    --cl-cl: #16a34a;
+    --cl-el: #f97316;
+    --cl-rel: #ef4444;
+    --cl-conf: #84cc16;
+    --cl-bg: #0a120a;
+    --cl-surface: rgba(22,163,74,0.07);
+    --cl-surface-2: rgba(22,163,74,0.12);
+    --cl-card-2: rgba(22,163,74,0.07);
+    --cl-divider: rgba(22,163,74,0.18);
+    --cl-glass-border: rgba(22,163,74,0.20);
+    --cl-text: #f0f4f0;
+    --cl-text-2: #8aaa8a;
+    --cl-shadow: rgba(0,0,0,0.35);
+    --cl-overlay-strong: rgba(0,0,0,0.55);
+    --cl-overlay-soft: rgba(0,0,0,0.25);
+    --cl-chip-bg: rgba(22,163,74,0.10);
+    --cl-chip-border: rgba(22,163,74,0.22);
+    --cl-toast-bg: #060d06;
+    --cl-num-bg: #060d06;
+  }
+
+  /* ---------- NEON (cyberpunk) ---------- */
+  :host([data-skin="neon"]) {
+    --cl-accent: #00e5ff;
+    --cl-accent-2: #ff00aa;
+    --cl-live: #ff2d55;
+    --cl-live-glow: rgba(255,45,85,0.6);
+    --cl-cl: #00e5ff;
+    --cl-el: #ff9500;
+    --cl-rel: #ff2d55;
+    --cl-conf: #bf5af2;
+    --cl-gold: #ffd60a;
+    --cl-gold-glow: rgba(255,214,10,0.5);
+    --cl-gold-text: #ffe55c;
+    --cl-bg: #080816;
+    --cl-surface: rgba(0,229,255,0.05);
+    --cl-surface-2: rgba(0,229,255,0.09);
+    --cl-card-2: rgba(0,229,255,0.05);
+    --cl-divider: rgba(0,229,255,0.14);
+    --cl-glass-border: rgba(0,229,255,0.18);
+    --cl-text: #e8f8ff;
+    --cl-text-2: #7ab8cc;
+    --cl-shadow: rgba(0,0,0,0.45);
+    --cl-overlay-strong: rgba(0,0,0,0.65);
+    --cl-overlay-soft: rgba(0,0,0,0.30);
+    --cl-chip-bg: rgba(0,229,255,0.08);
+    --cl-chip-border: rgba(0,229,255,0.20);
+    --cl-toast-bg: #040410;
+    --cl-num-bg: #040410;
+  }
+
+  /* ---------- GOLD (premium/Champions League) ---------- */
+  :host([data-skin="gold"]) {
+    --cl-accent: #f59e0b;
+    --cl-accent-2: #fcd34d;
+    --cl-live: #ef4444;
+    --cl-live-glow: rgba(239,68,68,0.5);
+    --cl-cl: #f59e0b;
+    --cl-el: #f97316;
+    --cl-rel: #ef4444;
+    --cl-conf: #a855f7;
+    --cl-gold: #f59e0b;
+    --cl-gold-glow: rgba(245,158,11,0.5);
+    --cl-gold-text: #fde047;
+    --cl-bg: #0d0900;
+    --cl-surface: rgba(245,158,11,0.06);
+    --cl-surface-2: rgba(245,158,11,0.11);
+    --cl-card-2: rgba(245,158,11,0.06);
+    --cl-divider: rgba(245,158,11,0.16);
+    --cl-glass-border: rgba(245,158,11,0.20);
+    --cl-text: #faf6ed;
+    --cl-text-2: #c4a96a;
+    --cl-shadow: rgba(0,0,0,0.40);
+    --cl-overlay-strong: rgba(0,0,0,0.60);
+    --cl-overlay-soft: rgba(0,0,0,0.28);
+    --cl-chip-bg: rgba(245,158,11,0.10);
+    --cl-chip-border: rgba(245,158,11,0.22);
+    --cl-toast-bg: #090600;
+    --cl-num-bg: #090600;
+  }
 `;
 
-/**
- * Legge il flag skin dalla config (default 'dark') e lo riflette come
- * attributo `data-skin` sull'host, così le regole CSS sopra si attivano.
- * Da chiamare in setConfig di ogni card.
- */
+const VALID_SKINS = ['dark', 'light', 'feyenoord', 'classic', 'neon', 'gold'];
+
 export function resolveSkin(config) {
   const s = config && typeof config.skin === 'string' ? config.skin.toLowerCase() : 'dark';
-  return s === 'light' ? 'light' : 'dark';
+  return VALID_SKINS.includes(s) ? s : 'dark';
 }
 
 export function applySkin(el, config) {
