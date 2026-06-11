@@ -138,6 +138,7 @@ class CalcioLiveStandingsCard extends LitElement {
     this.hideHeader = config.hide_header || false;
     this.selectedGroup = config.selected_group || '';
     this.showEventToasts = config.show_event_toasts === true;
+    this.highlightTeam = (config.highlight_team || '').toLowerCase();
     this._toastMessage = '';
     this._toastVisible = false;
     this._toastVariant = 'goal';
@@ -451,6 +452,8 @@ class CalcioLiveStandingsCard extends LitElement {
         </thead>
         <tbody>
           ${standings.map(team => {
+            const isHighlighted = this.highlightTeam && team.team_name &&
+              team.team_name.toLowerCase().includes(this.highlightTeam);
             const num = (v) => {
               if (v === null || v === undefined || v === '') return null;
               const n = parseInt(String(v).replace('+', ''), 10);
@@ -464,7 +467,7 @@ class CalcioLiveStandingsCard extends LitElement {
             const gdClass = gd === null ? '' : (gd > 0 ? 'gd-pos' : (gd < 0 ? 'gd-neg' : ''));
             const gdLabel = gd === null ? '-' : (gd > 0 ? `+${gd}` : `${gd}`);
             return html`
-              <tr class="${this._zoneClass(team.rank, total)}">
+              <tr class="${this._zoneClass(team.rank, total)} ${isHighlighted ? 'highlighted-team' : ''}">
                 <td><div class="rank-cell"><div class="rank-num">${team.rank}</div></div></td>
                 <td class="team-cell">
                   <img src="${team.team_logo}" alt="${team.team_name}" />
@@ -784,6 +787,9 @@ class CalcioLiveStandingsCard extends LitElement {
       .preseason-icon { font-size: 16px; }
 
       .standings-table tbody td:first-child { padding-left: 14px; text-align: left; }
+      .highlighted-team { background: rgba(99,102,241,0.07); }
+      .highlighted-team .tname { font-weight: 800; color: var(--cl-text); }
+      .highlighted-team .points-cell { color: var(--cl-accent); font-weight: 900; }
       .zone-cl td:first-child  { border-left: 3px solid var(--cl-cl);   padding-left: 11px; }
       .zone-el td:first-child  { border-left: 3px solid var(--cl-el);   padding-left: 11px; }
       .zone-conf td:first-child{ border-left: 3px solid var(--cl-conf); padding-left: 11px; }

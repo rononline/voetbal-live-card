@@ -525,38 +525,88 @@ class CalcioLiveTeamNextCard extends LitElement {
           </div>
         ` : ''}
 
-        ${this._renderUpcomingList(stateObj.attributes.upcoming_matches, stateObj.attributes.matches)}
+        ${this._renderH2H(match.head_to_head)}
+        ${this._renderUpcomingList(stateObj.attributes.upcoming_matches, stateObj.attributes.matches, stateObj.attributes.team_name)}
       </ha-card>
     `;
   }
 
-  _renderUpcomingList(upcomingMatches, fallbackMatches) {
-    // Gebruik upcoming_matches van sensor (team_match), of val terug op matches[1..] (team_matches)
+  _relativeDate(dateStr) {
+    if (!dateStr) return '';
+    const parts = dateStr.split(' ');
+    const [day, month, year] = (parts[0] || '').split('/').map(Number);
+    if (!day || !month || !year) return parts[0] || '';
+    const match = new Date(year, month - 1, day);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const diff = Math.round((match - today) / 86400000);
+    if (diff === 1) return this._t('time.tomorrow');
+    if (diff <= 6 && diff > 1) return this._t('time.in_n_d', { n: diff });
+    const lang = resolveLang(this.hass, this._config);
+    const monthKey = `month.${month}`;
+    return `${day} ${this._t(monthKey)}`;
+  }
+
+  _teamBadge(abbrev, color) {
+    const bg = color && color !== 'N/A' ? `#${color.replace('#', '')}` : 'rgba(99,102,241,0.25)';
+    return html`<span class="abbrev-badge" style="background:${bg}">${abbrev}</span>`;
+  }
+
+  _renderUpcomingList(upcomingMatches, fallbackMatches, trackedTeam) {
     const upcoming = upcomingMatches && upcomingMatches.length > 0
       ? upcomingMatches
       : (fallbackMatches && fallbackMatches.length > 1
           ? fallbackMatches.slice(1).filter(m => m.state === 'pre').slice(0, 4)
           : []);
     if (upcoming.length === 0) return '';
+    const tracked = (trackedTeam || '').toLowerCase();
     return html`
       <div class="upcoming-list">
-        <div class="upcoming-list-title">${this._t('team.next_match')}</div>
-        ${upcoming.map(m => html`
-          <div class="upcoming-row">
-            <span class="upcoming-date">${m.date ? m.date.split(' ')[1] || m.date.split(' ')[0] : ''}
-              <span class="upcoming-date-day">${m.date ? m.date.split(' ')[0] : ''}</span>
-            </span>
-            <span class="upcoming-team">
-              <img src="${m.home_logo}" alt="" />
-              ${m.home_abbrev || m.home_team}
-            </span>
-            <span class="upcoming-vs">-</span>
-            <span class="upcoming-team">
-              <img src="${m.away_logo}" alt="" />
-              ${m.away_abbrev || m.away_team}
-            </span>
-          </div>
-        `)}
+        <div class="upcoming-list-title">${this._t('team.upcoming_matches')}</div>
+        ${upcoming.map(m => {
+          const homeTracked = tracked && m.home_team && m.home_team.toLowerCase().includes(tracked);
+          const awayTracked = tracked && m.away_team && m.away_team.toLowerCase().includes(tracked);
+          return html`
+            <div class="upcoming-row">
+              <span class="upcoming-date">
+                ${m.date ? m.date.split(' ')[1] || '' : ''}
+                <span class="upcoming-date-day">${this._relativeDate(m.date)}</span>
+              </span>
+              <span class="upcoming-team ${homeTracked ? 'tracked' : ''}">
+                <img src="${m.home_logo}" alt="" />
+                ${this._teamBadge(m.home_abbrev || '?', m.home_color)}
+              </span>
+              <span class="upcoming-vs">-</span>
+              <span class="upcoming-team ${awayTracked ? 'tracked' : ''}">
+                <img src="${m.away_logo}" alt="" />
+                ${this._teamBadge(m.away_abbrev || '?', m.away_color)}
+              </span>
+            </div>
+          `;
+        })}
+      </div>
+    `;
+  }
+
+  _renderH2H(headToHead) {
+    if (!headToHead || headToHead.length === 0) return '';
+    const recent = headToHead.slice(0, 3);
+    return html`
+      <div class="h2h-section">
+        <div class="upcoming-list-title">${this._t('team.h2h')}</div>
+        ${recent.map(g => {
+          const d = g.date ? g.date.split('T')[0].split('-') : [];
+          const dateLabel = d.length === 3 ? `${d[2]}/${d[1]}/${d[0].slice(2)}` : '';
+          const homeWon = parseInt(g.home_score) > parseInt(g.away_score);
+          const awayWon = parseInt(g.away_score) > parseInt(g.home_score);
+          return html`
+            <div class="h2h-row">
+              <span class="h2h-date">${dateLabel}</span>
+              <span class="h2h-team ${homeWon ? 'winner' : ''}">${g.home_team || ''}</span>
+              <span class="h2h-score">${g.home_score} - ${g.away_score}</span>
+              <span class="h2h-team away ${awayWon ? 'winner' : ''}">${g.away_team || ''}</span>
+            </div>
+          `;
+        })}
       </div>
     `;
   }
@@ -1281,11 +1331,50 @@ class CalcioLiveTeamNextCard extends LitElement {
         text-overflow: ellipsis;
       }
       .upcoming-team img { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; }
+      .upcoming-team.tracked { font-weight: 800; }
+      .upcoming-team.tracked .abbrev-badge { box-shadow: 0 0 8px currentColor; }
       .upcoming-vs {
         font-size: 11px;
         font-weight: 700;
         color: var(--cl-text-2);
         flex-shrink: 0;
+      }
+      .abbrev-badge {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 2px 6px;
+        border-radius: 5px;
+        font-size: 10px;
+        font-weight: 800;
+        color: white;
+        letter-spacing: 0.03em;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        flex-shrink: 0;
+      }
+      .h2h-section {
+        border-top: 1px solid var(--cl-divider);
+        padding: 10px 16px 14px;
+      }
+      .h2h-row {
+        display: flex; align-items: center; gap: 6px;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+        font-size: 11px;
+      }
+      .h2h-row:last-child { border-bottom: none; }
+      .h2h-date {
+        font-size: 10px; font-weight: 600; color: var(--cl-text-2);
+        min-width: 44px; flex-shrink: 0;
+      }
+      .h2h-team {
+        flex: 1; font-weight: 600; color: var(--cl-text-2);
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .h2h-team.away { text-align: right; }
+      .h2h-team.winner { color: var(--cl-text); font-weight: 800; }
+      .h2h-score {
+        font-size: 12px; font-weight: 800; color: var(--cl-text);
+        flex-shrink: 0; text-align: center; min-width: 36px;
+        font-variant-numeric: tabular-nums;
       }
 
       /* Goal celebration */

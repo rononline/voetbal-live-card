@@ -1,6 +1,6 @@
 {
   "name": "voetbal-live-card",
-  "version": "2.18.1",
+  "version": "2.19.0",
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack"
