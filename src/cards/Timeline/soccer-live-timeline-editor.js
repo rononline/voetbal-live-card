@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class CalcioLiveLineupEditor extends LitElement {
+class CalcioLiveTimelineEditor extends LitElement {
   static get properties() {
     return {
       _config: { type: Object },
@@ -95,7 +95,7 @@ class CalcioLiveLineupEditor extends LitElement {
             ${!inList ? html`<option value="${cur}" selected>${cur || '— select —'}</option>` : ''}
             ${this.entities.map(e => html`<option value="${e}" ?selected=${e === cur}>${e}</option>`)}
           </select>
-          <div class="hint" style="margin-top: 4px;">Lineups are published shortly before kick-off.</div>
+          <div class="hint" style="margin-top: 4px;">Events are published during the match.</div>
         </div>
 
         <h3>Settings</h3>
@@ -104,6 +104,14 @@ class CalcioLiveLineupEditor extends LitElement {
           <ha-switch
             .checked=${this._config.hide_header === true}
             data-config-value="hide_header"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+        <div class="option">
+          <label>Reverse order (newest first)</label>
+          <ha-switch
+            .checked=${this._config.reverse_order === true}
+            data-config-value="reverse_order"
             @change=${this._switchChanged}
           ></ha-switch>
         </div>
@@ -136,4 +144,4 @@ class CalcioLiveLineupEditor extends LitElement {
   }
 }
 
-customElements.define('calcio-live-lineup-editor', CalcioLiveLineupEditor);
+customElements.define('soccer-live-timeline-editor', CalcioLiveTimelineEditor);

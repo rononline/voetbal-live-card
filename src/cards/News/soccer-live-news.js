@@ -24,7 +24,7 @@ class CalcioLiveNewsCard extends LitElement {
   }
 
   getCardSize() { return 4; }
-  static getConfigElement() { return document.createElement("calcio-live-news-editor"); }
+  static getConfigElement() { return document.createElement("soccer-live-news-editor"); }
   static getStubConfig() {
     return {
       entity: "sensor.calciolive_news",
@@ -240,11 +240,11 @@ class CalcioLiveNewsCard extends LitElement {
   }
 }
 
-customElements.define("calcio-live-news", CalcioLiveNewsCard);
+customElements.define("soccer-live-news", CalcioLiveNewsCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: 'calcio-live-news',
+  type: 'soccer-live-news',
   name: 'Voetbal Live Nieuws Card',
   description: 'Shows the latest football news for a competition',
 });

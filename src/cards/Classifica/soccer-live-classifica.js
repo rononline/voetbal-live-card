@@ -235,7 +235,7 @@ class CalcioLiveStandingsCard extends LitElement {
   }
 
   getCardSize() { return 5; }
-  static getConfigElement() { return document.createElement("calcio-live-classifica-editor"); }
+  static getConfigElement() { return document.createElement("soccer-live-classifica-editor"); }
   static getStubConfig() {
     return {
       entity: "sensor.calcio_live",
@@ -1095,11 +1095,11 @@ class CalcioLiveStandingsCard extends LitElement {
   }
 }
 
-customElements.define("calcio-live-classifica", CalcioLiveStandingsCard);
+customElements.define("soccer-live-classifica", CalcioLiveStandingsCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: 'calcio-live-classifica',
+  type: 'soccer-live-classifica',
   name: 'Voetbal Live Stand Card',
   description: 'Shows the standings for a league or cup competition',
 });

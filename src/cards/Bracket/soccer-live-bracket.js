@@ -49,7 +49,7 @@ class CalcioLiveBracketCard extends LitElement {
   }
 
   getCardSize() { return 6; }
-  static getConfigElement() { return document.createElement("calcio-live-bracket-editor"); }
+  static getConfigElement() { return document.createElement("soccer-live-bracket-editor"); }
   static getStubConfig() {
     return { entity: "sensor.calciolive_bracket", hide_header: false, compact: false, style: 'list' };
   }
@@ -884,11 +884,11 @@ class CalcioLiveBracketCard extends LitElement {
   }
 }
 
-customElements.define("calcio-live-bracket", CalcioLiveBracketCard);
+customElements.define("soccer-live-bracket", CalcioLiveBracketCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: 'calcio-live-bracket',
+  type: 'soccer-live-bracket',
   name: 'Voetbal Live Schema Card',
   description: 'Knockout bracket for Champions League, Europa League, and other cup competitions',
 });

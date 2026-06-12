@@ -25,7 +25,7 @@ class CalcioLiveCannonieriCard extends LitElement {
   }
 
   static getConfigElement() {
-    return document.createElement("calcio-live-cannonieri-editor");
+    return document.createElement("soccer-live-cannonieri-editor");
   }
 
   static getStubConfig() {
@@ -218,11 +218,11 @@ class CalcioLiveCannonieriCard extends LitElement {
   }
 }
 
-customElements.define("calcio-live-cannonieri", CalcioLiveCannonieriCard);
+customElements.define("soccer-live-cannonieri", CalcioLiveCannonieriCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: "calcio-live-cannonieri",
+  type: "soccer-live-cannonieri",
   name: "Calcio Live · Top Scorers",
   description: "Top scorers for a league",
   preview: false,

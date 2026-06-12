@@ -22,7 +22,7 @@ class CalcioLiveLineupCard extends LitElement {
   }
 
   getCardSize() { return 6; }
-  static getConfigElement() { return document.createElement("calcio-live-lineup-editor"); }
+  static getConfigElement() { return document.createElement("soccer-live-lineup-editor"); }
   static getStubConfig() {
     return { entity: "sensor.calciolive_next", hide_header: false };
   }
@@ -327,11 +327,11 @@ class CalcioLiveLineupCard extends LitElement {
   }
 }
 
-customElements.define("calcio-live-lineup", CalcioLiveLineupCard);
+customElements.define("soccer-live-lineup", CalcioLiveLineupCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: 'calcio-live-lineup',
+  type: 'soccer-live-lineup',
   name: 'Voetbal Live Opstelling Card',
   description: 'Shows the lineups of both teams for the current or upcoming match',
 });

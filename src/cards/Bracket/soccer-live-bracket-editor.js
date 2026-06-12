@@ -159,4 +159,4 @@ class CalcioLiveBracketEditor extends LitElement {
   }
 }
 
-customElements.define('calcio-live-bracket-editor', CalcioLiveBracketEditor);
+customElements.define('soccer-live-bracket-editor', CalcioLiveBracketEditor);

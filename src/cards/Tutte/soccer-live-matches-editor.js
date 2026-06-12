@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class CalcioLiveNewsEditor extends LitElement {
+class CalcioLiveTodayMatchesEditor extends LitElement {
   static get properties() {
     return {
       _config: { type: Object },
@@ -16,19 +16,54 @@ class CalcioLiveNewsEditor extends LitElement {
 
   static get styles() {
     return css`
-      .card-config { display: flex; flex-direction: column; gap: 16px; }
-      .option { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-      label { font-size: 14px; color: var(--primary-text-color); }
-      .field-label { display: block; font-size: 12px; color: var(--secondary-text-color); margin-bottom: 4px; font-weight: 600; }
+      .card-config {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      label {
+        font-size: 14px;
+        color: var(--primary-text-color);
+      }
+      .field-label {
+        display: block;
+        font-size: 12px;
+        color: var(--secondary-text-color);
+        margin-bottom: 4px;
+        font-weight: 600;
+      }
       select, input[type="number"] {
-        width: 100%; padding: 10px 12px; font-size: 14px;
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 14px;
         border-radius: 8px;
         border: 1px solid var(--divider-color, rgba(0,0,0,0.12));
         background: var(--card-background-color, #fff);
         color: var(--primary-text-color, #000);
         box-sizing: border-box;
       }
-      h3 { margin: 8px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-text-color); }
+      select:focus, input:focus {
+        outline: 2px solid var(--primary-color, #03a9f4);
+        outline-offset: -1px;
+      }
+      h3 {
+        margin: 8px 0 0;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--secondary-text-color);
+      }
+      .hint {
+        font-size: 12px;
+        color: var(--secondary-text-color);
+        margin-top: -4px;
+      }
     `;
   }
 
@@ -36,6 +71,7 @@ class CalcioLiveNewsEditor extends LitElement {
     if (!config) throw new Error('Invalid configuration');
     this._config = { ...config };
   }
+
   get config() { return this._config; }
 
   updated(changedProperties) {
@@ -45,7 +81,9 @@ class CalcioLiveNewsEditor extends LitElement {
   _fireConfigChanged(newConfig) {
     this._config = newConfig;
     this.dispatchEvent(new CustomEvent('config-changed', {
-      detail: { config: newConfig }, bubbles: true, composed: true,
+      detail: { config: newConfig },
+      bubbles: true,
+      composed: true,
     }));
     this.requestUpdate();
   }
@@ -91,26 +129,52 @@ class CalcioLiveNewsEditor extends LitElement {
   _fetchEntities() {
     if (!this.hass) return;
     this.entities = Object.keys(this.hass.states)
-      .filter(id => id.startsWith('sensor.calciolive_news'))
+      .filter((entityId) => entityId.startsWith('sensor.calciolive_all'))
       .sort();
   }
 
   render() {
     if (!this._config || !this.hass) return html``;
-    const cur = this._config.entity || '';
-    const inList = cur && this.entities.includes(cur);
+    const currentEntity = this._config.entity || '';
+    const entityInList = currentEntity && this.entities.includes(currentEntity);
+
     return html`
       <div class="card-config">
         <h3>Sensor</h3>
         <div>
-          <label class="field-label">Entity (news sensor)</label>
+          <label class="field-label">Entity</label>
           <select @change=${this._entityChanged}>
-            ${!inList ? html`<option value="${cur}" selected>${cur || '— select —'}</option>` : ''}
-            ${this.entities.map(e => html`<option value="${e}" ?selected=${e === cur}>${e}</option>`)}
+            ${!entityInList ? html`<option value="${currentEntity}" selected>${currentEntity || '— select —'}</option>` : ''}
+            ${this.entities.map(e => html`
+              <option value="${e}" ?selected=${e === currentEntity}>${e}</option>
+            `)}
           </select>
         </div>
 
         <h3>Settings</h3>
+
+        <div>
+          <label class="field-label">Mijn team (accentueren)</label>
+          <input type="text" placeholder="bijv. Feyenoord Rotterdam"
+            .value=${this._config.my_team || ''}
+            @change=${(e) => this._fireConfigChanged({...this._config, my_team: e.target.value})} />
+        </div>
+
+        <div class="option">
+          <label>Live ticker tonen (bij live wedstrijden)</label>
+          <ha-switch .checked=${this._config.show_live_ticker !== false}
+            data-config-value="show_live_ticker" @change=${this._switchChanged}></ha-switch>
+        </div>
+
+        <div class="option">
+          <label>Show Finished Matches</label>
+          <ha-switch
+            .checked=${this._config.show_finished_matches !== false}
+            data-config-value="show_finished_matches"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+
         <div class="option">
           <label>Hide Header</label>
           <ha-switch
@@ -119,20 +183,60 @@ class CalcioLiveNewsEditor extends LitElement {
             @change=${this._switchChanged}
           ></ha-switch>
         </div>
+
         <div class="option">
-          <label>Hide Images</label>
+          <label>Newest Matches First</label>
           <ha-switch
-            .checked=${this._config.hide_images === true}
-            data-config-value="hide_images"
+            .checked=${this._config.reverse_order === true}
+            data-config-value="reverse_order"
             @change=${this._switchChanged}
           ></ha-switch>
         </div>
+
+        <div class="option">
+          <label>Show Event Toasts (in-card)</label>
+          <ha-switch
+            .checked=${this._config.show_event_toasts === true}
+            data-config-value="show_event_toasts"
+            @change=${this._switchChanged}
+          ></ha-switch>
+        </div>
+
         <div>
-          <label class="field-label">Max Articles</label>
-          <input type="number" min="1" max="20"
-            .value=${this._config.max_articles || 5}
-            data-config-value="max_articles"
-            @change=${this._numberChanged} />
+          <label class="field-label">Max Events Visible</label>
+          <input
+            type="number"
+            min="1"
+            max="100"
+            .value=${this._config.max_events_visible || 5}
+            data-config-value="max_events_visible"
+            @change=${this._numberChanged}
+          />
+        </div>
+
+        <div>
+          <label class="field-label">Max Events Total</label>
+          <input
+            type="number"
+            min="1"
+            max="500"
+            .value=${this._config.max_events_total || 50}
+            data-config-value="max_events_total"
+            @change=${this._numberChanged}
+          />
+        </div>
+
+        <div>
+          <label class="field-label">Hide Matches Older Than (Days)</label>
+          <input
+            type="number"
+            min="0"
+            max="365"
+            .value=${this._config.hide_past_days || 0}
+            data-config-value="hide_past_days"
+            @change=${this._numberChanged}
+          />
+          <div class="hint">Only works when "Show Finished Matches" is enabled.</div>
         </div>
         <div>
           <label class="field-label">Skin</label>
@@ -163,4 +267,4 @@ class CalcioLiveNewsEditor extends LitElement {
   }
 }
 
-customElements.define('calcio-live-news-editor', CalcioLiveNewsEditor);
+customElements.define('soccer-live-matches-editor', CalcioLiveTodayMatchesEditor);

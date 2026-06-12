@@ -197,4 +197,4 @@ class CalcioLiveTeamNextCardEditor extends LitElement {
   }
 }
 
-customElements.define('calcio-live-team-editor', CalcioLiveTeamNextCardEditor);
+customElements.define('soccer-live-team-editor', CalcioLiveTeamNextCardEditor);

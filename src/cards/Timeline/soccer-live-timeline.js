@@ -23,7 +23,7 @@ class CalcioLiveTimelineCard extends LitElement {
   }
 
   getCardSize() { return 5; }
-  static getConfigElement() { return document.createElement("calcio-live-timeline-editor"); }
+  static getConfigElement() { return document.createElement("soccer-live-timeline-editor"); }
   static getStubConfig() {
     return { entity: "sensor.calciolive_next", hide_header: false, reverse_order: true };
   }
@@ -312,11 +312,11 @@ class CalcioLiveTimelineCard extends LitElement {
   }
 }
 
-customElements.define("calcio-live-timeline", CalcioLiveTimelineCard);
+customElements.define("soccer-live-timeline", CalcioLiveTimelineCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: 'calcio-live-timeline',
+  type: 'soccer-live-timeline',
   name: 'Voetbal Live Tijdlijn Card',
   description: 'Minute-by-minute timeline of match events',
 });

@@ -1,5 +1,5 @@
 {
-  "name": "voetbal-live-card",
+  "name": "soccer-live-card",
   "version": "2.24.3",
   "main": "webpack.config.js",
   "scripts": {
@@ -7,15 +7,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://Bobsilvio@github.com/Bobsilvio/calcio-live-card.git"
+    "url": "git+https://github.com/rononline/soccerlive-card.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Bobsilvio/calcio-live-card/issues"
+    "url": "https://github.com/rononline/soccerlive-card/issues"
   },
-  "homepage": "https://github.com/Bobsilvio/calcio-live-card#readme",
+  "homepage": "https://github.com/rononline/soccerlive-card#readme",
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.4",
@@ -149,5 +149,5 @@
     "yallist": "^3.1.1",
     "yocto-queue": "^1.1.1"
   },
-  "description": "## Descrizione L'integrazione \"Calcio Live\" per Home Assistant permette di ottenere informazioni in tempo reale sulle competizioni di calcio, come classifiche, cannonieri e giornate di campionato. Queste sono le sue card, ho deciso di separare le card per dare modo di scegliere cosa usare e cosa no."
+  "description": "Football Live cards for Home Assistant"
 }

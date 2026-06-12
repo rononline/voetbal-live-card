@@ -184,4 +184,4 @@ class CalcioLiveCannonieriCardEditor extends LitElement {
   }
 }
 
-customElements.define("calcio-live-cannonieri-editor", CalcioLiveCannonieriCardEditor);
+customElements.define("soccer-live-cannonieri-editor", CalcioLiveCannonieriCardEditor);
