@@ -143,6 +143,11 @@ class CalcioLiveTeamNextCardEditor extends LitElement {
             @change=${(e) => this._fireConfigChanged({...this._config, my_team: e.target.value})} />
         </div>
         <div class="option">
+          <label>Seizoenvorm-trend tonen</label>
+          <ha-switch .checked=${this._config.show_form_trend === true}
+            data-config-value="show_form_trend" @change=${this._switchChanged}></ha-switch>
+        </div>
+        <div class="option">
           <label>Vorige wedstrijden tonen</label>
           <ha-switch .checked=${this._config.show_previous_matches === true}
             data-config-value="show_previous_matches" @change=${this._switchChanged}></ha-switch>

@@ -140,6 +140,7 @@ class CalcioLiveStandingsCard extends LitElement {
     this.showEventToasts = config.show_event_toasts === true;
     this.highlightTeam = (config.highlight_team || config.my_team || '').toLowerCase();
     this.showStats = config.show_stats !== false;
+    this.showGoalsFor = config.show_goals_for === true;
     this.compactMode = config.compact_mode === true;
     this.compactTop = parseInt(config.compact_top) || 5;
     this.compactBottom = parseInt(config.compact_bottom) || 3;
@@ -516,7 +517,10 @@ class CalcioLiveStandingsCard extends LitElement {
                 <td><div class="rank-cell"><div class="rank-num">${team.rank}</div></div></td>
                 <td class="team-cell">
                   <img src="${team.team_logo}" alt="${team.team_name}" />
-                  <span class="tname">${team.team_name}</span>
+                  <div class="tname-group">
+                    <span class="tname">${team.team_name}</span>
+                    ${this.showGoalsFor && team.goals_for && parseInt(team.goals_for) >= 0 ? html`<span class="goals-for-hint">⚽ ${team.goals_for}</span>` : ''}
+                  </div>
                 </td>
                 <td>${played ?? '-'}</td>
                 <td>${w ?? '-'}</td>
@@ -857,6 +861,12 @@ class CalcioLiveStandingsCard extends LitElement {
       .separator-dots {
         font-size: 10px; font-weight: 700;
         color: var(--cl-text-2); letter-spacing: 0.1em; opacity: 0.6;
+      }
+      .tname-group { display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+      .goals-for-hint {
+        font-size: 9px; font-weight: 600;
+        color: var(--cl-text-2); opacity: 0.7;
+        margin-top: 1px;
       }
       .highlighted-team { background: rgba(var(--cl-accent-rgb),0.07); }
       .highlighted-team .tname { font-weight: 800; color: var(--cl-text); }

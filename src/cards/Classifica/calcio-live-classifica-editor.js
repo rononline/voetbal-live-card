@@ -222,6 +222,11 @@ class CalcioLiveClassificaCardEditor extends LitElement {
           <ha-switch .checked=${this._config.show_stats !== false}
             data-config-value="show_stats" @change=${this._switchChanged}></ha-switch>
         </div>
+        <div class="option">
+          <label>Doelpunten per team tonen</label>
+          <ha-switch .checked=${this._config.show_goals_for === true}
+            data-config-value="show_goals_for" @change=${this._switchChanged}></ha-switch>
+        </div>
 
         <div class="option">
           <label>Compact modus</label>

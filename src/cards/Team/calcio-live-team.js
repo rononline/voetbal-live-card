@@ -29,6 +29,7 @@ class CalcioLiveTeamNextCard extends LitElement {
     this.showEventToasts = config.show_event_toasts === true;
     this.myTeam = (config.my_team || '').toLowerCase();
     this.showPreviousMatches = config.show_previous_matches === true;
+    this.showFormTrend = config.show_form_trend === true;
     this._toastMessage = '';
     this._toastVisible = false;
     this._toastVariant = 'goal';
@@ -544,6 +545,7 @@ class CalcioLiveTeamNextCard extends LitElement {
           </div>
         ` : ''}
 
+        ${this.showFormTrend ? this._renderFormTrend(stateObj.attributes.previous_matches, stateObj.attributes.matches, this.myTeam || stateObj.attributes.team_name) : ''}
         ${this.showPreviousMatches ? this._renderPreviousMatches(stateObj.attributes.previous_matches, stateObj.attributes.matches, this.myTeam || stateObj.attributes.team_name) : ""}
         ${this._renderH2H(match.head_to_head)}
         ${this._renderUpcomingList(stateObj.attributes.upcoming_matches, stateObj.attributes.matches, this.myTeam || stateObj.attributes.team_name)}
@@ -569,6 +571,37 @@ class CalcioLiveTeamNextCard extends LitElement {
   _teamBadge(abbrev, color) {
     const bg = color && color !== 'N/A' ? `#${color.replace('#', '')}` : 'rgba(var(--cl-accent-rgb),0.25)';
     return html`<span class="abbrev-badge" style="background:${bg}">${abbrev}</span>`;
+  }
+
+  _renderFormTrend(previousMatches, fallbackMatches, trackedTeam) {
+    const tracked = (trackedTeam || '').toLowerCase();
+    // Gebruik previous_matches of filtered fallback
+    const finished = previousMatches && previousMatches.length > 0
+      ? previousMatches
+      : (fallbackMatches || []).filter(m => m.state === 'post').slice(-10).reverse();
+    if (finished.length === 0) return '';
+    const results = finished.map(m => {
+      const isHome = m.home_team && m.home_team.toLowerCase().includes(tracked);
+      const hs = parseInt(m.home_score), as_ = parseInt(m.away_score);
+      if (isNaN(hs) || isNaN(as_)) return null;
+      if (hs === as_) return 'D';
+      return ((isHome && hs > as_) || (!isHome && as_ > hs)) ? 'W' : 'L';
+    }).filter(Boolean).reverse(); // oudste → nieuwste
+    if (results.length === 0) return '';
+    const wins = results.filter(r => r === 'W').length;
+    const draws = results.filter(r => r === 'D').length;
+    const losses = results.filter(r => r === 'L').length;
+    return html`
+      <div class="form-trend-section">
+        <div class="upcoming-list-title">${this._t('team.form_trend') || 'Seizoenvorm'}</div>
+        <div class="form-trend-row">
+          <div class="form-trend-dots">
+            ${results.map(r => html`<span class="ft-dot ${r.toLowerCase()}">${r}</span>`)}
+          </div>
+          <span class="form-trend-summary">${wins}W ${draws}G ${losses}V</span>
+        </div>
+      </div>
+    `;
   }
 
   _renderPreviousMatches(previousMatches, fallbackMatches, trackedTeam) {
@@ -1402,6 +1435,26 @@ class CalcioLiveTeamNextCard extends LitElement {
       .upcoming-team.tracked .abbrev-badge { outline: 2px solid rgba(255,255,255,0.5); }
       .upcoming-row.clickable { cursor: pointer; }
       .upcoming-row.clickable:hover { background: var(--cl-card-2); border-radius: 8px; }
+      .form-trend-section {
+        border-top: 1px solid var(--cl-divider);
+        padding: 10px 16px 8px;
+      }
+      .form-trend-row {
+        display: flex; align-items: center; gap: 10px; margin-top: 6px;
+      }
+      .form-trend-dots { display: flex; gap: 4px; flex-wrap: wrap; }
+      .ft-dot {
+        width: 20px; height: 20px; border-radius: 5px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 9px; font-weight: 800; color: white; flex-shrink: 0;
+      }
+      .ft-dot.w { background: var(--cl-green); }
+      .ft-dot.d { background: var(--cl-gold); color: rgba(0,0,0,0.7); }
+      .ft-dot.l { background: var(--cl-live); }
+      .form-trend-summary {
+        font-size: 10px; font-weight: 700; color: var(--cl-text-2);
+        white-space: nowrap; flex-shrink: 0;
+      }
       .prev-score {
         font-size: 12px; font-weight: 900;
         color: var(--cl-text-2);

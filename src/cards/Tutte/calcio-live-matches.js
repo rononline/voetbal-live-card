@@ -397,7 +397,10 @@ class CalcioLiveTodayMatchesCard extends LitElement {
 
         <div class="scroll-content" style="max-height: ${scrollHeight}px;">
           ${grouped.map(group => html`
-            <div class="day-divider ${group.dayDiff === 0 ? 'today' : group.dayDiff === -1 ? 'yesterday' : group.dayDiff === 1 ? 'tomorrow' : ''}">${group.key}</div>
+            <div class="day-divider ${group.dayDiff === 0 ? 'today' : group.dayDiff === -1 ? 'yesterday' : group.dayDiff === 1 ? 'tomorrow' : ''}">
+              ${group.key}
+              ${group.dayDiff !== null && group.dayDiff > 1 ? html`<span class="day-rel">· over ${group.dayDiff} d</span>` : ''}
+            </div>
             ${group.matches.map(match => {
               const matchKey = `${match.home_team}_${match.away_team}`;
               const isLive = match.state === 'in';
@@ -657,6 +660,12 @@ class CalcioLiveTodayMatchesCard extends LitElement {
       .day-divider.today::after {
         background: linear-gradient(90deg, var(--cl-accent), transparent);
         opacity: 0.4;
+      }
+      .day-rel {
+        font-size: 9px; font-weight: 600;
+        color: var(--cl-text-2); opacity: 0.55;
+        text-transform: none; letter-spacing: 0;
+        flex-shrink: 0;
       }
       .day-divider.tomorrow { color: var(--cl-accent-2); opacity: 0.9; }
       .day-divider.tomorrow::after {
