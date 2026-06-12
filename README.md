@@ -1,65 +1,65 @@
-# ⚽ Voetbal Live Card
+# ⚽ Football Live Card
 
-Mooie, geanimeerde voetbalkaarten voor Home Assistant.  
-Companion voor de [Voetbal Live integratie](https://github.com/rononline/voetbal-live).
+Beautiful, animated football cards for Home Assistant.  
+Companion for the [Football Live integration](https://github.com/rononline/voetbal-live).
 
-Fork van [Calcio Live Card](https://github.com/Bobsilvio/calcio-live-card) door @Bobsilvio — uitgebreid met Nederlandse vertaling, bugfixes en extra features.
+Fork of [Calcio Live Card](https://github.com/Bobsilvio/calcio-live-card) by @Bobsilvio — extended with multi-language support, new cards, themes and various improvements.
 
 ---
 
-## ✨ Kaarten
+## ✨ Cards
 
-| Kaart | Type | Toont |
+| Card | Type | Shows |
 |---|---|---|
-| 🏅 **Stand** | `calcio-live-classifica` | Klassement met gekleurde zones (CL / EL / degradatie), goud voor #1 |
-| ⚽ **Team** | `calcio-live-team` | Wedstrijd: live score, vorm-pills, seizoensrecord, topscorer, TV-zender, toeschouwers |
-| 📋 **Wedstrijden** | `calcio-live-matches` | Dagsgegroepeerde wedstrijden met live-markering en FT-badge |
-| 📰 **Nieuws** | `calcio-live-news` | Artikelfeed met afbeeldingen en relatieve datum |
-| 👥 **Opstelling** | `calcio-live-lineup` | Basiself van beide teams, formatie, rugnummers |
-| ⏱ **Tijdlijn** | `calcio-live-timeline` | Minuut-voor-minuut log (doelpunten, kaarten, wissels) |
-| 🏆 **Schema** | `calcio-live-bracket` | KO-schema: lijstweergave of toernooi-boom met centrale trofee |
-| 🥇 **Topscorers** | `calcio-live-cannonieri` | Topscorerslijst van een competitie met foto, team en doelpuntenteller |
+| 🏅 **Standings** | `calcio-live-classifica` | League table with coloured zones (CL / EL / relegation), gold for #1 |
+| ⚽ **Team** | `calcio-live-team` | Match: live score, form pills, season record, top scorer, TV channel, attendance |
+| 📋 **Matches** | `calcio-live-matches` | Day-grouped matches with live highlighting and FT badge |
+| 📰 **News** | `calcio-live-news` | Article feed with images and relative timestamps |
+| 👥 **Lineup** | `calcio-live-lineup` | Starting eleven for both teams, formation, shirt numbers |
+| ⏱ **Timeline** | `calcio-live-timeline` | Minute-by-minute log (goals, cards, substitutions) |
+| 🏆 **Bracket** | `calcio-live-bracket` | Knockout bracket: list view or tournament tree with trophy |
+| 🥇 **Top Scorers** | `calcio-live-cannonieri` | Top scorers list with photo, team logo and goal tally |
 
 ### Features
-- 🌍 **Meertalig** — NL / EN / IT / FR / ES / DE / PT, automatisch via HA-taalinstelling
-- 🎨 **Animaties** — live-pulsering, score-pop, doelpunt-confetti + banner
-- 🔔 **In-card toasts** — optioneel bij doelpunten en kaarten, zonder HA-notificatiespam
-- 🏆 **Bracket** — lijst-stijl of toernooi-boom met SVG-pijlverbindingen
-- 🎨 **Thema's** — `dark`, `light`, `feyenoord`, `classic`, `neon`, `gold`
-- 📱 **Responsive** — werkt op mobiel, tablet en desktop
+- 🌍 **Multi-language** — EN / NL / DE / PT / FR / ES / IT, auto-detected via HA locale
+- 🎨 **Animations** — live pulse, score pop, goal confetti + banner
+- 🔔 **In-card toasts** — optional on goals and cards, no notification spam
+- 🏆 **Bracket** — list style or tournament tree with SVG connector lines
+- 🎨 **Themes** — `dark`, `light`, `feyenoord`, `classic`, `neon`, `gold`
+- 📱 **Responsive** — works on mobile, tablet and desktop
 
 ---
 
 ## 📸 Screenshots
 
-| Stand | Team | Wedstrijden |
+| Standings | Team | Matches |
 |---|---|---|
-| ![Stand](images/classifica.png) | ![Team](images/squadra.png) | ![Wedstrijden](images/campionato.png) |
+| ![Standings](images/classifica.png) | ![Team](images/squadra.png) | ![Matches](images/campionato.png) |
 
 ---
 
-## 📦 Installatie via HACS
+## 📦 Installation via HACS
 
-1. Voeg de repository toe als **custom repository** in HACS:  
-   `https://github.com/rononline/voetbal-live-card` — categorie: **Dashboard**
-2. Installeer **Voetbal Live Card** via HACS
-3. Herstart Home Assistant en doe een harde refresh van het dashboard (Ctrl+F5 / Cmd+Shift+R)
+1. Add the repository as a **custom repository** in HACS:  
+   `https://github.com/rononline/voetbal-live-card` — category: **Dashboard**
+2. Install **Voetbal Live Card** via HACS
+3. Restart Home Assistant and do a hard refresh of the dashboard (Ctrl+F5 / Cmd+Shift+R)
 
-> Zorg dat de [Voetbal Live integratie](https://github.com/rononline/voetbal-live) geïnstalleerd is.
+> Make sure the [Football Live integration](https://github.com/rononline/voetbal-live) is installed.
 
 ---
 
-## 🃏 Kaart-referentie
+## 🃏 Card reference
 
-Alle kaarten hebben twee gemeenschappelijke opties:
+All cards share two common options:
 
-| Optie | Beschrijving |
+| Option | Description |
 |---|---|
-| `entity` | De Voetbal Live sensor. De editor filtert automatisch compatibele sensoren. |
-| `language` | Taal forceren: `auto` (volgt HA-instelling), `nl`, `en`, `de`, `fr`, `es`, `it`, `pt` |
-| `skin` | `dark` (standaard), `light`, `feyenoord`, `classic`, `neon`, `gold` |
+| `entity` | The Football Live sensor. The editor auto-filters compatible sensors. |
+| `language` | Force language: `auto` (follows HA locale), `en`, `nl`, `de`, `pt`, `fr`, `es`, `it` |
+| `skin` | `dark` (default), `light`, `feyenoord`, `classic`, `neon`, `gold` |
 
-### 🏅 Stand
+### 🏅 Standings
 
 ```yaml
 type: custom:calcio-live-classifica
@@ -78,10 +78,10 @@ show_event_toasts: true
 score_size: normal    # normal / big / huge
 ```
 
-Bij `show_event_toasts: true` triggert een doelpunt een complete viering:
-confetti-burst, knipperend kaartrand, groot "GOAL!"-banner, score-animatie en trilling op mobiel.
+With `show_event_toasts: true`, a goal triggers a full celebration:
+confetti burst, flashing card border, large "GOAL!" banner, score animation and vibration on mobile.
 
-### 📋 Wedstrijden
+### 📋 Matches
 
 ```yaml
 type: custom:calcio-live-matches
@@ -93,7 +93,7 @@ hide_past_days: 0
 show_event_toasts: false
 ```
 
-### 📰 Nieuws
+### 📰 News
 
 ```yaml
 type: custom:calcio-live-news
@@ -102,37 +102,37 @@ max_articles: 5
 hide_images: false
 ```
 
-### 👥 Opstelling
+### 👥 Lineup
 
 ```yaml
 type: custom:calcio-live-lineup
 entity: sensor.calciolive_next_ned_1_feyenoord_rotterdam
 ```
 
-> Beschikbaar kort voor de aftrap (zodra ESPN de opstellingen publiceert).
+> Available shortly before kick-off (once ESPN publishes the lineups).
 
-### ⏱ Tijdlijn
+### ⏱ Timeline
 
 ```yaml
 type: custom:calcio-live-timeline
 entity: sensor.calciolive_next_ned_1_feyenoord_rotterdam
-reverse_order: true   # nieuwste bovenaan
+reverse_order: true   # newest on top
 ```
 
-### 🏆 Schema
+### 🏆 Bracket
 
 ```yaml
 type: custom:calcio-live-bracket
 entity: sensor.calciolive_bracket_uefa_champions
-style: tree           # 'list' (standaard) of 'tree'
+style: tree           # 'list' (default) or 'tree'
 compact: false
 tree_show_playoffs: false
 ```
 
-Het bracket-sensor wordt automatisch aangemaakt voor bekertoernooien:  
-Champions League, Europa League, Conference League, KNVB Beker, Copa del Rey, WK, EK, en meer.
+The bracket sensor is created automatically for cup competitions:  
+Champions League, Europa League, Conference League, FA Cup, Copa del Rey, World Cup, Euros, and more.
 
-### 🥇 Topscorers
+### 🥇 Top Scorers
 
 ```yaml
 type: custom:calcio-live-cannonieri
@@ -141,27 +141,27 @@ max_items: 10
 hide_header: false
 ```
 
-Het topscorers-sensor (`calciolive_cannonieri_*`) wordt automatisch aangemaakt voor elke competitiesensor.  
-Toont: rang, spelerfoto, naam, team-logo en doelpuntenteller.
+The top scorers sensor (`calciolive_cannonieri_*`) is created automatically for every competition sensor.  
+Shows: rank, player photo, name, team logo and goal tally.
 
-> Niet alle competities bieden topscorersdata aan via ESPN. Als het sensor de status `Niet beschikbaar` toont, ondersteunt die competitie dit niet.
+> Not all competitions provide top scorer data via ESPN. If the sensor shows `Niet beschikbaar`, the competition does not support this endpoint.
 
 ---
 
-## 🌍 Meertalig
+## 🌍 Multi-language
 
-Alle UI-teksten worden vertaald via `src/i18n.js` met **90+ sleutels** in zeven talen.
+All UI text is translated via `src/i18n.js` with **90+ keys** in seven languages.
 
-| Sleutel | NL | EN | DE | PT | FR | ES | IT |
+| Key | EN | NL | DE | PT | FR | ES | IT |
 |---|---|---|---|---|---|---|---|
-| `time.today` | Vandaag | Today | Heute | Hoje | Aujourd'hui | Hoy | Oggi |
-| `event.goal` | Doelpunt | Goal | Tor | Gol | But | Gol | Goal |
-| `round.r16` | Achtste finales | Round of 16 | Achtelfinale | Oitavas | Huitièmes | Octavos | Ottavi |
-| `status.halftime` | Rust | Halftime | Halbzeit | Intervalo | Mi-temps | Descanso | Intervallo |
+| `time.today` | Today | Vandaag | Heute | Hoje | Aujourd'hui | Hoy | Oggi |
+| `event.goal` | Goal | Doelpunt | Tor | Gol | But | Gol | Goal |
+| `round.r16` | Round of 16 | Achtste finales | Achtelfinale | Oitavas | Huitièmes | Octavos | Ottavi |
+| `status.halftime` | Halftime | Rust | Halbzeit | Intervalo | Mi-temps | Descanso | Intervallo |
 
 ---
 
-## 📜 Licentie
+## 📜 License
 
-ISC — zie [LICENSE](LICENSE).  
-Data via ESPN publieke API's.
+ISC — see [LICENSE](LICENSE).  
+Data via ESPN public APIs.
