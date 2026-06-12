@@ -18,12 +18,14 @@ Fork van [Calcio Live Card](https://github.com/Bobsilvio/calcio-live-card) door 
 | 👥 **Opstelling** | `calcio-live-lineup` | Basiself van beide teams, formatie, rugnummers |
 | ⏱ **Tijdlijn** | `calcio-live-timeline` | Minuut-voor-minuut log (doelpunten, kaarten, wissels) |
 | 🏆 **Schema** | `calcio-live-bracket` | KO-schema: lijstweergave of toernooi-boom met centrale trofee |
+| 🥇 **Topscorers** | `calcio-live-cannonieri` | Topscorerslijst van een competitie met foto, team en doelpuntenteller |
 
 ### Features
-- 🌍 **Meertalig** — Nederlands / Engels / Italiaans / Frans / Spaans, automatisch via HA-taalinstelling
+- 🌍 **Meertalig** — NL / EN / IT / FR / ES / DE / PT, automatisch via HA-taalinstelling
 - 🎨 **Animaties** — live-pulsering, score-pop, doelpunt-confetti + banner
 - 🔔 **In-card toasts** — optioneel bij doelpunten en kaarten, zonder HA-notificatiespam
 - 🏆 **Bracket** — lijst-stijl of toernooi-boom met SVG-pijlverbindingen
+- 🎨 **Thema's** — `dark`, `light`, `feyenoord`, `classic`, `neon`, `gold`
 - 📱 **Responsive** — werkt op mobiel, tablet en desktop
 
 ---
@@ -54,8 +56,8 @@ Alle kaarten hebben twee gemeenschappelijke opties:
 | Optie | Beschrijving |
 |---|---|
 | `entity` | De Voetbal Live sensor. De editor filtert automatisch compatibele sensoren. |
-| `language` | Taal forceren: `auto` (volgt HA-instelling), `nl`, `en`, `it`, `fr`, `es` |
-| `skin` | `dark` (standaard) of `light` |
+| `language` | Taal forceren: `auto` (volgt HA-instelling), `nl`, `en`, `de`, `fr`, `es`, `it`, `pt` |
+| `skin` | `dark` (standaard), `light`, `feyenoord`, `classic`, `neon`, `gold` |
 
 ### 🏅 Stand
 
@@ -130,18 +132,32 @@ tree_show_playoffs: false
 Het bracket-sensor wordt automatisch aangemaakt voor bekertoernooien:  
 Champions League, Europa League, Conference League, KNVB Beker, Copa del Rey, WK, EK, en meer.
 
+### 🥇 Topscorers
+
+```yaml
+type: custom:calcio-live-cannonieri
+entity: sensor.calciolive_cannonieri_ned_1
+max_items: 10
+hide_header: false
+```
+
+Het topscorers-sensor (`calciolive_cannonieri_*`) wordt automatisch aangemaakt voor elke competitiesensor.  
+Toont: rang, spelerfoto, naam, team-logo en doelpuntenteller.
+
+> Niet alle competities bieden topscorersdata aan via ESPN. Als het sensor de status `Niet beschikbaar` toont, ondersteunt die competitie dit niet.
+
 ---
 
 ## 🌍 Meertalig
 
-Alle UI-teksten worden vertaald via `src/i18n.js` met **80+ sleutels** in vijf talen.
+Alle UI-teksten worden vertaald via `src/i18n.js` met **90+ sleutels** in zeven talen.
 
-| Sleutel | NL | EN | IT | FR | ES |
-|---|---|---|---|---|---|
-| `time.today` | Vandaag | Today | Oggi | Aujourd'hui | Hoy |
-| `event.goal` | Doelpunt | Goal | Goal | But | Gol |
-| `round.r16` | Achtste finales | Round of 16 | Ottavi | Huitièmes | Octavos |
-| `status.halftime` | Rust | Halftime | Intervallo | Mi-temps | Descanso |
+| Sleutel | NL | EN | DE | PT | FR | ES | IT |
+|---|---|---|---|---|---|---|---|
+| `time.today` | Vandaag | Today | Heute | Hoje | Aujourd'hui | Hoy | Oggi |
+| `event.goal` | Doelpunt | Goal | Tor | Gol | But | Gol | Goal |
+| `round.r16` | Achtste finales | Round of 16 | Achtelfinale | Oitavas | Huitièmes | Octavos | Ottavi |
+| `status.halftime` | Rust | Halftime | Halbzeit | Intervalo | Mi-temps | Descanso | Intervallo |
 
 ---
 
