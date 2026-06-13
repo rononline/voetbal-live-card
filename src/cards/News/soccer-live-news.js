@@ -27,7 +27,7 @@ class CalcioLiveNewsCard extends LitElement {
   static getConfigElement() { return document.createElement("soccer-live-news-editor"); }
   static getStubConfig() {
     return {
-      entity: "sensor.calciolive_news",
+      entity: "sensor.soccerlive_news",
       max_articles: 5,
       hide_header: false,
       hide_images: false,

@@ -129,7 +129,7 @@ class CalcioLiveTodayMatchesEditor extends LitElement {
   _fetchEntities() {
     if (!this.hass) return;
     this.entities = Object.keys(this.hass.states)
-      .filter((entityId) => entityId.startsWith('sensor.calciolive_all'))
+      .filter((entityId) => entityId.startsWith('sensor.soccerlive_all'))
       .sort();
   }
 

@@ -113,7 +113,7 @@ class CalcioLiveTeamNextCardEditor extends LitElement {
   _fetchEntities() {
     if (!this.hass) return;
     this.entities = Object.keys(this.hass.states)
-      .filter((entityId) => entityId.startsWith('sensor.calciolive_next'))
+      .filter((entityId) => entityId.startsWith('sensor.soccerlive_next'))
       .sort();
   }
 

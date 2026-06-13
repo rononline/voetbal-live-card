@@ -25,7 +25,7 @@ class CalcioLiveTimelineCard extends LitElement {
   getCardSize() { return 5; }
   static getConfigElement() { return document.createElement("soccer-live-timeline-editor"); }
   static getStubConfig() {
-    return { entity: "sensor.calciolive_next", hide_header: false, reverse_order: true };
+    return { entity: "sensor.soccerlive_next", hide_header: false, reverse_order: true };
   }
 
   _eventMeta(ev) {

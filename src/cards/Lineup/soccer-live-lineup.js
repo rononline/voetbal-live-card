@@ -24,7 +24,7 @@ class CalcioLiveLineupCard extends LitElement {
   getCardSize() { return 6; }
   static getConfigElement() { return document.createElement("soccer-live-lineup-editor"); }
   static getStubConfig() {
-    return { entity: "sensor.calciolive_next", hide_header: false };
+    return { entity: "sensor.soccerlive_next", hide_header: false };
   }
 
   _starters(players) {

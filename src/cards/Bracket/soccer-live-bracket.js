@@ -51,7 +51,7 @@ class CalcioLiveBracketCard extends LitElement {
   getCardSize() { return 6; }
   static getConfigElement() { return document.createElement("soccer-live-bracket-editor"); }
   static getStubConfig() {
-    return { entity: "sensor.calciolive_bracket", hide_header: false, compact: false, style: 'list' };
+    return { entity: "sensor.soccerlive_bracket", hide_header: false, compact: false, style: 'list' };
   }
 
   _formatScore(s) {

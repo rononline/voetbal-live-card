@@ -29,7 +29,7 @@ class CalcioLiveCannonieriCard extends LitElement {
   }
 
   static getStubConfig() {
-    return { entity: "sensor.calciolive_cannonieri_" };
+    return { entity: "sensor.soccerlive_cannonieri_" };
   }
 
   render() {

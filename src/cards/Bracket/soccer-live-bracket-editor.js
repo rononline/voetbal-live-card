@@ -78,7 +78,7 @@ class CalcioLiveBracketEditor extends LitElement {
   _fetchEntities() {
     if (!this.hass) return;
     this.entities = Object.keys(this.hass.states)
-      .filter(id => id.startsWith('sensor.calciolive_bracket'))
+      .filter(id => id.startsWith('sensor.soccerlive_bracket'))
       .sort();
   }
 
@@ -90,7 +90,7 @@ class CalcioLiveBracketEditor extends LitElement {
       <div class="card-config">
         <h3>Sensor</h3>
         <div>
-          <label class="field-label">Entity (bracket sensor — calciolive_bracket_*)</label>
+          <label class="field-label">Entity (bracket sensor — soccerlive_bracket_*)</label>
           <select @change=${this._entityChanged}>
             ${!inList ? html`<option value="${cur}" selected>${cur || '— select —'}</option>` : ''}
             ${this.entities.map(e => html`<option value="${e}" ?selected=${e === cur}>${e}</option>`)}
